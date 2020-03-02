@@ -10,6 +10,33 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *= require bootstrap
+ *= require bootstrap-theme
+ *= require app
+ *= require listty
+ *= require style
+ *= require style.min
+ *= require font-awesome
+ *= require datepicker
+ *= require daterangepicker
+ *= require dzsparallaxer
+ *= require jquery.dataTables.min
+ *= require jquery.fancybox.min
+ *= require jquery.fancybox
+ *= require jquery.rateyo.min
+ *= require jquery.rateyo
+ *= require jquery-ui
+ *= require jquery-ui.min
+ *= require map
+ *= require isotope
+ *= require menuzord
+ *= require owl.carousel
+ *= require owl.carousel.min
+ *= require owl.theme.default.min
+ *= require perfect-scrollbar
+ *= require responsive.dataTables.min
+ *= require selectric
+ *= require settings
+ *= require select_option1
+
  */
