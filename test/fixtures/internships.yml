@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adress: MyString
+  zipcode: MyString
+  city: MyString
+  specialty: MyString
+  organization: MyString
+  population: MyString
+  notation: 1.5
+
+two:
+  adress: MyString
+  zipcode: MyString
+  city: MyString
+  specialty: MyString
+  organization: MyString
+  population: MyString
+  notation: 1.5
