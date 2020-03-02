@@ -14,8 +14,10 @@
 //= require activestorage
 //= require turbolinks
 
+//= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker.min
+//= require jquery
 //= require app
 //= require listty
 //= require chart
@@ -37,7 +39,6 @@
 //= require jquery.flot
 //= require jquery.flot.min
 //= require jquery.flot.time
-//= require jquery
 //= require jquery.min
 //= require jquery.rateyo
 //= require jquery.rateyo.min
