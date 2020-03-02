@@ -15,6 +15,7 @@
 //= require turbolinks
 
 //= require bootstrap
+//= require bootstrap.bundle
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker.min
 //= require jquery
