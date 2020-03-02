@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adress:</strong>
+  <%= @internship.adress %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @internship.zipcode %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @internship.city %>
+</p>
+
+<p>
+  <strong>Specialty:</strong>
+  <%= @internship.specialty %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @internship.organization %>
+</p>
+
+<p>
+  <strong>Population:</strong>
+  <%= @internship.population %>
+</p>
+
+<p>
+  <strong>Notation:</strong>
+  <%= @internship.notation %>
+</p>
+
+<%= link_to 'Edit', edit_internship_path(@internship) %> |
+<%= link_to 'Back', internships_path %>
