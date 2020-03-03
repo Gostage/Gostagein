@@ -16,10 +16,11 @@
  *= require daterangepicker
  *= require dzsparallaxer
  *= require menuzord
- *= require owl
+ *= require owl.carousel.min
+ *= require owl.theme.default.min
  *= require map
  *= require perfect-scrollbar
- *= require responsive
+ *= require responsive.dataTables.min
  *= require selectric
  *= require settings
  *= require style

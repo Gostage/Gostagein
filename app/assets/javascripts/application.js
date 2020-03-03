@@ -15,20 +15,20 @@
 //= require turbolinks
 
 //= require jquery
-//= require jquery-3.4.1
+//= require jquery-3.4.1.min
 //= require bootstrap
 //= require chart
-//= require dataTables
+//= require dataTables.responsive.min
 //= require daterangepicker
 //= require dzsparallaxer
-//= require imagesloaded
-//= require isotope
+//= require imagesloaded.pkgd.min
+//= require isotope.pkgd.min
 //= require infobox_packed
 //= require map
 //= require markerclusterer
-//= require owl
+//= require owl.carousel.min
 //= require rich-marker
 //= require markerclusterer
 //= require menuzord
-//= require moment
+//= require moment.min
 //= require listty
