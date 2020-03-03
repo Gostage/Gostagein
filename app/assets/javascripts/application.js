@@ -13,4 +13,22 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+
+//= require jquery
+//= require jquery-3.4.1
+//= require bootstrap
+//= require chart
+//= require dataTables
+//= require daterangepicker
+//= require dzsparallaxer
+//= require imagesloaded
+//= require isotope
+//= require infobox_packed
+//= require map
+//= require markerclusterer
+//= require owl
+//= require rich-marker
+//= require markerclusterer
+//= require menuzord
+//= require moment
+//= require listty
