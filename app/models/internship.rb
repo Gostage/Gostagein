@@ -24,5 +24,8 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: 0..10},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
+  
   belongs_to :user
+  has_many :favorites
+  has_many :users, through: :favorites
 end
