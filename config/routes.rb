@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   resources :internships
   root to: "users#index"
   devise_for :users
