@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
+  resources :favorites
+
   resources :comments
+
   resources :internships
   root to: "users#index"
   devise_for :users
