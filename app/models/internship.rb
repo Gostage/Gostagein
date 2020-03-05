@@ -26,6 +26,10 @@ class Internship < ApplicationRecord
     format: { with: /\A\d+\.*\d{0,1}\z/ }
   
   belongs_to :user
+
   has_many :favorites
   has_many :users, through: :favorites
+
+  has_many :comments
+
 end

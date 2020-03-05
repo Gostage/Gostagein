@@ -15,6 +15,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :internships
+
   has_many :favorites
   has_many :internships, through: :favorites
+
+  has_many :comments
+
 end
