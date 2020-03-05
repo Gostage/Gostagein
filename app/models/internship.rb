@@ -24,6 +24,12 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: 0..10},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
+  validates :title,
+    presence: true,
+    length: { in: 10..150}
+  validates :cursus,
+    presence: true,
+    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"]}
   
   belongs_to :user
 
