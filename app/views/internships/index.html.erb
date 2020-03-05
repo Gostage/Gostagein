@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
+      <th>Cursus</th>
       <th>Adress</th>
       <th>Zipcode</th>
       <th>City</th>
@@ -19,6 +21,8 @@
   <tbody>
     <% @internships.each do |internship| %>
       <tr>
+        <td><%= internship.title %></td>
+        <td><%= internship.cursus %></td>
         <td><%= internship.adress %></td>
         <td><%= internship.zipcode %></td>
         <td><%= internship.city %></td>
