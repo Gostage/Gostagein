@@ -10,13 +10,13 @@ class Internship < ApplicationRecord
     length: { in: 1..50 }
   validates :specialty,
     presence: true,
-    inclusion: { in: ["Autre"]}
+    inclusion: { in: ["Hospitalier", "Maison médicale","Social", "Médico-social", "Petite enfance", "Associatif", "Scolaire", "Médico-pédagogique", "Libéral", "Recherche", "Entreprise","Privé", "Justice","Police Nationale", "Armée", "Carcéral", "Insertion professionnelle", "Recrutement", "Gestion de carrières", "Ressouces Humaines", "Marketing", "Santé au travail", "Autres"]}
   validates :organization,
     presence: true,
-    inclusion: { in: ["EHPAD", "CHU", "Ecole", "Prison", "Clinique", "Autre"] }
+    length: { in: 3..150}
   validates :population,
     presence: true,
-    inclusion: { in: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autre"] }
+    inclusion: { in: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut Potentionel", "Personnes Cérébro-lésées", "Autres"] }
   validates :description,
     presence: true,
     length: { in: 30..1000 }
@@ -24,6 +24,12 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: 0..10},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
+  validates :title,
+    presence: true,
+    length: { in: 10..150}
+  validates :cursus,
+    presence: true,
+    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"]}
   
   belongs_to :user
 
