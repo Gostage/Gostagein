@@ -1,8 +1,10 @@
 
+Favorite.destroy_all
+Comment.destroy_all
 Internship.destroy_all
 User.destroy_all
-# Comment.destroy_all
-# Favorite.destroy_all
+
+
 
 
 require 'faker'
@@ -30,19 +32,19 @@ end
 
 puts "100 stages ont été crées"
 
-=begin
 
 100.times do |favorite|
-	favorite = Favorite.create(user_id: User.sample.all.id, internship_id: Internship.sample.all.id)
+	favorite = Favorite.create(user: User.all.sample, internship: Internship.all.sample)
 end
 
 puts "100 favoris ont été crées"
 
-
 100.times do |comment|
-	comment = Comment.create(content: Faker::GreekPhilosophers.quote, user: User.sample.all,
-		internship: Internship.sample.all)
+	comment = Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, user: User.all.sample,
+		internship: Internship.all.sample)
 end
 
 puts "100 commentaires ont été crées"
-=end
+puts "..."
+
+puts "Le seed est fait, yeaah 🤟"
