@@ -22,7 +22,7 @@ class Internship < ApplicationRecord
     length: { in: 30..1000 }
   validates :notation,
     presence: true,
-    inclusion: { in: 0..10},
+    inclusion: { in: 0..5},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
   validates :title,
     presence: true,
