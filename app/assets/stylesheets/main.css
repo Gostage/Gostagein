@@ -1,0 +1,12 @@
+body {
+  min-height: 100vh;
+  background-color: #212529;
+}
+
+section {
+  min-height: 90vh;
+}
+
+footer {
+  height: 10vh;
+}
