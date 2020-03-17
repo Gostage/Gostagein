@@ -12,4 +12,6 @@
  *
  *= require bootstrap
  *= require agency
+ *= require all
+ *= require main
  */
