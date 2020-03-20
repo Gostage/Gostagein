@@ -5,6 +5,7 @@ body {
 
 section {
   min-height: 90vh;
+  padding-top: 150px;
 }
 
 footer {
@@ -17,4 +18,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .field {
   color: white;
+}
+
+.field-title {
+  display: flex;
+  align-items: center;
 }
