@@ -3,6 +3,10 @@ body {
   background-color: #212529;
 }
 
+body .container {
+	padding: 10px 10px 30px 10px;
+}
+
 section {
   min-height: 90vh;
   padding-top: 150px;
