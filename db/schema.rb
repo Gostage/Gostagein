@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_164442) do
     t.text "description"
     t.string "title"
     t.string "cursus"
-    t.integer "duration"
+    t.float "duration"
     t.index ["user_id"], name: "index_internships_on_user_id"
   end
 
