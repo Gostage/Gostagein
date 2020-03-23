@@ -1,6 +1,7 @@
 body {
   min-height: 100vh;
   background-color: #212529;
+  color: #81888a;
 }
 
 body .container {
@@ -16,12 +17,16 @@ footer {
   height: 10vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: white;
+h1 {
+	color: #ffffff;
+}
+
+h2, h3, h4, h5, h6 {
+  color: #d7dbdc;
 }
 
 .field {
-  color: white;
+  color: #ffffff;
 }
 
 .field-title {
