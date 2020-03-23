@@ -24,6 +24,9 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: 0..5},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
+  validates :duration,
+    presence: true,
+    inclusion: { in: 0..10},
   validates :title,
     presence: true,
     length: { in: 10..150}
