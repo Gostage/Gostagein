@@ -11,52 +11,91 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<div class="container">
+  <div class="card bg-dark">
+    <div class="card-body text-secondary">
+       <div class="card-header text-uppercase text-center"> Lieu de stage</div>
+       <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <%= form.label :adresse %>
+          <%= form.text_field :adress, class:"form-control" %>
+          </div>
 
-  <div class="field">
-    <%= form.label :cursus %>
-    <%= form.text_field :title %>
-  </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <%= form.label :ville %>
+          <%= form.text_field :city, class:"form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :adress %>
-    <%= form.text_field :adress %>
-  </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-xs-12">
+            <%= form.label :code_postale %>
+            <%= form.text_field :zipcode, class:"form-control" %>
+            </div>
 
-  <div class="field">
-    <%= form.label :zipcode %>
-    <%= form.text_field :zipcode %>
-  </div>
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :institution %>
+              <%= form.text_field :organization, class:"form-control" %>
+              </div>
+            </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
+            <div class="row">
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :spécialité %>
+              <%= form.text_field :specialty, class:"form-control" %>
+              </div>
 
-  <div class="field">
-    <%= form.label :specialty %>
-    <%= form.text_field :specialty %>
-  </div>
+              <div class="form-group col-sm-6 col-xs-12">
+                <%= form.label :population %>
+                <%= form.text_field :population, class:"form-control" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :organization %>
-    <%= form.text_field :organization %>
-  </div>
 
-  <div class="field">
-    <%= form.label :population %>
-    <%= form.text_field :population %>
-  </div>
+          <div class="container">
+            <div class="card bg-dark">
+              <div class="card-body text-secondary">
+                <div class="card-header text-uppercase text-center"> Expérience</div>
+                <div class="row">
+                  <div class="form-group col-sm-6 col-xs-12">
+                    <%= form.label :titre %>
+                    <%= form.text_field :title, class:"form-control"  %>
+                    </div>
 
-  <div class="field">
-    <%= form.label :notation %>
-    <%= form.text_field :notation %>
-  </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                      <%= form.label :cursus %>
+                      <%= form.text_field :cursus, class:"form-control"  %>
+                      </div>
+                    </div>
 
+                    <div class="form-group col-xs-12">
+                      <%= form.label :description %>
+                      <%= form.text_area :description, class:"form-control"  %>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <%= form.label :notation %>
+                            <%= form.number_field :notation, step: :any, class:"form-control"  %>
+                          </div>
+
+                          <div class="form-group col-sm-6 col-xs-12">
+                            <%= form.label :duration %>
+                            <%= form.number_field :duration, step: :any, class:"form-control"  %>
+                          </div>
+                        </div>
+                       </div>
+                     </div>
+
+  <div class="container">       
   <div class="actions">
+    <button type="button" class="btn btn-warning btn-lg btn-block">
     <%= form.submit %>
+  </button>
   </div>
 <% end %>
+</div>
+</div>
