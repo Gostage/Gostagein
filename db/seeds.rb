@@ -22,7 +22,7 @@ puts "100 utilisateurs ont été crées"
 		city: Faker::Address.city, 
 		specialty: ["Hospitalier", "Maison médicale","Social", "Médico-social", "Petite enfance", "Associatif", "Scolaire", "Médico-pédagogique", "Libéral", "Recherche", "Entreprise","Privé", "Justice","Police Nationale", "Armée", "Carcéral", "Insertion professionnelle", "Recrutement", "Gestion de carrières", "Ressouces Humaines", "Marketing", "Santé au travail", "Autres"].sample, 
 		organization: Faker::Movies::HarryPotter.location, 
-		population: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut Potentionel", "Personnes Cérébro-lésées", "Autres"].sample, 
+		population: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut potentiel", "Personnes Cérébro-lésées", "Autres"].sample, 
 		notation: [1, 1.5, 3, 3.5, 4, 4.5, 5].sample,
 		duration: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6].sample,  
 		user: User.all.sample , 
