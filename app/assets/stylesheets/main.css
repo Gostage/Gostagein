@@ -32,7 +32,3 @@ h1, h2, h3, h4, h5, h6 {
 .input-group-text-search-form {
 	min-width: 125px;
 }
-
-.form-control-essai{
-  width: 100% - 125px;
-}
