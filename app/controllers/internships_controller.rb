@@ -42,7 +42,7 @@ class InternshipsController < ApplicationController
   def update
     respond_to do |format|
       if @internship.update(internship_params)
-        format.html { redirect_to @internship, notice: 'Internship was successfully updated.' }
+        format.html { redirect_to @internship, notice: 'Expérience enregistrée avec succès' }
         format.json { render :show, status: :ok, location: @internship }
       else
         format.html { render :edit }
