@@ -4,7 +4,8 @@ class InternshipsController < ApplicationController
   # GET /internships
   # GET /internships.json
   def index
-    @internships = Internship.all
+    @q = Internship.ransack(params[:q])
+    @internships = @q.result
   end
 
   # GET /internships/1
