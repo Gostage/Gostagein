@@ -17,7 +17,7 @@ class InternshipsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create internship" do
     assert_difference('Internship.count') do
-      post internships_url, params: { internship: { adress: @internship.adress, city: @internship.city, notation: @internship.notation, organization: @internship.organization, population: @internship.population, specialty: @internship.specialty, zipcode: @internship.zipcode } }
+      post internships_url, params: { internship: { adress: @internship.adress, city: @internship.city, notation: @internship.notation, organization: @internship.organization, population: @internship.population, specialty: @internship.specialty, zipcode: @internship.zipcode, duration: @internship.duration, title: @internship.title, cursus: @internship.cursus } }
     end
 
     assert_redirected_to internship_url(Internship.last)
@@ -34,7 +34,7 @@ class InternshipsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update internship" do
-    patch internship_url(@internship), params: { internship: { adress: @internship.adress, city: @internship.city, notation: @internship.notation, organization: @internship.organization, population: @internship.population, specialty: @internship.specialty, zipcode: @internship.zipcode } }
+    patch internship_url(@internship), params: { internship: { adress: @internship.adress, city: @internship.city, notation: @internship.notation, organization: @internship.organization, population: @internship.population, specialty: @internship.specialty, zipcode: @internship.zipcode, duration: @internship.duration, title: @internship.title, cursus: @internship.cursus } }
     assert_redirected_to internship_url(@internship)
   end
 
