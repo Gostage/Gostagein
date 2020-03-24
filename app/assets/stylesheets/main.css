@@ -19,14 +19,11 @@ footer {
 
 h1 {
 	color: #ffffff;
+  text-align: center;
 }
 
 h2, h3, h4, h5, h6 {
   color: #d7dbdc;
-}
-
-.actions {
-	padding-top: 20px;
 }
 
 .field {
@@ -35,5 +32,23 @@ h2, h3, h4, h5, h6 {
 
 .field-title {
   display: flex;
-  align-items: center;
+  align-self: auto;
 }
+
+.actions {
+  padding: 40px;
+  margin: auto;
+}
+
+.card-header {
+  background-color: #212529;
+  padding: 20px;
+}
+
+.form-group {
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+
+
+
