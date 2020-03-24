@@ -28,7 +28,7 @@ class InternshipsController < ApplicationController
 
     respond_to do |format|
       if @internship.save
-        format.html { redirect_to @internship, notice: 'Internship was successfully created.' }
+        format.html { redirect_to @internship, notice: 'Expérience crée avec succès' }
         format.json { render :show, status: :created, location: @internship }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class InternshipsController < ApplicationController
   def destroy
     @internship.destroy
     respond_to do |format|
-      format.html { redirect_to internships_url, notice: 'Internship was successfully destroyed.' }
+      format.html { redirect_to internships_url, notice: 'Expérience supprimée avec succès.' }
       format.json { head :no_content }
     end
   end
