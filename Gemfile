@@ -68,5 +68,5 @@ gem 'faker'
 # Used for search engine
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
-# Jquery installed
+# Installed jquery
 gem 'jquery-rails'

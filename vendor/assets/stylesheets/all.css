@@ -4365,7 +4365,7 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
   font-weight: normal;
-  font-display: auto;
+  font-display: auto; }
   
 .fab {
   font-family: 'Font Awesome 5 Brands'; }
