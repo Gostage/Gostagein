@@ -1,7 +1,7 @@
 <%= form_with(model: internship, local: true) do |form| %>
   <% if internship.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(internship.errors.count, "error") %> prohibited this internship from being saved:</h2>
+      <h2><%= pluralize(internship.errors.count, "erreurs") %> ont empêché la sauvegarde de la modification:</h2>
 
       <ul>
       <% internship.errors.full_messages.each do |message| %>
@@ -11,89 +11,88 @@
     </div>
   <% end %>
 
-<div class="container">
-  <div class="card bg-dark">
-    <div class="card-body text-secondary">
-       <div class="card-header text-uppercase text-center"> Lieu de stage</div>
-       <div class="row">
-        <div class="form-group col-sm-6 col-xs-12">
-          <%= form.label :adresse %>
-          <%= form.text_field :adress, class:"form-control" %>
-          </div>
 
-        <div class="form-group col-sm-6 col-xs-12">
-          <%= form.label :ville %>
-          <%= form.text_field :city, class:"form-control" %>
-          </div>
-        </div>
-
-        <div class="row">
+  <div class="container">
+    <div class="card bg-dark">
+      <div class="card-body text-secondary">
+         <div class="card-header text-uppercase text-center text-primary"> Lieu de stage</div>
+         <div class="row">
           <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :code_postale %>
-            <%= form.text_field :zipcode, class:"form-control" %>
+            <%= form.label :adresse %>
+            <%= form.text_field :adress, class:"form-control" %>
             </div>
 
-            <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :institution %>
-              <%= form.text_field :organization, class:"form-control" %>
-              </div>
+          <div class="form-group col-sm-6 col-xs-12">
+            <%= form.label :ville %>
+            <%= form.text_field :city, class:"form-control" %>
             </div>
+          </div>
 
-            <div class="row">
+          <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :spécialité %>
-              <%= form.text_field :specialty, class:"form-control" %>
+              <%= form.label :code_postale %>
+              <%= form.text_field :zipcode, class:"form-control" %>
               </div>
 
               <div class="form-group col-sm-6 col-xs-12">
-                <%= form.label :population %>
-                <%= form.text_field :population, class:"form-control" %>
+                <%= form.label :institution %>
+                <%= form.text_field :organization, class:"form-control" %>
+                </div>
+              </div>
+
+              <div class="row">
+              <div class="form-group col-sm-6 col-xs-12">
+                <%= form.label :spécialité %>
+                <%= select_tag("internship[specialty]", options_for_select([["Hospitalier"],['Maison médicale'], ["Social"], ["Médico-social"], ["Petite enfance"], ["Associatif"], ["Scolaire"], ["Médico-pédagogique"], ["Libéral"], ["Recherche"], ["Entreprise"],["Privé"], ["Justice"],["Police Nationale"], ["Armée"], ["Carcéral"], ["Insertion professionnelle"], ["Recrutement"], ["Gestion de carrières"], ["Ressouces Humaines"], ["Marketing"], ["Santé au travail"], ["Autres"] ]), class: "form-control") %>
+              </div>
+
+                <div class="form-group col-sm-6 col-xs-12">
+                  <%= form.label :population %>
+                  <%= select_tag("internship[population]", options_for_select([["Personnes âgées"],["Enfants"], ["Adolescents"], ["Adultes"], ["Autistes"], ["Haut potentiel"], ["Personnes Cérébro-lésées"], [ "Autres"]]), class: "form-control") %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-
-          <div class="container">
-            <div class="card bg-dark">
-              <div class="card-body text-secondary">
-                <div class="card-header text-uppercase text-center"> Expérience</div>
-                <div class="row">
-                  <div class="form-group col-sm-6 col-xs-12">
-                    <%= form.label :titre %>
-                    <%= form.text_field :title, class:"form-control"  %>
-                    </div>
-
+            <div class="container">
+              <div class="card bg-dark">
+                <div class="card-body text-secondary">
+                  <div class="card-header text-uppercase text-center text-primary"> Expérience</div>
+                  <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
-                      <%= form.label :cursus %>
-                      <%= form.text_field :cursus, class:"form-control"  %>
-                      </div>
-                    </div>
-
-                    <div class="form-group col-xs-12">
-                      <%= form.label :description %>
-                      <%= form.text_area :description, class:"form-control"  %>
+                      <%= form.label :titre %>
+                      <%= form.text_field :title, class:"form-control"  %>
                       </div>
 
-                      <div class="row">
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <%= form.label :notation %>
-                            <%= form.number_field :notation, step: :any, class:"form-control"  %>
-                          </div>
-
-                          <div class="form-group col-sm-6 col-xs-12">
-                            <%= form.label :duration %>
-                            <%= form.number_field :duration, step: :any, class:"form-control"  %>
-                          </div>
+                      <div class="form-group col-sm-6 col-xs-12">
+                        <%= form.label :cursus %><span> (lors du stage)</span>
+                        <%= select_tag("internship[cursus]", options_for_select([["Licence 1"],["Licence 2"], ["Licence 3"], ["Master 1"], ["Master 2"]]), class: "form-control") %>
                         </div>
+                      </div>
+
+                      <div class="form-group col-xs-12">
+                        <%= form.label :description %><span> (missions, tâches réalisées, impressions)</span>
+                        <%= form.text_area :description, class:"form-control"  %>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-6 col-xs-12">
+                              <%= form.label :notes %><span> (sur 5)</span>
+                              <%= select_tag("internship[notation]", options_for_select([[1],[1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5]]), class: "form-control") %>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                              <%= form.label :durée %><span> (en mois)</span>
+                              <%= select_tag("internship[duration]", options_for_select([[1],[1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5], [5.5], [6]]), class: "form-control") %>
+                            </div>
+                          </div>
+                         </div>
                        </div>
-                     </div>
-                   
-                     <div class="actions">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">
-                        <%= form.submit %> </button>
-                        <% end %>
+                     
+                       <div class="actions">
+                          <%= form.submit "Mettre à jour", :class => "btn btn-primary btn-lg btn-block"%> 
+                          <% end %>
+                        </div>
+                        </div>
                       </div>
-                      </div>
-                    </div>
