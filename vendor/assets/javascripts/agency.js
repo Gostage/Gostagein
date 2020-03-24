@@ -1,4 +1,4 @@
-$(function() {
+(function($) {
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
@@ -39,4 +39,4 @@ $(function() {
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-}); // End of use strict
+})(jQuery); // End of use strict
