@@ -16,7 +16,7 @@ class Internship < ApplicationRecord
     length: { in: 3..150}
   validates :population,
     presence: true,
-    inclusion: { in: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut Potentionel", "Personnes Cérébro-lésées", "Autres"] }
+    inclusion: { in: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut potentiel", "Personnes Cérébro-lésées", "Autres"] }
   validates :description,
     presence: true,
     length: { in: 30..1000 }
