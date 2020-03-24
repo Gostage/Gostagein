@@ -30,7 +30,7 @@
 
           <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :code_postale %>
+              <%= form.label :code_postal %>
               <%= form.text_field :zipcode, class:"form-control" %>
               </div>
 
@@ -71,7 +71,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group col-xs-12">
+                      <div class="form-group col-xs-12" id="description">
                         <%= form.label :description %><span> (missions, tâches réalisées, impressions)</span>
                         <%= form.text_area :description, class:"form-control"  %>
                         </div>
@@ -89,10 +89,10 @@
                           </div>
                          </div>
                        </div>
-                     
-                       <div class="actions">
-                          <%= form.submit "Mettre à jour", :class => "btn btn-primary btn-lg btn-block"%> 
+
+                        <div class="actions col-sm-6 col-xs-12">
+                          <%= form.submit "Mettre à jour", :class => "btn btn-primary btn-block btn-lg" %>
                           <% end %>
-                        </div>
-                        </div>
+                          </div>
                       </div>
+                    </div>
