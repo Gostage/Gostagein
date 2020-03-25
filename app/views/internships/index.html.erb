@@ -2,6 +2,11 @@
 
 <%= render "search_form" %>
 
+<div class="container">
+  <button type="button" class="btn btn-outline-warning">
+    <%= link_to 'Créer une expérience de stage', new_internship_path %></button>
+  </div>
+
 <h1>Internships</h1>
 <div class="text-white">
   <% if @internships == [] %>
