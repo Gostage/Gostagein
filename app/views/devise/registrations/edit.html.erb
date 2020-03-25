@@ -31,7 +31,7 @@
 
     <div class="input-group mb-4 mt-4">
       <div class="text-white field-title col-5" align="left">
-        <span>Nouveau mot de passe (laisser blanc si vous ne voulez pas le changer)</span>
+        <span>Nouveau mot de passe <small><i>(laisser blanc si vous ne voulez pas le changer)</i></small></span>
       </div>
       <%= f.text_field :password, autocomplete: "Nouveau mot de passe", placeholder: "6 caractères minimum", class: "form-control col-7" %>
     </div>
@@ -45,7 +45,7 @@
 
     <div class="input-group mb-4 mt-4">
       <div class="text-white field-title col-5" align="left">
-        <span>Mot de passe actuel (il est nécessaire pour valider les changements)</span>
+        <span>Mot de passe actuel <small><i>(il est nécessaire pour valider les changements)</i></small></span>
       </div>
       <%= f.text_field :current_password, autocomplete: "Mot de passe actuel", class: "form-control col-7" %>
     </div>
