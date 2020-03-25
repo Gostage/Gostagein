@@ -1,45 +1,48 @@
 <p id="notice"><%= notice %></p>
 
+<%= render "search_form" %>
+
 <h1>Internships</h1>
+<div class="text-white">
+  <% if @internships == [] %>
+    <p>Aucun résultat</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Cursus</th>
+          <th>Adress</th>
+          <th>Zipcode</th>
+          <th>City</th>
+          <th>Specialty</th>
+          <th>Organization</th>
+          <th>Population</th>
+          <th>Notation</th>
+          <th>Duration</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Cursus</th>
-      <th>Adress</th>
-      <th>Zipcode</th>
-      <th>City</th>
-      <th>Specialty</th>
-      <th>Organization</th>
-      <th>Population</th>
-      <th>Notation</th>
-      <th>Duration</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @internships.each do |internship| %>
-      <tr>
-        <td><%= internship.title %></td>
-        <td><%= internship.cursus %></td>
-        <td><%= internship.adress %></td>
-        <td><%= internship.zipcode %></td>
-        <td><%= internship.city %></td>
-        <td><%= internship.specialty %></td>
-        <td><%= internship.organization %></td>
-        <td><%= internship.population %></td>
-        <td><%= internship.notation %></td>
-        <td><%= internship.duration %></td>
-        <td><%= link_to 'Show', internship %></td>
-        <td><%= link_to 'Edit', edit_internship_path(internship) %></td>
-        <td><%= link_to 'Destroy', internship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Internship', new_internship_path %>
+      <tbody>
+        <% @internships.each do |internship| %>
+          <tr>
+            <td><%= internship.title %></td>
+            <td><%= internship.cursus %></td>
+            <td><%= internship.adress %></td>
+            <td><%= internship.zipcode %></td>
+            <td><%= internship.city %></td>
+            <td><%= internship.specialty %></td>
+            <td><%= internship.organization %></td>
+            <td><%= internship.population %></td>
+            <td><%= internship.notation %></td>
+            <td><%= internship.duration %></td>
+            <td><%= link_to 'Show', internship %></td>
+            <td><%= link_to 'Edit', edit_internship_path(internship) %></td>
+            <td><%= link_to 'Destroy', internship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
