@@ -58,3 +58,6 @@ h2, h3, h4, h5, h6 {
 	min-width: 125px;
 }
 
+p span {
+   margin:2px 5px 2em 0;
+}
