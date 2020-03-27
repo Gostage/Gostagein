@@ -14,44 +14,54 @@
     <div class="card bg-dark">
       <div class="card-body text-secondary">
         <div class="card-header text-uppercase text-center text-primary"> Lieu de stage</div>
-         <div class="row">
-          <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :adresse %>
-            <%= form.text_field :adress, class:"form-control" %>
-          </div>
-
-          <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :ville %>
-            <%= form.text_field :city, class:"form-control" %>
-          </div>
-        </div>
-
         <div class="row">
           <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :code_postal %>
-            <%= form.text_field :zipcode, class:"form-control" %>
-          </div>
-
-          <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :institution %>
+            <%= form.label :etablissement %>
             <%= form.text_field :organization, class:"form-control" %>
-          </div>
-        </div>
+            </div>
 
-        <div class="row">
-          <div class="form-group col-sm-6 col-xs-12">
+            <div class="form-group col-sm-6 col-xs-12">
             <%= form.label :spécialité %>
             <%= select_tag("internship[specialty]", options_for_select([[@internship.specialty], ["Hospitalier"],['Maison médicale'], ["Social"], ["Médico-social"], ["Petite enfance"], ["Associatif"], ["Scolaire"], ["Médico-pédagogique"], ["Libéral"], ["Recherche"], ["Entreprise"],["Privé"], ["Justice"],["Police Nationale"], ["Armée"], ["Carcéral"], ["Insertion professionnelle"], ["Recrutement"], ["Gestion de carrières"], ["Ressouces Humaines"], ["Marketing"], ["Santé au travail"], ["Autres"] ]), class: "form-control") %>
+            </div>
           </div>
 
-          <div class="form-group col-sm-6 col-xs-12">
-            <%= form.label :population %>
-            <%= select_tag("internship[population]", options_for_select([[@internship.population], ["Personnes âgées"],["Enfants"], ["Adolescents"], ["Adultes"], ["Autistes"], ["Haut potentiel"], ["Personnes Cérébro-lésées"], ["Non pertinent"],[ "Autres"]]), class: "form-control") %>
+          <div class="row">
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :population %>
+              <%= select_tag("internship[population]", options_for_select([[@internship.population], ["Personnes âgées"],["Enfants"], ["Adolescents"], ["Adultes"], ["Autistes"], ["Haut potentiel"], ["Personnes Cérébro-lésées"], ["Non pertinent"],[ "Autres"]]), class: "form-control") %>
+            </div>
+
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :region %>
+              <%= select_tag("internship[region]", options_for_select([[@internship.region],
+              ["Auvergne-Rhône-Alpes"], ["Bourgogne-Franche-Comté"], ["Bretagne"], ["Centre-Val de Loire"], ["Corse"], ["Grand Est"], ["Hauts-de-France"], ["Île-de-France"], ["Normandie"], ["Nouvelle-Aquitaine"], ["Occitanie"], ["Pays de la Loire"], ["Provence-Alpes-Côte d'Azur"]]), class: "form-control") %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4 col-xs-12">
+              <%= form.label :adresse %>
+              <%= form.text_field :adress, class:"form-control" %>
+            </div>
+
+            <div class="form-group col-sm-4 col-xs-12">
+              <%= form.label :ville %>
+              <%= form.text_field :city, class:"form-control" %>
+            </div>
+
+            <div class="form-group col-sm-4 col-xs-12">
+            <%= form.label :code_postal %>
+            <%= form.text_field :zipcode, class:"form-control" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
 
   <div class="container container-form">
     <div class="card bg-dark">
