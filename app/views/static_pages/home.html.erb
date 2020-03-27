@@ -1,13 +1,24 @@
+<% if user_signed_in? %>
+
+<div class="container-form-search">
+  <%= render "internships/search_form" %>
+</div>
+
+<% else %>
+
   <!-- Header -->
   <header class="masthead">
     <div class="container">
       <div class="intro-text">
-        <div class="intro-lead-in">Welcome To Our Studio!</div>
-        <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+        <div class="intro-lead-in">À la recherche d'un stage ?</div>
+        <div class="intro-heading text-uppercase">Ayez accès à toutes les expériences !</div>
+        <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary btn-xl text-uppercase" %>
+        <%= link_to "Se connecter", new_user_session_path, class: "btn btn-secondary btn-xl text-uppercase" %>
       </div>
     </div>
   </header>
+
+<% end %>
 
   <!-- Services -->
   <section class="page-section" id="services">
