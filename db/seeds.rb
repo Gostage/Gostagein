@@ -28,7 +28,8 @@ puts "100 utilisateurs ont été crées"
 		user: User.all.sample , 
 		description: Faker::GreekPhilosophers.quote, 
 		title: Faker::Job.title, 
-		cursus: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"].sample)
+		cursus: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"].sample,
+		region: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"].sample)
 end
 
 puts "100 stages ont été crées"
