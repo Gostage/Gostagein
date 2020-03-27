@@ -26,6 +26,14 @@
               <div class="row">
                 <div class="input-group mb-3 mt-3">
                   <div class="input-group-prepend">
+                    <span class="input-group-text input-group-text-search-form">Région</span>
+                  </div>
+                  <%= f.select :region_cont, options_for_select(["", "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]), {}, { :class => "form-control"} %>
+                </div> 
+              </div>
+              <div class="row">
+                <div class="input-group mb-3 mt-3">
+                  <div class="input-group-prepend">
                     <span class="input-group-text input-group-text-search-form">Ville</span>
                   </div>
                   <%= f.search_field :city_cont, class: "form-control" %>
