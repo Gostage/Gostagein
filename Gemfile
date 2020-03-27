@@ -61,8 +61,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'nokogiri', '~> 1.10.8'
 
+# For authentication
 gem 'devise'
+
+# For database
+gem 'table_print'
 gem 'awesome_print'
+
+# For seed
 gem 'faker'
 
 # Used for search engine
