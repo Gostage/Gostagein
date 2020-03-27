@@ -1,5 +1,50 @@
 <p id="notice"><%= notice %></p>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12">
+        <div class="listingTitleArea">
+          <h2><%= @internship.organization %></h2>
+          <p><%= @internship.adress %> <br><%= @internship.zipcode %>, <%= @internship.city %></p>
+          <!-- FAIRE LA MOYENNE DES FAVORIS ICI -->
+          <div class="row">
+            <div class="col-sm-8 col-xs-12">
+              <span>Nombre de favoris</span>
+              <ul class="list-inline captionItem">
+                <li><i class="fa fa-heart-o" aria-hidden="true"></i> <%= @internship.favorites.count %></li>
+              </ul>
+              <%= link_to "Ajouter en favoris", new_favorite_path(current_user.id), class: "btn btn-primary" %>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-xs-12">
+          <div class="listDetailsInfo">
+            <div class="detailsInfoBox">
+              <h3><%= @internship.title %></h3>
+              <p><%= @internship.description %></p>
+            </div>
+            <div class="detailsInfoBox">
+              <h3>Détails des informations</h3>
+              <ul class="list-inline featuresItems">
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> <%= @internship.specialty %></li>
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> <%= @internship.population %></li>
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> <%= @internship.cursus %></li>
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> Durée <small>(en mois)</small> : <%= @internship.duration %></li>
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> Notes <small>(sur 5)</small> : <%= @internship.notation %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 <p>
   <strong>Adress:</strong>
   <%= @internship.adress %>
