@@ -84,10 +84,11 @@
               <%= select_tag("internship[duration]", options_for_select([[@internship.duration], [1], [1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5], [5.5], [6]]), class: "form-control") %>
             </div>
           </div>
-        <div class="actions col-sm-6 col-xs-12">
-          <%= form.submit "Envoyer", :class => "btn btn-primary btn-block btn-lg" %>
         </div>
       </div>
-    </div>                       
+    </div>
+    <div class="actions col-sm-6 col-xs-12">
+      <%= form.submit "Envoyer", :class => "btn btn-primary btn-block btn-lg" %>
+      </div>
   </div>
-<% end %>
+  <% end %>
