@@ -76,10 +76,6 @@
           </div>
           <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
-                <%= form.label :notes %><span> (sur 5)</span>
-                <%= select_tag("internship[notation]", options_for_select([ [@internship.notation], [1], [1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5]]), class: "form-control") %>
-            </div>
-            <div class="form-group col-sm-6 col-xs-12">
               <%= form.label :durée %><span> (en mois)</span>
               <%= select_tag("internship[duration]", options_for_select([[@internship.duration], [1], [1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5], [5.5], [6]]), class: "form-control") %>
             </div>
