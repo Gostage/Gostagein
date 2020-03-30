@@ -63,6 +63,7 @@ gem 'nokogiri', '~> 1.10.8'
 
 gem 'devise'
 gem 'table_print'
+gem 'awesome_print'
 gem 'faker'
 
 # Used for search engine
