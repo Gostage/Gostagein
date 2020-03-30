@@ -20,5 +20,6 @@ class User < ApplicationRecord
   has_many :internships, through: :favorites
 
   has_many :comments
+  has_many :reviews
 
 end
