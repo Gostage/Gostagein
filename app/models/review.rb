@@ -11,5 +11,6 @@ class Review < ApplicationRecord
     format: { with: /\A\d+\.*\d{0,1}\z/ }
 
   belongs_to :internship
+  belongs_to :user
 
 end
