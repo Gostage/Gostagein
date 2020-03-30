@@ -1,6 +1,7 @@
 
 Favorite.destroy_all
 Comment.destroy_all
+Review.destroy_all
 Internship.destroy_all
 User.destroy_all
 
@@ -46,6 +47,13 @@ puts "100 favoris ont été crées"
 end
 
 puts "100 commentaires ont été crées"
-puts "..."
+
+100.times do |review|
+	review = Review.create(title: Faker::Lorem.sentence,
+		description: Faker::Lorem.paragraph,
+		notation: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample)
+end
+
+puts "100 avis ont été crées"
 
 puts "Le seed est fait, yeaah 🤟"
