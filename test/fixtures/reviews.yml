@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  notation: 1.5
+  description: MyText
+  internship: one
+
+two:
+  title: MyString
+  notation: 1.5
+  description: MyText
+  internship: two

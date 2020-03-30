@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reviews
   get 'static_pages/home'
   resources :favorites
 
