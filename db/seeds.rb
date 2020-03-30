@@ -52,7 +52,8 @@ puts "100 commentaires ont été crées"
 	review = Review.create(title: Faker::Lorem.sentence,
 		description: Faker::Lorem.paragraph,
 		notation: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
-		internship: Internship.all.sample)
+		internship: Internship.all.sample,
+		user: User.all.sample)
 end
 
 puts "100 avis ont été crées"
