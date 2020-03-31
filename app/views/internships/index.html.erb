@@ -4,52 +4,34 @@
   <%= render "search_form" %>
 </div>
 
-<div class="container">
-  <button type="button" class="btn btn-outline-warning">
-    <%= link_to 'Créer une expérience de stage', new_internship_path %></button>
-  </div>
+<div class="container my-3">
+  <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-warning" %>
+</div>
 
-<h1>Internships</h1>
+<h1>Expériences de stage :</h1>
 <div class="text-white">
   <% if @internships == [] %>
     <p>Aucun résultat</p>
   <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Cursus</th>
-          <th>Adress</th>
-          <th>Zipcode</th>
-          <th>City</th>
-          <th>Specialty</th>
-          <th>Organization</th>
-          <th>Population</th>
-          <th>Duration</th>
-          <th>Région</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
+    <div class="container">
+      <div class="row">
         <% @internships.each do |internship| %>
-          <tr>
-            <td><%= internship.title %></td>
-            <td><%= internship.cursus %></td>
-            <td><%= internship.adress %></td>
-            <td><%= internship.zipcode %></td>
-            <td><%= internship.city %></td>
-            <td><%= internship.specialty %></td>
-            <td><%= internship.organization %></td>
-            <td><%= internship.population %></td>
-            <td><%= internship.duration %></td>
-            <td><%= internship.region %></td>
-            <td><%= link_to 'Show', internship %></td>
-            <td><%= link_to 'Edit', edit_internship_path(internship) %></td>
-            <td><%= link_to 'Destroy', internship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card m-3">
+              <div class="card-header">
+                <%= internship.title %>
+              </div>
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
+                <p class="text-muted">Spécialité : <%= internship.specialty %></p>
+                <p class="text-muted">Niveau : <%= internship.cursus %></p>
+                <p class="text-muted">Population : <%= internship.population %></p>
+                <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
   <% end %>
 </div>
