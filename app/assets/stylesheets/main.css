@@ -69,3 +69,7 @@ p span {
 .container-form-search {
   padding-top: 100px;
 }
+
+.card-header {
+  background-color: #17a2b8;
+}
