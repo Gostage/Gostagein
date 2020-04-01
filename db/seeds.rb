@@ -1,12 +1,8 @@
-
 Favorite.destroy_all
 Comment.destroy_all
 Review.destroy_all
 Internship.destroy_all
 User.destroy_all
-
-
-
 
 require 'faker'
 
@@ -25,7 +21,6 @@ puts "100 utilisateurs ont été crées"
 		organization: Faker::Movies::HarryPotter.location, 
 		population: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut potentiel", "Personnes Cérébro-lésées", "Non pertinent", "Autres"].sample, 
 		duration: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6].sample,
-		salary: [150, 250, 350.50, 450.35, 540.20, 650.50, 700].sample,  
 		user: User.all.sample , 
 		description: Faker::GreekPhilosophers.quote, 
 		title: Faker::Job.title, 
