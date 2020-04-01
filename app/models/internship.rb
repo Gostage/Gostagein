@@ -24,9 +24,6 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: 1..6},
     format: { with: /\A\d+\.*\d{0,1}\z/ }
-  validates :salary,
-    inclusion: { in: 50..3500},
-    format: { with: /\A\d+\.*\d{0,1}\z/ }
   validates :title,
     presence: true,
     length: { in: 10..150}
