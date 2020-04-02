@@ -20,6 +20,11 @@ class Internship < ApplicationRecord
   validates :description,
     presence: true,
     length: { in: 30..1000 }
+  validates :remuneration,
+    presence: true,
+    length: { minimum: 0 },
+    format: { with: /\A[+-]?\d+\z/},
+    numericality: { only_integer: true }
   validates :duration,
     presence: true,
     inclusion: { in: 1..6},
