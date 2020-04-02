@@ -1,5 +1,6 @@
 class InternshipsController < ApplicationController
   before_action :set_internship, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /internships
   # GET /internships.json
@@ -20,6 +21,7 @@ class InternshipsController < ApplicationController
 
   # GET /internships/1/edit
   def edit
+    current_user_must_own_internship
   end
 
   # POST /internships
@@ -72,5 +74,12 @@ class InternshipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def internship_params
       params.require(:internship).permit(:adress, :zipcode, :city, :specialty, :organization, :population, :cursus, :title, :duration, :description, :region, :salary, :user_id)
+    end
+
+    # Editing permission only for owner
+    def current_user_must_own_internship
+      if current_user.id != @internship.user.id
+        redirect_to internship_path(@internship.id)
+      end
     end
 end

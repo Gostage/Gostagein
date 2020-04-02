@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /reviews
   # GET /reviews.json
@@ -19,6 +20,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    current_user_must_own_review
   end
 
   # POST /reviews
@@ -70,5 +72,12 @@ class ReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:title, :notation, :description, :internship_id, :user_id)
+    end
+
+    # Editing permission only for owner
+    def current_user_must_own_review
+      if current_user.id != @review.user.id
+        redirect_to review_path(@review.id)
+      end
     end
 end
