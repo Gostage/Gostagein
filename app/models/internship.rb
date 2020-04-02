@@ -34,14 +34,10 @@ class Internship < ApplicationRecord
     presence: true,
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
 
-  
   belongs_to :user
-
   has_many :favorites
   has_many :users, through: :favorites
-
   has_many :comments
-
   has_many :reviews
 
 end
