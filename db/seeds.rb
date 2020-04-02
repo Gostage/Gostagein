@@ -21,6 +21,7 @@ puts "100 utilisateurs ont été crées"
 		organization: Faker::Movies::HarryPotter.location, 
 		population: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut potentiel", "Personnes Cérébro-lésées", "Non pertinent", "Autres"].sample, 
 		duration: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6].sample,
+		remuneration: [250, 300, 350, 400, 450, 500, 550, 600, 650].sample,
 		user: User.all.sample , 
 		description: Faker::GreekPhilosophers.quote, 
 		title: Faker::Job.title, 
