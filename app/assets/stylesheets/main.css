@@ -62,7 +62,7 @@ p span {
 	min-width: 125px;
 }
 
-.container-form-user {
+.container-form-user, .container-show-user {
   padding-top: 150px;
 }
 
