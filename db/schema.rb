@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_160659) do
+ActiveRecord::Schema.define(version: 2020_04_07_104849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 2020_04_01_160659) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "internship_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["internship_id"], name: "index_favorites_on_internship_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.bigint "favorite_user_id"
+    t.bigint "favorite_internship_id"
+    t.index ["favorite_internship_id"], name: "index_favorites_on_favorite_internship_id"
+    t.index ["favorite_user_id"], name: "index_favorites_on_favorite_user_id"
   end
 
   create_table "internships", force: :cascade do |t|
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_160659) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "favorites", "internships"
-  add_foreign_key "favorites", "users"
+  add_foreign_key "favorites", "internships", column: "favorite_internship_id"
+  add_foreign_key "favorites", "users", column: "favorite_user_id"
   add_foreign_key "internships", "users"
   add_foreign_key "reviews", "internships"
   add_foreign_key "reviews", "users"
