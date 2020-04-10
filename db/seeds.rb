@@ -33,7 +33,7 @@ puts "100 stages ont été crées"
 
 
 100.times do |favorite|
-	favorite = Favorite.create(user: User.all.sample, internship: Internship.all.sample)
+	favorite = Favorite.create(favorite_user: User.all.sample, favorite_internship: Internship.all.sample)
 end
 
 puts "100 favoris ont été crées"
