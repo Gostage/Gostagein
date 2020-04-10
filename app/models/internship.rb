@@ -40,9 +40,9 @@ class Internship < ApplicationRecord
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
 
   belongs_to :user
-  has_many :favorites
-  has_many :users, through: :favorites
   has_many :comments
   has_many :reviews
+  has_many :favorites, foreign_key: "favorite_internship_id"
+  has_many :favorite_users, foreign_key: "favorite_user_id", class_name: "User", through: :favorites
 
 end
