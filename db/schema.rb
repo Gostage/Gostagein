@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_104849) do
     t.float "duration"
     t.string "region"
     t.integer "remuneration"
+    t.float "notations"
     t.index ["user_id"], name: "index_internships_on_user_id"
   end
 
