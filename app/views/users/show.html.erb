@@ -40,7 +40,9 @@
               	</div>
 	            <div class="col-6 text-right">
 	              <span><%= link_to "Voir", internship_path(internship.id), class: "btn btn-secondary" %></span>
-	              <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %> 	
+	              <% if current_user.id == @user.id %>
+	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
+	              <% end %>
 	            </div>   
               </div>
 	          <% unless internship == @user.internships.last %>
