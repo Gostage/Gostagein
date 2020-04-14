@@ -10,12 +10,22 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
-//= require jquery_ujs
-//= require activestorage
-//= require jquery
-//= require bootstrap
-//= require jquery.easing
-//= require jqBootstrapValidation
-//= require contact_me
-//= require agency
+//= require jquery-3.4.1.min
+//= require bootstrap.bundle
+//= require menuzord
+//= require jquery.selectric.min
+//= require dzsparallaxer
+//= require isotope.pkgd.min
+//= require moment.min
+//= require daterangepicker
+//= require jquery.themepunch.tools.min
+//= require jquery.themepunch.revolution.min
+//= require owl.carousel.min
+//= require jquery.rateyo.min
+//= require jquery.fancybox.min
+//= require imagesloaded.pkgd.min
+//= require markerclusterer
+//= require rich-marker
+//= require infobox_packed
+//= require map
+//= require listty
