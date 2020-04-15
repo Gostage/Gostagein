@@ -11,6 +11,9 @@
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
 
+
+ 
+
       <!-- FAVICON -->
     <link href="https://img.icons8.com/dotty/80/000000/education.png" rel="shortcut icon">
 
@@ -26,12 +29,21 @@
   </head>
 
   <body>
+        <!-- HEADER -->
+    <header class="header">
+      <%= render "layouts/navbar" %>
+    </header>
     
     
 
     <section>
       <%= yield %>
     </section>
+
+      <footer class="footer-dark">
+        <%= render "layouts/footer" %>
+  </footer>
+
 
 
   </body>

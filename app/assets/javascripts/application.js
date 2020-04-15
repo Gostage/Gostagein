@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery-3.4.1.min
 //= require bootstrap.bundle
 //= require menuzord
@@ -27,5 +28,8 @@
 //= require markerclusterer
 //= require rich-marker
 //= require infobox_packed
+
 //= require map
 //= require listty
+
+
