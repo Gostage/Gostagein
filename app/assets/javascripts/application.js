@@ -11,8 +11,6 @@
 // about supported directives.
 //
 
-//= require jquery
-//= require jquery_ujs
 //= require jquery-3.4.1.min
 //= require bootstrap.bundle
 //= require menuzord
