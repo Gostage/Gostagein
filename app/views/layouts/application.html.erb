@@ -10,40 +10,37 @@
 
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
-
-
  
-
-      <!-- FAVICON -->
+ 
+    <!-- FAVICON -->
     <link href="https://img.icons8.com/dotty/80/000000/education.png" rel="shortcut icon">
 
 
-   <!-- GOOGLE FONT FOR THIS TEMPLATE -->
+    <!-- GOOGLE FONT FOR THIS TEMPLATE -->
     <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     
-      <!-- Fontawesome script -->
+    <!-- Fontawesome script -->
 
     <script src="https://kit.fontawesome.com/01b3f43a55.js" crossorigin="anonymous"></script>
 
   </head>
 
   <body>
-        <!-- HEADER -->
+        
     <header class="header">
       <%= render "layouts/navbar" %>
     </header>
-    
     
 
     <section>
       <%= yield %>
     </section>
 
-      <footer class="footer-dark">
-        <%= render "layouts/footer" %>
-  </footer>
 
+    <footer class="footer-dark">
+      <%= render "layouts/footer" %>
+    </footer>
 
 
   </body>
