@@ -4,14 +4,15 @@
       <%= link_to "GoInStage", root_path, class: "menuzord-brand"%>
       <ul class="menuzord-menu menuzord-right">
         <% if user_signed_in? %>
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
-          <div class="dropdown-menu">
-            <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
+            <div class="dropdown-menu">
+              <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
+              <%= link_to "Mes favoris", favorites_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
         <% else %>
         <li class="nav-item">
           <%= link_to "M'inscrire", new_user_registration_path, class: "nav-link" %>
