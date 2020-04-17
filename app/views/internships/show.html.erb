@@ -1,65 +1,260 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Adress:</strong>
-  <%= @internship.adress %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @internship.zipcode %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-  <%= @internship.region %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @internship.city %>
-</p>
-
-<p>
-  <strong>Specialty:</strong>
-  <%= @internship.specialty %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @internship.organization %>
-</p>
-
-<p>
-  <strong>Population:</strong>
-  <%= @internship.population %>
-</p>
-
-<p>
-  <strong>Cursus:</strong>
-  <%= @internship.cursus %>
-</p>
-
-<p>
-  <strong>Titre:</strong>
-  <%= @internship.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @internship.description %>
-</p>
-
-<p>
-  <strong>Duration:</strong>
-  <%= @internship.duration %>
-</p>
 
 
-<p>
-  <strong>Rémunération:</strong>
-  <%= @internship.remuneration %>
-</p>
+<div class="main-wrapper">
 
-<%= link_to 'Edit', edit_internship_path(@internship) %> |
-<%= link_to 'Back', internships_path %>
+<!-- ====================================
+——— LISTING SINGLE HEADING
+===================================== -->
+<section class="py-7 pt-md-9 pb-md-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="mb-2 mb-lg-0">
+          <h1 class="single-listing-title"><%= @internship.title %></h1>
+          <p><i class="fa fa-map-marker mr-3 mt-1" aria-hidden="true"></i>
+            <span><%= @internship.city %>, <%= @internship.region %></span><br> <span><%= @internship.adress %>, <%= @internship.zipcode %></span></p>
+          <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
+            le <%= @internship.created_at.strftime("%d / %m / %Y") %>
+          </p>
+          <!-- CALCULER LA NOTE MOYENNE D'UN INTERNSHIP -->
+          <div class="d-flex align-items-center">
+            <ul class="list-inline list-inline-rating mr-2">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+            </ul>
+            <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
+            <button class="btn-like px-2" data-toggle="tooltip" data-placement="top" title="Favourite this listing">
+              <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
+              <span> <%= @internship.favorites.count %></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
+        <!-- PB AVEC TABLE REVIEW METTRE REVIEW_INTERNSHIP_ID -->
+        <button class="btn btn-outline-primary">Ecrire un avis</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ====================================
+——— MAIN CONTENT
+===================================== -->
+<section class="pt-7 pb-4 pt-md-9 pb-md-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-lg-8">
+        <!-- Listing Main Content -->
+        <div class="single-listing-content mb-6">
+          <h3 class="font-weight-normal mb-6"><i class="fa fa-briefcase mr-6" aria-hidden="true"></i><%= @internship.organization %></h3>
+          <small class="mb-6">Description <i>(missions)</i></small>
+          <p class="mb-6"><%= @internship.description %></p>
+
+
+        <hr>
+
+        <!-- Features -->
+        <div class="my-6">
+          <h3 class="font-weight-normal mb-6">Détails</h3>
+          <ul class="list-unstyled mb-6">
+            <li class="d-inline-block mr-4 mb-2">
+            <i class="fa fa-briefcase mr-2" aria-hidden="true"></i></i> Secteur <%= @internship.specialty %>
+            </li>
+            <li class="d-inline-block mr-4 mb-2">
+              <i class="fa fa-users mr-2" aria-hidden="true"></i><%= @internship.population %>
+            </li>
+            <li class="d-inline-block mr-4 mb-2">
+              <i class="fas fa-user-graduate mr-2" aria-hidden="true"></i>Niveau <%= @internship.cursus %>
+            </li>
+            <li class="d-inline-block mr-4 mb-2">
+              <i class="fas fa-euro-sign mr-2" aria-hidden="true"></i>Rémunération (<%= @internship.remuneration %> <small>/ mois</small>)
+            </li>
+            <li class="d-inline-block mr-4 mb-2">
+              <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> en mois</small>)
+            </li>
+          </ul>
+          <hr>
+        </div>
+
+
+        <!-- Reviews -->
+        <div class="my-6">
+          <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
+          <div class="media mb-3">
+            <div class="media-img">
+              <img src="#" class="mr-3 media-object rounded-circle" alt="Image User">
+            </div>
+            <div class="media-body">
+              <h5 class="media-heading">Aaren</h5>
+              <ul class="list-inline list-inline-rating">
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+              </ul>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan totam rem ape
+                riam,</p>
+
+              <!-- Reply Section -->
+              <div class="reply-wrapper">
+                <a class="d-inline-block mb-2 btn-reply" href="javascript:0">Reply</a>
+                <form class="form-reply my-3">
+                  <textarea class="form-control mb-6" rows="3" placeholder="Enter your comment"></textarea>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+          <div class="media mb-3">
+            <div class="media-img">
+              <img src="#" class="mr-3 media-object rounded-circle" alt="Image User">
+            </div>
+            <div class="media-body">
+              <h5 class="media-heading">Abby</h5>
+              <ul class="list-inline list-inline-rating">
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                </li>
+              </ul>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque lauda totam rem ape riam,
+              </p>
+
+              <p class="bg-light p-4 rounded">Nam illo asperiores architecto fuga corrupti. Voluptates, assumenda. Repellendus,
+                dicta voluptatum. Voluptatibus eos voluptatum, consequuntur rerum voluptas reiciendis et quo deleniti illum
+                nihil</p>
+            </div>
+          </div>
+          <div class="media mb-3">
+            <div class="media-img">
+              <img src="#" class="mr-3 media-object rounded-circle" alt="Image User">
+            </div>
+            <div class="media-body">
+              <h5 class="media-heading">Abriel</h5>
+              <ul class="list-inline list-inline-rating">
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                </li>
+              </ul>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan totam rem ape
+                riam,</p>
+
+              <p class="bg-light p-4 rounded">Nam illo asperiores architecto fuga corrupti. Voluptates, assumenda. Repellendus,
+                dicta
+                voluptatum. Voluptatibus eos voluptatum, consequuntur rerum voluptas reiciendis et quo deleniti illum nihil</p>
+
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir tous les avis</button>
+
+          <hr>
+        </div>
+
+        <!-- Add Review -->
+        <div class="my-6">
+          <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
+          <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
+          <button class="btn btn-primary">Ecrire un avis</button>
+          <hr>
+        </div>
+
+        <!-- Add Comments -->
+        <div class="my-6" id="add-review">
+          <h3 class="font-weight-normal mb-6"> Add Comments </h3>
+          <span class="star add-rating-default pl-0 mb-6"></span>
+          <form>
+            <div class="form-check form-check-inline mb-6 mr-lg-7">
+              <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"
+                checked>
+              <label class="form-check-label" for="inlineRadio1">
+                <div class="media media-xs align-items-center">
+                  <img src="#" class="mr-2 media-object rounded-circle" alt="Image User">
+                  <div class="media-body">
+                    <h5 class="media-heading mb-0">William</h5>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div class="form-check form-check-inline mb-6">
+              <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+              <label class="form-check-label" for="inlineRadio2">
+                <div class="media media-xs align-items-center">
+                  <img src="#" class="mr-2 media-object rounded-circle border" alt="Image User">
+                  <div class="media-body">
+                    <h5 class="media-heading mb-0">Anonymous</h5>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div class="form-group mb-6">
+              <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary text-uppercase"> Send Review </button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  </div> <!-- element wrapper ends -->
+
