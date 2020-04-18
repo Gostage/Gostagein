@@ -21,5 +21,6 @@
  *= require owl.theme.default.min
  *= require jquery.fancybox.min
  *= require listty
+ *= require main
 
  */
