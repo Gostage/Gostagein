@@ -38,7 +38,7 @@
               </li>
             </ul>
             <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
-            <button class="btn-like px-2" data-toggle="tooltip" data-placement="top" title="Favourite this listing">
+            <button class="btn-like px-2" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris">
               <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
               <span> <%= @internship.favorites.count %></span>
             </button>
@@ -203,16 +203,17 @@
           <hr>
         </div>
 
+
         <!-- Add Review -->
         <div class="my-6">
           <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
           <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
           <button class="btn btn-primary">Ecrire un avis</button>
-          <hr>
         </div>
 
         <!-- Add Comments -->
-        <div class="my-6" id="add-review">
+        <div class="my-6 margin" id="add-review">
+          <hr>
           <h3 class="font-weight-normal mb-6"> Add Comments </h3>
           <span class="star add-rating-default pl-0 mb-6"></span>
           <form>
@@ -256,5 +257,5 @@
 </section>
 
 
-  </div> <!-- element wrapper ends -->
+</div> <!-- element wrapper ends -->
 
