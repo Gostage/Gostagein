@@ -1,13 +1,21 @@
-/* SECTION*/
+/* NAVBAR */
 
-section {
-	padding-top: 30px;
+header {
+	margin-bottom: 20px;
 }
+
 
 /* FOOTER */
 
 footer {
 	margin-top: 30px;
+}
+
+
+/* SECTION*/
+
+section {
+	padding-top: 30px;
 }
 
 /* SHOW INTERNSHIP */
