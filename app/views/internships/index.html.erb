@@ -1,37 +1,38 @@
 <p id="notice"><%= notice %></p>
+<section>
+  <div class="container-form-search">
+    <%= render "search_form" %>
+  </div>
 
-<div class="container-form-search">
-  <%= render "search_form" %>
-</div>
+  <div class="container my-3">
+    <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-warning" %>
+  </div>
 
-<div class="container my-3">
-  <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-warning" %>
-</div>
-
-<h1>Expériences de stage :</h1>
-<div class="text-white">
-  <% if @internships == [] %>
-    <p>Aucun résultat</p>
-  <% else %>
-    <div class="container">
-      <div class="row">
-        <% @internships.each do |internship| %>
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card m-3">
-              <div class="card-header">
-                <%= internship.title %>
-              </div>
-              <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
-                <p class="text-muted">Spécialité : <%= internship.specialty %></p>
-                <p class="text-muted">Niveau : <%= internship.cursus %></p>
-                <p class="text-muted">Population : <%= internship.population %></p>
-                <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
+  <h1>Expériences de stage :</h1>
+  <div class="text-white">
+    <% if @internships == [] %>
+      <p>Aucun résultat</p>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <% @internships.each do |internship| %>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card m-3">
+                <div class="card-header">
+                  <%= internship.title %>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
+                  <p class="text-muted">Spécialité : <%= internship.specialty %></p>
+                  <p class="text-muted">Niveau : <%= internship.cursus %></p>
+                  <p class="text-muted">Population : <%= internship.population %></p>
+                  <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>
