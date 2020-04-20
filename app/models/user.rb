@@ -16,7 +16,9 @@ class User < ApplicationRecord
   
   has_many :internships
   has_many :comments
-  has_many :reviews
+
+  has_many :review_users, foreign_key: 'review_user_id', class_name: "User"
+
   has_many :favorites, foreign_key: "favorite_user_id"
   has_many :favorite_internships, foreign_key: "favorite_internship_id", class_name: "Internship", through: :favorites
 
