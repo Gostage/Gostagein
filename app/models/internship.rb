@@ -42,7 +42,8 @@ class Internship < ApplicationRecord
   belongs_to :user
   has_many :comments
 
-  has_many :review_internships, foreign_key: 'review_internship_id', class_name:"Internship"
+  has_many :reviews, foreign_key: "review_internship_id"
+  has_many :review_users, foreign_key: 'review_user_id', class_name:"User", through: :reviews
 
   has_many :favorites, foreign_key: "favorite_internship_id"
   has_many :favorite_users, foreign_key: "favorite_user_id", class_name: "User", through: :favorites
