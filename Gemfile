@@ -71,3 +71,6 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Installed jquery
 gem 'jquery-rails'
+
+# For pagination
+gem 'will_paginate'
