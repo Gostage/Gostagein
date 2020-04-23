@@ -12,7 +12,7 @@ class InternshipsController < ApplicationController
   # GET /internships/1
   # GET /internships/1.json
   def show
-    @reviews_of_internship = @internship.reviews.order(created_at: :desc)
+    @reviews_of_internship = @internship.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   # GET /internships/new
