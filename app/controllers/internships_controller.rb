@@ -12,6 +12,7 @@ class InternshipsController < ApplicationController
   # GET /internships/1
   # GET /internships/1.json
   def show
+    @reviews_of_internship = @internship.reviews.order(created_at: :desc)
   end
 
   # GET /internships/new
