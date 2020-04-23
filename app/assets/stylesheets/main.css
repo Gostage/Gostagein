@@ -24,4 +24,16 @@ hr {
 	padding-top: 25px;
 }
 
+/* PAGINATION */
 
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+	  font-size: 15px;
+	  color: black;
+	  padding: 8px 16px;
+}
+
+.pagination a:hover:not(.active) {background-color: #efe8e8;}
