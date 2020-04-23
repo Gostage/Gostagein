@@ -47,7 +47,7 @@
       </div>
       <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
         <!-- PB AVEC TABLE REVIEW METTRE REVIEW_INTERNSHIP_ID -->
-        <button class="btn btn-outline-primary">Ecrire un avis</button>
+        <button class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</button>
       </div>
     </div>
 
@@ -102,40 +102,11 @@
             <div class="media-body">
               <% if @internship.reviews == [] || @internship.reviews == nil %>
               <p>Il n'y a pas encore d'avis pour cette expérience </p>
-              <% elsif @internship.reviews.length > 3 %>
-              <% @internship.reviews[0..2].each do |review| %>
+              <hr>
+              <% else %>
+              <% @reviews_of_internship.each do |review| %>
               <div class="media mb-3">
               <div class="media-body">
-              <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
-              <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
-              <ul class="list-inline list-inline-rating">
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                (<%= review.notation %>)
-              </ul>
-              <h6><%= review.title %> </h6>
-              <p class="bg-light p-4 rounded"> <%= review.description %></p>
-              <hr>
-              <% end %>
-              <button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir tous les avis</button>
-                </div>
-              </div>
-
-              <% else %>
-              <% @internship.reviews.each do |review| %>
               <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
               <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
               <ul class="list-inline list-inline-rating">
@@ -164,13 +135,10 @@
             </div>
           </div>
 
-
-        <!-- Add Review -->
-        <div class="my-6">
-          <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-          <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
-          <button class="btn btn-primary">Ecrire un avis</button>
-        </div>
+          <!-- PAGINATION -->
+           <div class="pagination">
+            <a><%= will_paginate @reviews_of_internship %></a>
+          </div>
 
         <div class="my-6">
           <button class="btn btn-secondary"><%= link_to 'Edit', edit_internship_path(@internship) %> </button>
