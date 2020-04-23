@@ -74,3 +74,6 @@ gem 'jquery-rails'
 
 # For pagination
 gem 'will_paginate'
+
+# For styling pagination
+gem 'will_paginate-bootstrap'
