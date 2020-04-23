@@ -106,7 +106,6 @@
               <% @internship.reviews[0..2].each do |review| %>
               <div class="media mb-3">
               <div class="media-body">
-              <% @internship.reviews.each do |review| %>
               <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
               <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
               <ul class="list-inline list-inline-rating">
@@ -130,7 +129,6 @@
               <h6><%= review.title %> </h6>
               <p class="bg-light p-4 rounded"> <%= review.description %></p>
               <hr>
-              <% end %>
               <% end %>
               <button type="button" class="btn btn-outline-primary btn-lg btn-block">Voir tous les avis</button>
                 </div>
