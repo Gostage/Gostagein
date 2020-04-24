@@ -1,21 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @review.title %>
-</p>
+<section class="col-lg-8">
+    <div class="my-6">
+      <h3 class="font-weight-normal mb-6"><%= @review.title %></h3>
+      <div class="media mb-3">
+      	<div class="media-body">
+	      <h5 class="media-heading"><%= @review.review_user.first_name %> <%= @review.review_user.last_name%></h5>
+	      <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
+	      <ul class="list-inline list-inline-rating">
+	        <li class="list-inline-item">
+	          <i class="fa fa-star" aria-hidden="true"></i>
+	        </li>
+	        <li class="list-inline-item">
+	          <i class="fa fa-star" aria-hidden="true"></i>
+	        </li>
+	        <li class="list-inline-item">
+	          <i class="fa fa-star" aria-hidden="true"></i>
+	        </li>
+	        <li class="list-inline-item">
+	          <i class="fa fa-star" aria-hidden="true"></i>
+	        </li>
+	        <li class="list-inline-item">
+	          <i class="fa fa-star" aria-hidden="true"></i>
+	        </li>
+	        (<%= @review.notation %>)
+	      </ul>
+	      <p class="bg-secondary p-4 rounded text-dark"> <%= @review.description %></p>
+	    </div>
+      </div>
+      <div>
+		<%= link_to 'Retour', reviews_path, class: "btn btn-outline-secondary mt-3" %>
+		<%= link_to 'Editer', edit_review_path(@review), class: "btn btn-outline-secondary mt-3" %>
+		</div>
+</section>
 
-<p>
-  <strong>Notation:</strong>
-  <%= @review.notation %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @review.description %>
-</p>
-
-
-
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
