@@ -26,12 +26,12 @@
          <% @reviews.each do |review| %>
         <tr>
           <td class="text-capitalize td-title">
-            <a class="text-hover-primary text-muted" href="listing-restuarant.html"><%= review.title %></a>
+            <p class="text-muted"><%= review.title %></p>
           </td>
           <td>
             <div class="media media-xs align-items-center">
               <div class="media-body">
-                <a class="text-muted font-weight-bold text-hover-primary" href="user-profile.html"><%= review.review_user_id %></a>
+                <p class="text-muted font-weight-bold"><%= review.review_user.first_name %> <%= review.review_user.last_name %></p>
               </div>
             </div>
           </td>
