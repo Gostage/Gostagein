@@ -37,3 +37,15 @@ hr {
 }
 
 .pagination a:hover:not(.active) {background-color: #efe8e8;}
+
+
+/* CARD INTERNSHIP NEW & EDIT */
+
+.card-header {
+  background-color: #e5e5e5;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10em;
+
+}
+
