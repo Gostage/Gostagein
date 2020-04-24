@@ -41,11 +41,17 @@ hr {
 
 /* CARD INTERNSHIP NEW & EDIT */
 
-.card-header {
+.style-card {
   background-color: #e5e5e5;
   margin-left: auto;
   margin-right: auto;
   width: 10em;
 
+}
+
+/* TABLE REVIEWS INDEX */
+
+thead {
+	border-bottom: 1px solid #e5e5e5;
 }
 
