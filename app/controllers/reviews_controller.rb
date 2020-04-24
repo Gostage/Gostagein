@@ -76,7 +76,7 @@ class ReviewsController < ApplicationController
 
     # Editing permission only for owner
     def current_user_must_own_review
-      if current_user.id != @review.user.id
+      if current_user.id != @review.review_user.id
         redirect_to review_path(@review.id)
       end
     end
