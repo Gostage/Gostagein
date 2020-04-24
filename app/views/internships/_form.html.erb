@@ -10,10 +10,12 @@
     </div>
   <% end %>
 
+<section>
   <div class="container container-form">
-    <div class="card bg-dark">
-      <div class="card-body text-secondary">
-        <div class="card-header text-uppercase text-center text-primary"> Lieu de stage</div>
+    <div class="card bg-secondary">
+      <div class="card-body text-dark">
+        <div class="card-header text-uppercase text-dark"> Lieu de stage</div>
+        <hr>
         <div class="row">
           <div class="form-group col-sm-6 col-xs-12">
             <%= form.label :etablissement %>
@@ -57,9 +59,10 @@
   </div>
 
   <div class="container container-form">
-    <div class="card bg-dark">
-      <div class="card-body text-secondary">
-        <div class="card-header text-uppercase text-center text-primary"> Expérience</div>
+    <div class="card bg-secondary">
+      <div class="card-body text-dark">
+        <div class="card-header text-uppercase text-center text-dark"> Expérience</div>
+        <hr>
           <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
               <%= form.label :titre %>
@@ -88,8 +91,13 @@
           </div>
         </div>
       </div>
-      <div class="actions col-sm-6 col-xs-12">
-        <%= form.submit "Envoyer", :class => "btn btn-primary btn-block btn-lg" %>
+
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-xs-12">
+          <div class="mb-4">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Envoyer</button>
+          </div>
         </div>
-    </div>
+      </div>
     <% end %>
+</section>
