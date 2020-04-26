@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<section class="col-lg-8">
-    <div class="my-6">
-      <h3 class="font-weight-normal mb-6"><%= @review.title %></h3>
+<section class="pb-8 pt-5 height100vh">
+    <div class="container text-center">
+      <h3 class="font-weight-normal mb-6 text-center text-capitalize"><%= @review.title %></h3><hr>
       <div class="media mb-3">
       	<div class="media-body">
+      		<p>Posté le <%= @review.created_at.strftime("%d / %m / %Y") %>
+          </p>
 	      <h5 class="media-heading"><%= @review.review_user.first_name %> <%= @review.review_user.last_name%></h5>
 	      <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
 	      <ul class="list-inline list-inline-rating">
@@ -28,9 +30,47 @@
 	      <p class="bg-secondary p-4 rounded text-dark"> <%= @review.description %></p>
 	    </div>
       </div>
-      <div>
-		<%= link_to 'Retour', reviews_path, class: "btn btn-outline-secondary mt-3" %>
-		<%= link_to 'Editer', edit_review_path(@review), class: "btn btn-outline-secondary mt-3" %>
-		</div>
 </section>
+
+<section class="pb-8 pt-5 height100vh">
+  <div class="container">
+      <h2 class="font-weight-normal mb-4 mb-md-0">A propos de cet avis</h2><br>
+
+    <table id="table-reviews" class="display nowrap table-data-default" style="width:100%">
+      <thead>
+        <tr>
+          <th class="text-capitalize">Concerne l'expérience</th>
+          <th>Contenu</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-secondary">
+        <tr>
+          <td class="text-capitalize td-title">
+            <p class="text-muted font-weight-bold"><%= @review.review_internship.title %></p>
+          </td>
+         
+          <td class="text-dark"><%= @review.review_internship.description[0..30] %>...
+          </td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm">
+              <i class="fas fa-arrow-circle-right" aria-hidden="true"></i> <%= link_to 'Voir', internship_path(@review.review_internship_id)%>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="container">
+  	<%= link_to 'Retour', reviews_path, class: "btn btn-outline-secondary mt-3" %>
+  	<%= link_to 'Editer', edit_review_path(@review), class: "btn btn-outline-secondary mt-3" %>
+  	</div>
+</section>
+
+
+
+
+
 
