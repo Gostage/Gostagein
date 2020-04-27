@@ -54,10 +54,8 @@
           <td class="text-dark"><%= @review.review_internship.description[0..30] %>...
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm">
-              <i class="fas fa-arrow-circle-right" aria-hidden="true"></i> <%= link_to 'Voir', internship_path(@review.review_internship_id)%>
-            </button>
-          </td>
+              <%= link_to 'Voir', internship_path(@review.review_internship_id), class: "btn btn-outline-primary btn-sm"%>
+            </td>
         </tr>
       </tbody>
     </table>
