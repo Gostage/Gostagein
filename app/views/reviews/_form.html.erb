@@ -1,38 +1,28 @@
-<%= form_with(model: review, local: true) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<div class="container">
+  <%= form_tag internship_reviews_path(@internship), method:"post" do %>
 
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="field">
+      <p>Titre</p>
+      <%= text_field_tag :title %>
+    </div>
+
+    <div class="field">
+      <p>Notation</p>
+      <%= number_field_tag :notation %>
+    </div>
+
+    <div class="field">
+      <p>Description</p>
+      <%= text_area_tag :description %>
+    </div>
+    
+    <%= hidden_field_tag(:review_user_id, current_user.id) %>
+    <%= hidden_field_tag(:review_internship_id, @internship.id) %>
+
+    <div class="actions">
+      <%= submit_tag "Envoyer l'avis", class:"btn btn-primary" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notation %>
-    <%= form.number_field :notation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :review_internship %>
-    <%= form.number_field :review_internship %>
-  </div>
+</div> 
 
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

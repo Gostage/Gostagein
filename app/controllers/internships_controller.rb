@@ -31,7 +31,6 @@ class InternshipsController < ApplicationController
   def create
     @internship = Internship.new(internship_params)
     @internship.user = current_user
-
     respond_to do |format|
       if @internship.save
         format.html { redirect_to @internship, notice: 'Expérience crée avec succès' }
