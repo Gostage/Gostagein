@@ -1,25 +1,25 @@
 <div class="container">
   <%= form_tag internship_reviews_path(@internship), method:"post" do %>
 
-    <div class="field">
-      <p>Titre</p>
+    <div class="form-group ">
+      <p class="font-weight-bold">Titre de l'avis</p>
       <%= text_field_tag :title %>
     </div>
 
-    <div class="field">
-      <p>Notation</p>
+    <div class="form-group" >
+      <p class="font-weight-bold">Note</p>
       <%= number_field_tag :notation %>
     </div>
 
-    <div class="field">
-      <p>Description</p>
+    <div class="form-group ">
+      <p class="font-weight-bold">Description</p>
       <%= text_area_tag :description %>
     </div>
     
     <%= hidden_field_tag(:review_user_id, current_user.id) %>
     <%= hidden_field_tag(:review_internship_id, @internship.id) %>
 
-    <div class="actions">
+    <div class="form-group actions">
       <%= submit_tag "Envoyer l'avis", class:"btn btn-primary" %>
     </div>
   <% end %>
