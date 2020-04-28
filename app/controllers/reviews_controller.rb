@@ -26,14 +26,14 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @review = Review.new(title: params[:title], notation: params[:notation], description: params[:description], review_user_id: params[:review_user_id], review_internship_id: params[:review_internship_id])
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        format.html { redirect_back fallback_location: root_path, notice: "L'avis n'a pas pu être créé : #{@review.errors.messages}" }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
