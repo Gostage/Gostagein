@@ -24,6 +24,10 @@ hr {
 	padding-top: 25px;
 }
 
+.border {
+	padding: 15px;
+}
+
 /* PAGINATION */
 
 .pagination {
