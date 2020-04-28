@@ -13,6 +13,7 @@ class InternshipsController < ApplicationController
   # GET /internships/1.json
   def show
     @reviews_of_internship = @internship.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
+    @review = Review.new
   end
 
   # GET /internships/new
@@ -30,7 +31,6 @@ class InternshipsController < ApplicationController
   def create
     @internship = Internship.new(internship_params)
     @internship.user = current_user
-
     respond_to do |format|
       if @internship.save
         format.html { redirect_to @internship, notice: 'Expérience crée avec succès' }
