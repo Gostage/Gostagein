@@ -140,45 +140,6 @@
             <a><%= will_paginate @reviews_of_internship %></a>
           </div>
 
-          <!-- Add Reviews -->
-          <div class="my-6" id="add-review">
-            <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-            <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
-  
-            <%= form_with(model: @review, local: true) do |form| %>
-            <% if @review.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-              <ul>
-                <% @review.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-            <% end %>
-
-            <div class="field">
-              <%= form.label :title %>
-              <%= form.text_field :title %>
-            </div>
-
-            <div class="field">
-              <%= form.label :notation %>
-              <%= form.number_field :notation %>
-            </div>
-
-            <div class="field">
-              <%= form.label :description %>
-              <%= form.text_area :description %>
-            </div>
-
-            <div class="actions">
-              <%= form.submit %>
-            </div>
-          <% end %>
-          <hr>
-
-          </div>
 
         <div class="my-6">
           <button class="btn btn-secondary"><%= link_to 'Edit', edit_internship_path(@internship) %> </button>
@@ -186,8 +147,11 @@
         </div>
 
         <!-- Add Comments -->
-        <div class="my-6 margin" id="add-review">
+        <div class="my-6" id="add-review">
           <hr>
+          <div class="row">
+            <div class="form-group col-sm-7 col-xs-12">
+
           <h3 class="font-weight-normal mb-6">Commentaires</h3>
           <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6>
           <span class="star add-rating-default pl-0 mb-6"></span>
@@ -223,10 +187,21 @@
             </div>
           </form>
         </div>
+
+        <div class="form-group col-sm-5 col-xs-12 border rounded bg-secondary">
+           <!-- Add Reviews -->
+            <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
+            <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
+            <%= render "reviews/form", review: @review %>
+
+        </div>
+      </div>
+
+        </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 </div> <!-- element wrapper ends -->
 
-<%= render "reviews/form", review: @review %>
