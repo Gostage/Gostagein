@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  resources :internships
+  resources :internships do 
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+  end
   root to: "static_pages#home"
   devise_for :users
 
