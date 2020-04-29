@@ -153,32 +153,8 @@
             <div class="form-group col-sm-7 col-xs-12">
 
           <h3 class="font-weight-normal mb-6">Commentaires</h3>
-          <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6>
-          <span class="star add-rating-default pl-0 mb-6"></span>
+          <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6><br>
           <form>
-            <div class="form-check form-check-inline mb-6 mr-lg-7">
-              <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"
-                checked>
-              <label class="form-check-label" for="inlineRadio1">
-                <div class="media media-xs align-items-center">
-                  <img src="#" class="mr-2 media-object rounded-circle" alt="Image User">
-                  <div class="media-body">
-                    <h5 class="media-heading mb-0">William</h5>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="form-check form-check-inline mb-6">
-              <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-              <label class="form-check-label" for="inlineRadio2">
-                <div class="media media-xs align-items-center">
-                  <img src="#" class="mr-2 media-object rounded-circle border" alt="Image User">
-                  <div class="media-body">
-                    <h5 class="media-heading mb-0">Anonymous</h5>
-                  </div>
-                </div>
-              </label>
-            </div>
             <div class="form-group mb-6">
               <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
             </div>
@@ -188,10 +164,10 @@
           </form>
         </div>
 
-        <div class="form-group col-sm-5 col-xs-12 border rounded bg-secondary">
+        <div class="form-group col-md-5 border rounded bg-secondary">
            <!-- Add Reviews -->
-            <h3 class="font-weight-normal mb-6"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-            <p class="mb-6 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
+            <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
+            <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
             <%= render "reviews/form", review: @review %>
 
         </div>
