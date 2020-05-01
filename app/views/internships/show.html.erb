@@ -109,7 +109,7 @@
               <div class="media-body">
               <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
               <!-- EDIT BUTTON -->
-              <%if current_user.id == @review.review_user_id %>
+              <%if current_user.id == review.review_user_id %>
               <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button" href="#">
                 <i class="fa fa-edit"></i> Editer </a>
                 <button class="btn btn-outline-primary btn-sm edit-button"><%= link_to 'Voir', review %>
