@@ -1,13 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-
 <div class="main-wrapper">
-
-<!-- ====================================
-——— LISTING SINGLE HEADING
-===================================== -->
-
   <section class="py-7 pt-md-9 pb-md-8">
     <div class="container">
       <div class="row">
@@ -22,104 +16,6 @@
             <!-- CALCULER LA NOTE MOYENNE D'UN INTERNSHIP -->
             <div class="d-flex align-items-center">
               <ul class="list-inline list-inline-rating mr-2">
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-            </ul>
-            <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
-            <button class="btn-like px-2" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris">
-              <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
-              <span> <%= @internship.favorites.count %></span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
-        <!-- PB AVEC TABLE REVIEW METTRE REVIEW_INTERNSHIP_ID -->
-        <a href="#add-review" class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ====================================
-——— MAIN CONTENT
-===================================== -->
-<section class="pt-7 pb-4 pt-md-9 pb-md-8">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7 col-lg-8">
-        <!-- Listing Main Content -->
-        <div class="single-listing-content mb-6">
-          <h3 class="font-weight-normal mb-6"><i class="fa fa-briefcase mr-6" aria-hidden="true"></i><%= @internship.organization %></h3>
-          <small class="mb-6">Description <i>(missions)</i></small>
-          <p class="mb-6"><%= @internship.description %></p>
-
-
-        <hr>
-
-        <!-- Features -->
-        <div class="my-6">
-          <h3 class="font-weight-normal mb-6">Détails</h3>
-          <ul class="list-unstyled mb-6">
-            <li class="d-inline-block mr-4 mb-2">
-            <i class="fa fa-briefcase mr-2" aria-hidden="true"></i> Secteur <%= @internship.specialty %>
-            </li>
-            <li class="d-inline-block mr-4 mb-2">
-              <i class="fa fa-users mr-2" aria-hidden="true"></i><%= @internship.population %>
-            </li>
-            <li class="d-inline-block mr-4 mb-2">
-              <i class="fas fa-user-graduate mr-2" aria-hidden="true"></i>Niveau <%= @internship.cursus %>
-            </li>
-            <li class="d-inline-block mr-4 mb-2">
-              <i class="fas fa-euro-sign mr-2" aria-hidden="true"></i>Rémunération (<%= @internship.remuneration %> <small>/ mois</small>)
-            </li>
-            <li class="d-inline-block mr-4 mb-2">
-              <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>)
-            </li>
-          </ul>
-          <hr>
-        </div>
-
-
-        <!-- Reviews -->
-        <div class="my-6">
-          <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
-          <div class="media mb-3">
-            <div class="media-body">
-              <% if @internship.reviews == [] || @internship.reviews == nil %>
-              <p>Il n'y a pas encore d'avis pour cette expérience </p>
-              <hr>
-              <% else %>
-              <% @reviews_of_internship.each do |review| %>
-              <div class="media mb-3">
-              <div class="media-body">
-              <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
-              <!-- EDIT BUTTON -->
-              <%if current_user.id == review.review_user_id %>
-              <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button" href="#">
-                <i class="fa fa-edit"></i>
-                <%= link_to 'Editer', edit_review_path(review) %> </button>
-                <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-              <%else %>
-              <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-              <% end %>
-              <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
-              <ul class="list-inline list-inline-rating">
                 <li class="list-inline-item">
                   <i class="fa fa-star" aria-hidden="true"></i>
                 </li>
@@ -147,68 +43,29 @@
         <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
           <!-- PB AVEC TABLE REVIEW METTRE REVIEW_INTERNSHIP_ID -->
           <a href="#add-review" class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
-
-          <!-- PAGINATION -->
-           <div class="pagination my-6">
-            <a><%= will_paginate @reviews_of_internship %></a>
-          </div>
-
-
-        <div class="my-6">
-          <%= link_to 'Retour', internships_path, class: "btn btn-outline-dark mt-3" %>
-        </div>
-        
-
-        <!-- Add Comments -->
-        <div class="my-6" id="add-review">
-          <hr>
-          <div class="row">
-            <div class="form-group col-sm-7 col-xs-12">
-
-          <h3 class="font-weight-normal mb-6">Commentaires</h3>
-          <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6><br>
-          <form>
-            <div class="form-group mb-6">
-              <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary text-uppercase"> Send Review </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="form-group col-md-5 border rounded bg-secondary">
-           <!-- Add Reviews -->
-            <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-            <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
-            <%= render "reviews/form", review: @review %>
-
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ====================================
-  ——— MAIN CONTENT
-  ===================================== -->
+<!-- ====================================
+——— MAIN CONTENT
+===================================== -->
   <section class="pt-7 pb-4 pt-md-9 pb-md-8">
     <div class="container">
       <div class="row">
         <div class="col-md-7 col-lg-8">
-          <!-- Listing Main Content -->
           <div class="single-listing-content mb-6">
             <h3 class="font-weight-normal mb-6"><i class="fa fa-briefcase mr-6" aria-hidden="true"></i><%= @internship.organization %></h3>
             <small class="mb-6">Description <i>(missions)</i></small>
             <p class="mb-6"><%= @internship.description %></p>
             <hr>
-
-          <!-- Features -->
+          <!-- DETAILS -->
             <div class="my-6">
               <h3 class="font-weight-normal mb-6">Détails</h3>
               <ul class="list-unstyled mb-6">
                 <li class="d-inline-block mr-4 mb-2">
-                <i class="fa fa-briefcase mr-2" aria-hidden="true"></i> Secteur <%= @internship.specialty %>
+                  <i class="fa fa-briefcase mr-2" aria-hidden="true"></i> Secteur <%= @internship.specialty %>
                 </li>
                 <li class="d-inline-block mr-4 mb-2">
                   <i class="fa fa-users mr-2" aria-hidden="true"></i><%= @internship.population %>
@@ -225,87 +82,83 @@
               </ul>
               <hr>
             </div>
-
-
-          <!-- Reviews -->
-          <div class="my-6">
-            <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
-            <div class="media mb-3">
-              <div class="media-body">
-                <% if @internship.reviews == [] || @internship.reviews == nil %>
-                  <p>Il n'y a pas encore d'avis pour cette expérience </p>
-                  <hr>
-                <% else %>
-                  <% @reviews_of_internship.each do |review| %>
-                    <div class="media mb-3">
-                      <div class="media-body">
-                        <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
-                        <!-- EDIT BUTTON -->
-                        <%if current_user.id == review.review_user_id %>
-                          <%= link_to 'Editer', edit_review_path(review.id), class:"btn btn-primary" %>
-                        <% end %>
-                        <button class="btn btn-outline-primary btn-sm edit-button"><%= link_to 'Voir', review %>
-                        </button>
-                        <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
-                        <ul class="list-inline list-inline-rating">
-                          <li class="list-inline-item">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </li>
-                          <li class="list-inline-item">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </li>
-                          <li class="list-inline-item">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </li>
-                          <li class="list-inline-item">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </li>
-                          <li class="list-inline-item">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                          </li>
-                          (<%= review.notation %>)
-                        </ul>
-                        <h6><%= review.title %> </h6>
-                        <p class="bg-light p-4 rounded"> <%= review.description[0..200] %></p>
-                        <hr>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-
-            <!-- PAGINATION -->
-                  <div class="pagination my-6">
-                    <a><%= will_paginate @reviews_of_internship %></a>
-                  </div>
-                  <div class="my-6">
-                    <button class="btn btn-secondary"><%= link_to 'Edit', edit_internship_path(@internship) %> </button>
-                    <button class="btn btn-light"><%= link_to 'Back', internships_path %></button>
-                  </div>
-
-          <!-- Add Comments -->
-                  <div class="my-6" id="add-review">
+          <!-- REVIEWS -->
+            <div class="my-6">
+              <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
+              <div class="media mb-3">
+                <div class="media-body">
+                  <% if @internship.reviews == [] || @internship.reviews == nil %>
+                    <p>Il n'y a pas encore d'avis pour cette expérience </p>
                     <hr>
-                    <div class="row">
-                      <div class="form-group col-sm-7 col-xs-12">
-                        <h3 class="font-weight-normal mb-6">Commentaires</h3>
-                        <h6 class="text-primary mb-3">Une question ? Pose la dans les commentaires</h6>
-                        <form>
-                          <div class="form-group mb-6">
-                            <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <button type="submit" class="btn btn-primary text-uppercase"> Send Review </button>
-                          </div>
-                        </form>
+                  <% else %>
+                    <% @reviews_of_internship.each do |review| %>
+                      <div class="media mb-3">
+                        <div class="media-body">
+                          <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
+                    <!-- EDIT BUTTON -->
+                          <%if current_user.id == review.review_user_id %>
+                            <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
+                            <i class="fa fa-edit"></i>
+                            <%= link_to 'Editer', edit_review_path(review) %> </button>
+                          <% end %>
+                          <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
+                          <ul class="list-inline list-inline-rating">
+                            <li class="list-inline-item">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            (<%= review.notation %>)
+                          </ul>
+                          <h6><%= review.title %> </h6>
+                          <p class="bg-light p-4 rounded"> <%= review.description[0..200] %></p>
+                          <hr>
+                        </div>
                       </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+          <!-- PAGINATION -->
+              <div class="pagination my-6">
+                <a><%= will_paginate @reviews_of_internship %></a>
+              </div>
+              <div class="my-6">
+                <%= link_to 'Retour', internships_path, class: "btn btn-outline-dark mt-3" %>
+              </div>
 
-                  <!-- Add Reviews -->
-                      <div class="form-group col-md-5 border rounded bg-secondary">
-                        <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-                        <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
-                        <%= render "reviews/form", review: @review %>
+        <!-- Add Comments -->
+              <div class="my-6" id="add-review">
+                <hr>
+                <div class="row">
+                  <div class="form-group col-sm-7 col-xs-12">
+                    <h3 class="font-weight-normal mb-6">Commentaires</h3>
+                    <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6><br>
+                    <form>
+                      <div class="form-group mb-6">
+                        <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
                       </div>
-                    </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary text-uppercase"> Poster le commentaire </button>
+                      </div>
+                    </form>
+                  </div>
+        <!-- Add Reviews -->
+                  <div class="form-group col-md-5 border rounded bg-secondary">
+                    <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
+                    <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
+                    <%= render "reviews/form", review: @review %>
                   </div>
                 </div>
               </div>
@@ -316,4 +169,3 @@
     </div>
   </section>
 </div> <!-- element wrapper ends -->
-

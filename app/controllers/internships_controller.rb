@@ -6,7 +6,7 @@ class InternshipsController < ApplicationController
   # GET /internships.json
   def index
     @q = Internship.ransack(params[:q])
-    @internships = @q.result
+    @internships = @q.result.order(created_at: :desc)
   end
 
   # GET /internships/1
