@@ -1,26 +1,49 @@
-<div class="container">
-  <%= form_tag internship_reviews_path(@review), method:"post" do %>
-
-    <div class="form-group">
-      <p class="font-weight-bold">Titre de l'avis</p>
-      <%= text_field_tag :title %>
-    </div>
-
-    <div class="form-group" >
-      <p class="font-weight-bold">Note</p>
-      <input id="notation" max="5.0" min="1.0" name="notation" step="0.5" type="number"/>
-    </div>
-
-    <div class="form-group">
-      <p class="font-weight-bold">Description</p>
-      <%= text_area_tag :description %>
-    </div>
-    
-    <%= hidden_field_tag(:review_user_id, current_user.id) %>
-    <%= hidden_field_tag(:review_internship_id, @review.review_internship_id) %>
-
-    <div class="form-group actions">
-      <%= submit_tag "Envoyer l'avis", class:"btn btn-primary text-uppercase" %>
+<%= form_with(model: review, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(internship.errors.count, "erreurs") %> ont empêché la sauvegarde de la modification:</h2>
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
   <% end %>
-</div> 
+
+<section>
+  <div class="container container-form">
+    <div class="card bg-secondary">
+      <div class="card-body text-dark">
+        <div class="card-header text-uppercase text-dark style-card "> Lieu de stage</div>
+        <hr>
+        <div class="row">
+          <div class="form-group col-sm-6 col-xs-12">
+            <%= form.label :title %>
+            <%= form.text_field :title, class:"form-control" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :description %>
+              <%= form.text_field :description, class:"form-control" %>
+            </div>
+            <div class="form-group col-sm-6 col-xs-12">
+              <%= form.label :notation %>
+              <%= select_tag("review[notation]", options_for_select([[@review.notation],
+              [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]]), class: "form-control") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-xs-12">
+          <div class="mb-4">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Envoyer</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</section>
