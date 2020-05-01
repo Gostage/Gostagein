@@ -28,6 +28,12 @@ hr {
 	padding: 15px;
 }
 
+.edit-button {
+	float: right;
+	margin-right: 5px;
+}
+
+
 /* PAGINATION */
 
 .pagination {
