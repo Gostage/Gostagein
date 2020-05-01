@@ -111,7 +111,8 @@
               <!-- EDIT BUTTON -->
               <%if current_user.id == review.review_user_id %>
               <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button" href="#">
-                <i class="fa fa-edit"></i> Editer</button>
+                <i class="fa fa-edit"></i>
+                <%= link_to 'Editer', edit_review_path(review) %> </button>
                 <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
               <%else %>
               <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
@@ -150,9 +151,9 @@
 
 
         <div class="my-6">
-          <button class="btn btn-secondary"><%= link_to 'Edit', edit_internship_path(@internship) %> </button>
-          <button class="btn btn-light"><%= link_to 'Back', internships_path %></button>
+          <%= link_to 'Retour', internships_path, class: "btn btn-outline-dark mt-3" %>
         </div>
+        
 
         <!-- Add Comments -->
         <div class="my-6" id="add-review">
