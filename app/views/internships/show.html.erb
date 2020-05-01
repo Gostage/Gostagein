@@ -110,13 +110,11 @@
               <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
               <!-- EDIT BUTTON -->
               <%if current_user.id == review.review_user_id %>
-              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button" href="#">
-                <i class="fa fa-edit"></i> Editer </a>
-                <button class="btn btn-outline-primary btn-sm edit-button"><%= link_to 'Voir', review %>
-            </button>
+              <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button" href="#">
+                <i class="fa fa-edit"></i> Editer</button>
+                <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
               <%else %>
-              <button class="btn btn-outline-primary btn-sm edit-button"><%= link_to 'Voir', review %>
-            </button>
+              <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
               <% end %>
               <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
               <ul class="list-inline list-inline-rating">
