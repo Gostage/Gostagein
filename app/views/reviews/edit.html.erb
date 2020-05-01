@@ -1,6 +1,10 @@
-<h1>Editing Review</h1>
+<h1 class="text-center text-primary">Editer l'avis</h1>
 
 <%= render 'edit_form', review: @review %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+<section>
+	<div class= "container">
+		<%= link_to "Voir l'avis", @review, class: "btn btn-outline-dark mt-3" %>
+		<%= link_to "Retour sur l'expérience", internship_path(@review.review_internship_id),  class: "btn btn-outline-dark mt-3" %>
+	</div>
+</section>

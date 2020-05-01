@@ -21,16 +21,14 @@
             <%= form.label :title %>
             <%= form.text_field :title, class:"form-control" %>
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :description %>
-              <%= form.text_field :description, class:"form-control" %>
-            </div>
             <div class="form-group col-sm-6 col-xs-12">
               <%= form.label :notation %>
-              <%= select_tag("review[notation]", options_for_select([[@review.notation],
-              [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]]), class: "form-control") %>
+              <%= form.number_field :notation, min: 1, max: 5, step: 0.5, class:"form-control" %>
+              </div>
+          </div>
+            <div class="form-group col-xs-12">
+              <%= form.label :description %>
+              <%= form.text_area :description, class:"form-control" %>
             </div>
           </div>
         </div>
