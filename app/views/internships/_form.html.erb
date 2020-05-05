@@ -16,6 +16,9 @@
       <div class="card-body text-dark">
         <div class="card-header text-uppercase text-dark style-card "> Lieu de stage</div>
         <hr>
+        <div>
+          <p> * <i>Tous les champs sont obligatoires</i></p>
+        </div>
         <div class="row">
           <div class="form-group col-sm-6 col-xs-12">
             <%= form.label :etablissement %>
@@ -51,6 +54,7 @@
             <div class="form-group col-sm-6 col-xs-12">
             <%= form.label :code_postal %>
             <%= form.text_field :zipcode, class:"form-control" %>
+            <span>* Enter un code postal sans espace</span>
             </div>
           </div>
         </div>
@@ -85,7 +89,7 @@
             <div class="form-group col-sm-6 col-xs-12">
                 <%= form.label :rémunération %><span> (par mois)</span>
                 <%= form.number_field :remuneration, :min => 0, class:"form-control"  %>
-                <span>* <i>Veuillez saisir un nombre entier. Arrondir si nécessaire.</i></span>
+                <span>* <i>Veuillez saisir un nombre entier et mettre 0 si l'expérience n'était pas rémunérée</i></span>
                 </div>
             </div>
           </div>
