@@ -102,24 +102,13 @@
                             <%= link_to 'Editer', edit_review_path(review) %> </button>
                           <% end %>
                           <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-                <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
+                <!-- STARS NOTATION REVIEW -->
                           <ul class="list-inline list-inline-rating">
+                            <% review.notation.to_i.times do %>
                             <li class="list-inline-item">
                               <i class="fa fa-star" aria-hidden="true"></i>
                             </li>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
-                            (<%= review.notation %>)
+                            <% end %>
                           </ul>
                           <h6><%= review.title %> </h6>
                           <p class="bg-light p-4 rounded"> <%= review.description[0..200] %></p>
