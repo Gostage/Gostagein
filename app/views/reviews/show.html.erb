@@ -8,24 +8,13 @@
       		<p>Posté le <%= @review.created_at.strftime("%d / %m / %Y") %>
           </p>
 	      <h5 class="media-heading"><%= @review.review_user.first_name %> <%= @review.review_user.last_name%></h5>
-	      <!-- FAIRE UNE METHODE POUR LA MOYENNE -->
+	      <!-- STARS NOTATION REVIEW -->
 	      <ul class="list-inline list-inline-rating">
+          <% @review.notation.to_i.times do %>
 	        <li class="list-inline-item">
 	          <i class="fa fa-star" aria-hidden="true"></i>
 	        </li>
-	        <li class="list-inline-item">
-	          <i class="fa fa-star" aria-hidden="true"></i>
-	        </li>
-	        <li class="list-inline-item">
-	          <i class="fa fa-star" aria-hidden="true"></i>
-	        </li>
-	        <li class="list-inline-item">
-	          <i class="fa fa-star" aria-hidden="true"></i>
-	        </li>
-	        <li class="list-inline-item">
-	          <i class="fa fa-star" aria-hidden="true"></i>
-	        </li>
-	        (<%= @review.notation %>)
+          <% end %>
 	      </ul>
 	      <p class="bg-secondary p-4 rounded text-dark"> <%= @review.description %></p>
 	    </div>
