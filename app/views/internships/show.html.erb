@@ -8,7 +8,12 @@
         <div class="col-lg-8">
           <div class="mb-2 mb-lg-0">
             <h1 class="single-listing-title"><%= @internship.title %></h1>
-            <p><%= button_to "Favorite", internship_favorites_path(@internship), method: :post %>
+            <p>
+              <% if current_user.favorites == @favorite_exists %>
+              <%= button_to "Remove Favorite", internship_favorite_path(@internship), method: :delete %>
+              <% else %>
+              <%= button_to "Add Favorite", internship_favorites_path(@internship), method: :post %>
+              <% end %>
               <span><%= @internship.city %>, <%= @internship.region %></span><br> <span><%= @internship.adress %>, <%= @internship.zipcode %></span></p>
             <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
               le <%= @internship.created_at.strftime("%d / %m / %Y") %>
