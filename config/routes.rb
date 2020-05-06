@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :internships do 
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :favorites, only: [:new, :create, :destroy]
   end
   root to: "static_pages#home"
   devise_for :users
