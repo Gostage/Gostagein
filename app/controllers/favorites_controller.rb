@@ -25,8 +25,7 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.json
   def create
-    @favorite = Favorite.new(favorite_internship_id: params[:favorite_internship_id], favorite_user_id: params[:favorite_user_id])
-    @favorite.favorite_user = current_user
+    @favorite = Favorite.new(favorite_internship_id: params[:internship_id], favorite_user_id: current_user.id)
 
     respond_to do |format|
       if @favorite.save
