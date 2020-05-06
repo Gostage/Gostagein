@@ -2,7 +2,7 @@
 
 <div class="container container-show">
   <h1 class="mb-5">Mes favoris</h1>
-  <div class="text-white">
+  <div class="text-dark">
     <% if @favorites == [] || @favorites == nil %>
       <p>Vous n'avez pas de stages en favoris.</p>
     <% else %>
@@ -13,7 +13,7 @@
               <div class="card m-3">
                 <div class="card-header">
                   <div class="row">
-                    <div class="col-10">
+                    <div class="col-10 text-dark">
                       <%= favorite.favorite_internship.title %>
                     </div>
                     <div class="col-2">
