@@ -15,7 +15,6 @@ class InternshipsController < ApplicationController
     @reviews_of_internship = @internship.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @review = Review.new
     @favorite = Favorite.new
-    @favorite.favorite_internship_id = @internship.id
   end
 
   # GET /internships/new
