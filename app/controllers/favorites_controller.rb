@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
   # GET /favorites
   # GET /favorites.json
   def index
-    @favorites = current_user.favorites
+    @favorites = current_user.favorites.order(created_at: :desc)
   end
 
   # GET /favorites/1
