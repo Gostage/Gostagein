@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :create, :update, :destroy]
+  before_action :set_favorite, only: [:show, :edit, :update]
   before_action :authenticate_user!
 
   # GET /favorites
@@ -55,7 +55,7 @@ class FavoritesController < ApplicationController
   # DELETE /favorites/1
   # DELETE /favorites/1.json
   def destroy
-    @favorite.destroy
+    Favorite.find_by(favorite_user_id: current_user.id, favorite_internship_id: params[:id]).destroy
 
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, notice: 'Favorite was successfully destroyed.' }
