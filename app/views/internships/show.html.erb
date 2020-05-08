@@ -1,6 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-
 <div class="main-wrapper">
   <section class="py-7 pt-md-9 pb-md-8">
     <div class="container">
@@ -38,21 +36,20 @@
               <!-- FAVORITE BUTTON -->
               <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
               <% unless @favorite_exists == nil || @favorite_exists == [] %>
-              <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
-              <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
-              <% end %>
-              <span> <%= @internship.favorites.count %></span>
+                <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
+                  <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
+                <% end %>
               <% else %>
-              <%= button_to internship_favorites_path(@internship), method: :post, class:"btn-like px-2" do %>
-              <i class="fa fa-heart-o text-primary" aria-hidden="true" title="Ajouter aux favoris"></i>
+                <%= button_to internship_favorites_path(@internship), method: :post, class:"btn-like px-2" do %>
+                  <i class="fa fa-heart-o text-primary" aria-hidden="true" title="Ajouter aux favoris"></i>
+                <% end %>
               <% end %>
               <span> <%= @internship.favorites.count %></span>
-              <% end %>
             </div>
           </div>
         </div>
         <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
-          <!-- PB AVEC TABLE REVIEW METTRE REVIEW_INTERNSHIP_ID -->
+          <!-- BUTTON CREATE REVIEW -->
           <a href="#add-review" class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
         </div>
       </div>
@@ -169,4 +166,3 @@
     </div>
   </section>
 </div> <!-- element wrapper ends -->
-
