@@ -11,7 +11,8 @@
             <p>
               <!-- ADRESS DETAILS -->
               <span><%= @internship.city %>, <%= @internship.region %></span><br>
-              <span><%= @internship.adress %>, <%= @internship.zipcode %></span></p>
+              <span><%= @internship.adress %>, <%= @internship.zipcode %></span>
+            </p>
             <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
               le <%= @internship.created_at.strftime("%d / %m / %Y") %>
             </p>
