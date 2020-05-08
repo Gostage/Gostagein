@@ -9,12 +9,9 @@
           <div class="mb-2 mb-lg-0">
             <h1 class="single-listing-title"><%= @internship.title %></h1>
             <p>
-              <% unless @favorite_exists == nil || @favorite_exists == [] %>
-                <%= button_to "Remove Favorite", internship_favorite_path(@internship), method: :delete %>
-              <% else %>
-                <%= button_to "Add Favorite", internship_favorites_path(@internship), method: :post %>
-              <% end %>
-              <span><%= @internship.city %>, <%= @internship.region %></span><br> <span><%= @internship.adress %>, <%= @internship.zipcode %></span></p>
+              <!-- ADRESS DETAILS -->
+              <span><%= @internship.city %>, <%= @internship.region %></span><br>
+              <span><%= @internship.adress %>, <%= @internship.zipcode %></span></p>
             <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
               le <%= @internship.created_at.strftime("%d / %m / %Y") %>
             </p>
@@ -37,11 +34,19 @@
                   <i class="fa fa-star" aria-hidden="true"></i>
                 </li>
               </ul>
+              <!-- FAVORITE BUTTON -->
               <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
-              <button class="btn-like px-2" data-toggle="tooltip" data-placement="top" title="Ajouter aux favoris">
-                <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
-                <span> <%= @internship.favorites.count %></span>
-              </button>
+              <% unless @favorite_exists == nil || @favorite_exists == [] %>
+              <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
+              <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
+              <% end %>
+              <span> <%= @internship.favorites.count %></span>
+              <% else %>
+              <%= button_to internship_favorites_path(@internship), method: :post, class:"btn-like px-2" do %>
+              <i class="fa fa-heart-o text-primary" aria-hidden="true" title="Ajouter aux favoris"></i>
+              <% end %>
+              <span> <%= @internship.favorites.count %></span>
+              <% end %>
             </div>
           </div>
         </div>
