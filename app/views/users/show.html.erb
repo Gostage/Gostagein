@@ -68,28 +68,27 @@
           <% elsif current_user.id != @user.id && (@user.comments == [] || @user.comments == nil) %>
           	<p>Cet utilisateur n'a pas commenté de stage.</p>
           <% elsif @user.comments.length > 3 %>
-	        <% @user.comments[0..2].each do |comment| %>
-	          <div class="row">
-	            <div class="col-6">
-	              <span><%= comment.internship.title %></span>
-	            </div>
-	            <div class="col-6 text-right">
-	              <span><%= link_to "Voir", internship_path(comment.internship.id), class: "btn btn-secondary" %></span>
-	            </div>
-	          </div>
-              <% unless comment == @user.comment.last %>
-                <hr>
-              <% end %>
-	        <% end %>
-	        <%= link_to "Voir tous les commentaires", comments_path, class: "btn btn-secondary" %>          
+  	        <% @user.comments[0..2].each do |comment| %>
+  	          <div class="row">
+  	            <div class="col-6">
+  	              <span><%= comment.questioned_internship.title %></span>
+  	            </div>
+  	            <div class="col-6 text-right">
+  	              <span><%= link_to "Voir", internship_path(comment.questioned_internship_id), class: "btn btn-secondary" %></span>
+  	            </div>
+  	          </div>
+                <% unless comment == @user.comments.last %>
+                  <hr>
+                <% end %>
+  	        <% end %>          
           <% else %>
             <% @user.comments.each do |comment| %>
               <div class="row">
               	<div class="col-6">
-              	  <%= comment.internship.title %>
+              	  <%= comment.questioned_internship.title %>
               	</div>
               	<div class="col-6 text-right">
-              	  <%= link_to "Voir", internship_path(comment.internship.id), class: "btn btn-secondary" %>
+              	  <%= link_to "Voir", internship_path(comment.questioned_internship_id), class: "btn btn-secondary" %>
               	</div>
               </div>
               <% unless comment == @user.comments.last %>
