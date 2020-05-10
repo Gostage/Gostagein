@@ -40,7 +40,8 @@ class Internship < ApplicationRecord
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, foreign_key: "questioned_internship_id"
+  has_many :questioners, foreign_key: "questioner_id", class_name: "User", through: :comments
 
   has_many :reviews, foreign_key: "review_internship_id"
   has_many :review_users, foreign_key: 'review_user_id', class_name:"User", through: :reviews
