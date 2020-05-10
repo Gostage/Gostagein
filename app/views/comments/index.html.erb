@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Comments</h1>
+<h1>Commentaires</h1>
+
+<%= link_to 'Ecrire un nouveau commentaire', new_internship_comment_path(@questioned_internship) %>
 
 <table>
   <thead>
     <tr>
-      <th>Content</th>
+      <th>Contenu</th>
+      <th>Propriétaire</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,14 +17,12 @@
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= comment.questioner.first_name%><%= comment.questioner.last_name%></td>
+        <td><%= link_to "Voir l'utilisateur", user_path(comment.questioner) %></td>
+        <td><%= link_to 'Modifier le commentaire', edit_internship_comment_path(@questioned_internship, comment) %></td>
+        <td><%= button_to 'Supprimer le commentaire', [@questioned_internship, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Comment', new_comment_path %>
