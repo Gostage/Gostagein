@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :internships do 
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     resources :comments
+    resources :favorites, only: [:new, :create, :destroy]
   end
   devise_for :users
 

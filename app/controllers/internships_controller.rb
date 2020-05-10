@@ -15,6 +15,8 @@ class InternshipsController < ApplicationController
     @reviews_of_internship = @internship.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @review = Review.new
     @internship_comments = @internship.comments.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
+    @favorite = Favorite.new
+    @favorite_exists = Favorite.where(favorite_internship_id: params[:id], favorite_user_id: current_user.id) 
   end
 
   # GET /internships/new
@@ -61,6 +63,7 @@ class InternshipsController < ApplicationController
   # DELETE /internships/1.json
   def destroy
     @internship.destroy
+
     respond_to do |format|
       format.html { redirect_to internships_url, notice: 'Expérience supprimée avec succès.' }
       format.json { head :no_content }
