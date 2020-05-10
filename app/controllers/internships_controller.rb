@@ -14,6 +14,7 @@ class InternshipsController < ApplicationController
   def show
     @reviews_of_internship = @internship.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @review = Review.new
+    @internship_comments = @internship.comments.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
   end
 
   # GET /internships/new
