@@ -17,6 +17,7 @@ class InternshipsController < ApplicationController
     @internship_comments = @internship.comments.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @favorite = Favorite.new
     @favorite_exists = Favorite.where(favorite_internship_id: params[:id], favorite_user_id: current_user.id) 
+    @new_internship_comment = @internship.comments.build
   end
 
   # GET /internships/new
