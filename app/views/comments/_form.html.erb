@@ -1,22 +1,44 @@
-<%= form_with(model: [@questioned_internship, comment], local: true) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> a/ont empêché ce commentaire d'être posté:</h2>
+<% if @new_internship_comment %>
+  <%= form_with(model: [@internship, comment], local: true) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comment.errors.count, "error") %> a/ont empêché ce commentaire d'être posté:</h2>
+        <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6>
+
+    <div class="form-group mb-6">
+      <%= form.text_area :content, class: "form-control", placeholder: "Ecrivez votre commentaire" %>
+    </div>
+
+    <div class="actions form-group">
+      <%= form.submit "Poster le commentaire", class: "btn btn-primary text-uppercase" %>
     </div>
   <% end %>
+<% else %>
+  <%= form_with(model: [@commented_internship, @commentable, comment], local: true) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comment.errors.count, "error") %> a/ont empêché ce commentaire d'être posté:</h2>
+        <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group mb-6">
+      <%= form.text_area :content, class: "form-control", placeholder: "Votre réponse" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions form-group">
+      <%= form.submit "Envoyer la réponse", class: "btn btn-primary text-uppercase" %>
+    </div>
+  <% end %>
 <% end %>
