@@ -1,5 +1,13 @@
-<h1>Nouveau commentaire</h1>
-
-<%= render 'form', comment: @comment %>
-
-<%= link_to 'Retour', internship_comments_path(@questioned_internship) %>
+<div class="container">
+  <h1>Répondre au commentaire :</h1>
+  <div class="media mb-3">
+    <div class="media-body">
+      <h5 class="media-heading"><%= @commentable.questioner.first_name %> <%= @commentable.questioner.last_name %></h5>
+      <h6 class="media-heading"><%= @commentable.created_at %></h6>
+      <p class="bg-light p-4 rounded"> <%= @commentable.content %></p>
+      <hr>
+    </div>
+  </div>
+  <%= render 'form', comment: @comment %>
+  <%= link_to 'Retour', internship_path(@commented_internship) %>
+</div>
