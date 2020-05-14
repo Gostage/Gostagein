@@ -1,6 +1,7 @@
+<div class="container">
+
 <h1>Modifier le commentaire</h1>
-
 <%= render 'form', comment: @comment %>
+<%= link_to 'Retour', internship_path(params[:internship_id]) %>
 
-<%= link_to "Voir le commentaire", [@questioned_internship, @comment] %> |
-<%= link_to 'Retour', internship_comments_path(@questioned_internship) %>
+</div>
