@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :internships
 
   has_many :comments, foreign_key: "questioner_id"
-  has_many :questioned_internship, foreign_key: "questioned_internship_id", class_name: "Internship", through: :comments
+  has_many :commentables, foreign_key: "commentable_id", through: :comments
 
   has_many :reviews, foreign_key: "review_user_id"
   has_many :review_internships, foreign_key: 'review_internship_id', class_name: "Internship", through: :reviews
