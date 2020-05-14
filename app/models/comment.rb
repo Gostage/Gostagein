@@ -13,4 +13,10 @@ class Comment < ApplicationRecord
   	  return Internship.find(Comment.find(self.commentable_id).commentable_id)
   	end
   end
+
+  def parent_comment
+    if self.commentable_type == "Comment"
+      return Comment.find(self.commentable_id)
+    end
+  end
 end
