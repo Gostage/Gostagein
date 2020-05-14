@@ -58,23 +58,23 @@
   	<div class="col-lg-6 mb-3">
       <div class="card">
       	<% if current_user.id == @user.id %>
-          <h5 class="card-header text-dark">Les stages que j'ai commentés</h5>
+          <h5 class="card-header text-dark">Mes commentés</h5>
       	<% else %>
-      	  <h5 class="card-header text-dark">Stages commmentés</h5>
+      	  <h5 class="card-header text-dark">Commentaires</h5>
       	<% end %>
         <div class="card-body">
           <% if current_user.id == @user.id && (@user.comments == [] || @user.comments == nil) %>
-            <p>Vous n'avez pas encore commenté de stage.</p>
+            <p>Vous n'avez pas encore écrit de commentaire.</p>
           <% elsif current_user.id != @user.id && (@user.comments == [] || @user.comments == nil) %>
-          	<p>Cet utilisateur n'a pas commenté de stage.</p>
+          	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
           <% elsif @user.comments.length > 3 %>
   	        <% @user.comments[0..2].each do |comment| %>
   	          <div class="row">
   	            <div class="col-6">
-  	              <span><%= comment.questioned_internship.title %></span>
+                  <span><%= comment.parent_internship.title %></span>
   	            </div>
   	            <div class="col-6 text-right">
-  	              <span><%= link_to "Voir", internship_path(comment.questioned_internship_id), class: "btn btn-secondary" %></span>
+  	              <span><%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %></span>
   	            </div>
   	          </div>
                 <% unless comment == @user.comments.last %>
@@ -85,10 +85,10 @@
             <% @user.comments.each do |comment| %>
               <div class="row">
               	<div class="col-6">
-              	  <%= comment.questioned_internship.title %>
+              	  <%= comment.parent_internship.title %>
               	</div>
               	<div class="col-6 text-right">
-              	  <%= link_to "Voir", internship_path(comment.questioned_internship_id), class: "btn btn-secondary" %>
+              	  <%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %>
               	</div>
               </div>
               <% unless comment == @user.comments.last %>
