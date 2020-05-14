@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :favorites
   resources :internships do 
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :comments
+    resources :comments, except: [:index, :show] do
+      resources :comments, except: [:index, :show]
+    end
     resources :favorites, only: [:new, :create, :destroy]
   end
   devise_for :users
