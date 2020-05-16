@@ -48,11 +48,10 @@
   	              <% end %>
   	            </div>   
               </div>
-  	          <% unless internship == @user.internships.last %>
-  	            <hr>
-  	          <% end %>
+  	          <hr>
             <% end %>
           <% end %>
+          <%= link_to "Ajouter une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
         </div>
       </div>	
   	</div>
