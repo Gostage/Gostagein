@@ -16,7 +16,7 @@ class User < ApplicationRecord
   
   has_many :internships
 
-  has_many :comments, foreign_key: "questioner_id"
+  has_many :comments, foreign_key: "questioner_id", dependent: :destroy
   has_many :commentables, foreign_key: "commentable_id", through: :comments
 
   has_many :reviews, foreign_key: "review_user_id"
@@ -24,5 +24,29 @@ class User < ApplicationRecord
 
   has_many :favorites, foreign_key: "favorite_user_id"
   has_many :favorite_internships, foreign_key: "favorite_internship_id", class_name: "Internship", through: :favorites
+
+  def unread_internships_comments
+    unread_comments = []
+    unless self.internships == nil || self.internships == []
+      self.internships.each do |internship|
+        internship.comments.where(read: false).each do |comment|
+          unread_comments << comment
+        end
+      end
+    end
+    return unread_comments
+  end
+
+  def unread_comments_answers
+    unread_answers = []
+    unless self.comments == nil || self.comments == []
+      self.comments.each do |comment|
+        comment.comments.where(read: false).each do |answer|
+          unread_answers << answer
+        end
+      end
+    end
+    return unread_answers
+  end
 
 end
