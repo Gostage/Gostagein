@@ -18,6 +18,20 @@ class InternshipsController < ApplicationController
     @favorite = Favorite.new
     @favorite_exists = Favorite.where(favorite_internship_id: params[:id], favorite_user_id: current_user.id) 
     @new_internship_comment = @internship.comments.build
+
+    if current_user.id == @internship.user_id
+      @internship.comments.where(read: false).each do |unread_comment|
+        unread_comment.update(read: true)
+      end
+    end
+    
+    @internship.comments.each do |comment|
+      if current_user.id == comment.questioner_id
+        comment.comments.where(read: false).each do |unread_answer|
+          unread_answer.update(read: true)
+        end
+      end
+    end
   end
 
   # GET /internships/new
