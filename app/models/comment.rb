@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
     length: { maximum: 300 }
   belongs_to :questioner, class_name: "User"
   belongs_to :commentable, polymorphic: true
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def parent_internship
   	if self.commentable_type == "Internship"
@@ -17,6 +17,16 @@ class Comment < ApplicationRecord
   def parent_comment
     if self.commentable_type == "Comment"
       return Comment.find(self.commentable_id)
+    end
+  end
+
+  def has_unread_answers
+    if self.comments != nil || self.comments != []
+      if self.comments.where(read: false).length != 0
+        return true
+      else
+        return false
+      end
     end
   end
 end
