@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         if params[:comment_id] && params[:internship_id]
-          format.html { redirect_to internship_path(@commented_id), notice: 'Le commentaire a été modifié.' }
+          format.html { redirect_to internship_path(@commented_internship), notice: 'Le commentaire a été modifié.' }
           format.json { render :show, status: :ok, location: @comment }
         else
           format.html { redirect_to internship_path(@commentable), notice: 'Le commentaire a été modifié.' }
