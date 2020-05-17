@@ -158,7 +158,7 @@
                       <div class="media mb-3">
                         <div class="media-body">
                           <h5 class="media-heading"><%= comment.questioner.first_name %><%= comment.questioner.last_name %></h5>
-                          <h6 class="media-heading"><%= comment.created_at %></h6>
+                          <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
         
                     <!-- EDIT BUTTON -->
                           <%if current_user == comment.questioner %>
@@ -168,7 +168,7 @@
                             <%= link_to 'Modifier', edit_internship_comment_path(@internship, comment) %> </button>
                           <% end %>
                           <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm edit-button my-4" %>
-                          <p class="bg-light p-4 rounded"><%= comment.content %></p>
+                          <p class="bg-light-blue p-4 rounded"><%= comment.content %></p>
                           <ul>
                             <%= render partial: 'comments/comment', collection: comment.comments %>
                             <div class="row justify-content-end mr-1">
