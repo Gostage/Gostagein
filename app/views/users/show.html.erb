@@ -33,23 +33,25 @@
           <% elsif current_user.id != @user.id && (@user.internships == [] || @user.internships == nil) %>
           	<p>Cet utilisateur n'a pas renseigné d'expérience de stage.</p>
           <% else %>
-            <% @user.internships.each do |internship| %>
+            <% @internships.each do |internship| %>
               <div class="row">
               	<div class="col-6">
-              	  <span><%= internship.title %></span>
+                  <% if internship.has_unread_comments && current_user == @user %>
+                    <i class="fas fa-bell mr-3"></i>
+                  <% end %>
+                  <span><%= internship.title %></span>
               	</div>
-	            <div class="col-6 text-right">
-	              <span><%= link_to "Voir", internship_path(internship.id), class: "btn btn-secondary" %></span>
-	              <% if current_user.id == @user.id %>
-	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
-	              <% end %>
-	            </div>   
+  	            <div class="col-6 text-right">
+  	              <span><%= link_to "Voir", internship_path(internship.id), class: "btn btn-secondary" %></span>
+  	              <% if current_user.id == @user.id %>
+  	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
+  	              <% end %>
+  	            </div>   
               </div>
-	          <% unless internship == @user.internships.last %>
-	            <hr>
-	          <% end %>
+  	          <hr>
             <% end %>
           <% end %>
+          <%= link_to "Ajouter une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
         </div>
       </div>	
   	</div>
@@ -58,38 +60,43 @@
   	<div class="col-lg-6 mb-3">
       <div class="card">
       	<% if current_user.id == @user.id %>
-          <h5 class="card-header text-dark">Les stages que j'ai commentés</h5>
+          <h5 class="card-header text-dark">Mes stages commentés</h5>
       	<% else %>
-      	  <h5 class="card-header text-dark">Stages commmentés</h5>
+      	  <h5 class="card-header text-dark">Stages commentés</h5>
       	<% end %>
         <div class="card-body">
           <% if current_user.id == @user.id && (@user.comments == [] || @user.comments == nil) %>
-            <p>Vous n'avez pas encore commenté de stage.</p>
+            <p>Vous n'avez pas encore écrit de commentaire.</p>
           <% elsif current_user.id != @user.id && (@user.comments == [] || @user.comments == nil) %>
-          	<p>Cet utilisateur n'a pas commenté de stage.</p>
+          	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
           <% elsif @user.comments.length > 3 %>
-	        <% @user.comments[0..2].each do |comment| %>
-	          <div class="row">
-	            <div class="col-6">
-	              <span><%= comment.internship.title %></span>
-	            </div>
-	            <div class="col-6 text-right">
-	              <span><%= link_to "Voir", internship_path(comment.internship.id), class: "btn btn-secondary" %></span>
-	            </div>
-	          </div>
-              <% unless comment == @user.comment.last %>
-                <hr>
-              <% end %>
-	        <% end %>
-	        <%= link_to "Voir tous les commentaires", comments_path, class: "btn btn-secondary" %>          
+  	        <% @user.comments[0..2].each do |comment| %>
+  	          <div class="row">
+  	            <div class="col-6">
+                  <% if comment.has_unread_answers %>
+                    <i class="fas fa-bell mr-3"></i>
+                  <% end %>
+                  <span><%= comment.parent_internship.title %></span>
+  	            </div>
+  	            <div class="col-6 text-right">
+  	              <span><%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %></span>
+  	            </div>
+  	          </div>
+                <% unless comment == @user.comments.last %>
+                  <hr>
+                <% end %>
+  	        <% end %>          
           <% else %>
             <% @user.comments.each do |comment| %>
               <div class="row">
               	<div class="col-6">
-              	  <%= comment.internship.title %>
+                  <% if comment.has_unread_answers %>
+                    <i class="fas fa-bell mr-3"></i>
+                  <% end %>
+              	  <%= comment.parent_internship.title %>
               	</div>
               	<div class="col-6 text-right">
-              	  <%= link_to "Voir", internship_path(comment.internship.id), class: "btn btn-secondary" %>
+              	  <%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %>
               	</div>
               </div>
               <% unless comment == @user.comments.last %>
@@ -108,36 +115,36 @@
             <% if @user.favorites == [] || @user.favorites == nil %>
               <p>Vous n'avez pas encore de stage en favori.</p>
             <% elsif @user.favorites.length > 3 %>
-	          <% @user.favorites[0..2].each do |favorite| %>
-	            <div class="row">
-	              <div class="col-6">
-	              	<span><%= favorite.favorite_internship.title %></span>
-	              </div>
-	              <div class="col-6 text-right">
-	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
-	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
-	              </div>
-	            </div>
+  	          <% @user.favorites[0..2].each do |favorite| %>
+  	            <div class="row">
+  	              <div class="col-6">
+  	              	<span><%= favorite.favorite_internship.title %></span>
+  	              </div>
+  	              <div class="col-6 text-right">
+  	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
+  	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
+  	              </div>
+  	            </div>
                 <% unless favorite == @user.favorites.last %>
                   <hr>
                 <% end %>
-	          <% end %>
-	          <%= link_to "Voir tous les favoris", favorites_path, class: "btn btn-secondary" %>
+  	          <% end %>
+	            <%= link_to "Voir tous les favoris", favorites_path, class: "btn btn-secondary" %>
             <% else %>
-	          <% @user.favorites.each do |favorite| %>
-	            <div class="row">
-	              <div class="col-6">
-	              	<span><%= favorite.favorite_internship.title %></span>
-	              </div>
-	              <div class="col-6 text-right">
-	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
-	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
-	              </div>
-	            </div>
+  	          <% @user.favorites.each do |favorite| %>
+  	            <div class="row">
+  	              <div class="col-6">
+  	              	<span><%= favorite.favorite_internship.title %></span>
+  	              </div>
+  	              <div class="col-6 text-right">
+  	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
+  	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
+  	              </div>
+  	            </div>
                 <% unless favorite == @user.favorites.last %>
               	  <hr>
                 <% end %>
-	          <% end %>
+  	          <% end %>
             <% end %>
           </div>
         </div>
@@ -147,76 +154,72 @@
   <!-- ====================================
 ——— MY REVIEWS
 ===================================== -->
-<section class="pb-8 pt-5 height100vh">
-  <div class="container">
-    <!-- A BRANCHER AU BACK -->
+  <section class="pb-8 pt-5 height100vh">
+    <div class="container">
+      <!-- A BRANCHER AU BACK -->
 
-    <!-- Breadcrumb -->
-      <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+      <!-- Breadcrumb -->
+        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
 
-    <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
-      <thead>
-        <tr>
-          <th class="text-capitalize">Titre</th>
-          <th>Date</th>
-          <th class="text-capitalize">Note</th>
-          <th class="text-capitalize">Message</th>
-          <th class="text-capitalize">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="text-capitalize td-title">
-            <a class="text-hover-primary text-muted" href="listing-restuarant.html">The Missiisipi Hotel</a>
-          </td>
-          <td>
-            <span class="d-block">01 Aug 19</span>
-            <span class="d-block">11.00 PM</span>
-          </td>
-          <td class="td-no-white-space">
-            <ul class="list-inline list-inline-rating">
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </li>
-            </ul>
-          </td>
-          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
-            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
-            <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
-              voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
-          </td>
-          <td class="td-buttons-2">
-            <div class="d-flex flex-column flex-lg-row">
-              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="#">
-                <i class="fa fa-edit"></i>
-                edit
-              </a>
-              <button class="btn btn-outline-danger btn-sm">
-                <i class="fa fa-times" aria-hidden="true"></i>
-                delete
-              </button>
-            </div>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-
-  </div>
-</section>
-
+      <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+        <thead>
+          <tr>
+            <th class="text-capitalize">Titre</th>
+            <th>Date</th>
+            <th class="text-capitalize">Note</th>
+            <th class="text-capitalize">Message</th>
+            <th class="text-capitalize">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-capitalize td-title">
+              <a class="text-hover-primary text-muted" href="listing-restuarant.html">The Missiisipi Hotel</a>
+            </td>
+            <td>
+              <span class="d-block">01 Aug 19</span>
+              <span class="d-block">11.00 PM</span>
+            </td>
+            <td class="td-no-white-space">
+              <ul class="list-inline list-inline-rating">
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </td>
+            <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+              eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
+              <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
+                voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
+            </td>
+            <td class="td-buttons-2">
+              <div class="d-flex flex-column flex-lg-row">
+                <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="#">
+                  <i class="fa fa-edit"></i>
+                  edit
+                </a>
+                <button class="btn btn-outline-danger btn-sm">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
   <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
 </div>
-

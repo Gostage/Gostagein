@@ -1,0 +1,17 @@
+<div class="container ml-5">
+  <div class="media mb-3">
+    <div class="media-body">
+      <h5 class="media-heading"><%= comment.questioner.first_name %> <%= comment.questioner.last_name %></h5>
+      <h6 class="media-heading"><%= comment.created_at %></h6>
+  <!-- EDIT BUTTON -->
+      <% if current_user == comment.questioner %>
+        <%= button_to 'X', [@internship, comment.parent_comment, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm mr-lg-3 my-4 edit-button" %>
+        <button class="btn btn-outline-primary btn-sm my-4 edit-button">
+        <i class="fa fa-edit"></i>
+        <%= link_to 'Modifier', edit_internship_comment_comment_path(@internship, comment.commentable_id, comment) %> </button>
+      <% end %>
+      <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm my-4 edit-button" %>
+      <p class="bg-light p-4 rounded"> <%= comment.content %></p>
+    </div>
+  </div>  
+</div>

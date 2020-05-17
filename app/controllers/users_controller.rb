@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @internships = @user.internships
   end
 
   private

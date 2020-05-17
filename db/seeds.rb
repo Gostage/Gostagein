@@ -6,7 +6,7 @@ User.destroy_all
 
 require 'faker'
 
-100.times do |user|
+30.times do |user|
 	user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "azerty")
 end
 
@@ -22,7 +22,7 @@ puts "100 utilisateurs ont été crées"
 		population: ["Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut potentiel", "Personnes Cérébro-lésées", "Non pertinent", "Autres"].sample, 
 		duration: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6].sample,
 		remuneration: [250, 300, 350, 400, 450, 500, 550, 600, 650].sample,
-		user: User.all.sample , 
+		user_id: User.all.sample.id, 
 		description: Faker::GreekPhilosophers.quote, 
 		title: Faker::Job.title, 
 		cursus: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"].sample,
@@ -33,24 +33,26 @@ puts "100 stages ont été crées"
 
 
 100.times do |favorite|
-	favorite = Favorite.create(favorite_user: User.all.sample, favorite_internship: Internship.all.sample)
+	favorite = Favorite.create(favorite_user_id: User.all.sample.id, favorite_internship_id: Internship.all.sample.id)
 end
 
 puts "100 favoris ont été crées"
 
 100.times do |comment|
-	comment = Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, user: User.all.sample,
-		internship: Internship.all.sample)
+	Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, questioner_id: User.all.sample.id,
+		commentable_id: Internship.all.sample.id, commentable_type: "Internship")
+	Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, questioner_id: User.all.sample.id,
+		commentable_id: Comment.all.sample.id, commentable_type: "Comment")
 end
 
-puts "100 commentaires ont été crées"
+puts "200 commentaires ont été crées"
 
 100.times do |review|
 	review = Review.create(title: Faker::Lorem.sentence,
 		description: Faker::Lorem.paragraph,
 		notation: [1, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
-		review_user: User.all.sample,
-		review_internship: Internship.all.sample)
+		review_user_id: User.all.sample.id,
+		review_internship_id: Internship.all.sample.id)
 end
 
 puts "100 avis ont été crées"

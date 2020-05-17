@@ -91,9 +91,9 @@
               <hr>
             </div>
           <!-- REVIEWS -->
-            <div class="my-6">
+            <div class="mt-6">
               <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
-              <div class="media mb-3">
+              <div class="media">
                 <div class="media-body">
                   <% if @internship.reviews == [] || @internship.reviews == nil %>
                     <p>Il n'y a pas encore d'avis pour cette expérience </p>
@@ -124,41 +124,79 @@
                         </div>
                       </div>
                     <% end %>
+                  <!-- PAGINATION -->
+                    <% if @internship.reviews.length > 3 %>
+                      <div class="pagination my-3">
+                        <a><%= will_paginate @reviews_of_internship %></a>
+                      </div>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
-          <!-- PAGINATION -->
-              <div class="pagination my-6">
-                <a><%= will_paginate @reviews_of_internship %></a>
-              </div>
-              <div class="my-6">
-                <%= link_to 'Retour', internships_path, class: "btn btn-outline-dark mt-3" %>
-              </div>
+            </div>
 
-        <!-- Add Comments -->
-              <div class="my-6" id="add-review">
-                <hr>
-                <div class="row">
-                  <div class="form-group col-sm-7 col-xs-12">
-                    <h3 class="font-weight-normal mb-6">Commentaires</h3>
-                    <h6 class="text-primary">Une question ? Pose la dans les commentaires</h6><br>
-                    <form>
-                      <div class="form-group mb-6">
-                        <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
+          <!-- Add Reviews -->
+            <div class="my-3" id="add-review">
+              <div class="form-group border rounded bg-secondary">
+                <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
+                <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
+                <%= render "reviews/form", review: @review %>
+              </div>
+            </div>
+
+          <!-- Comments -->
+
+            <div class="my-6">
+              <h3 class="font-weight-normal mb-6">Commentaires (<%= @internship.comments.count %>)</h3>
+              <div class="media mb-3">
+                <div class="media-body">
+                  <% if @internship.comments == [] || @internship.comments == nil %>
+                    <p>Il n'y a pas encore de commentaire sur cette expérience </p>
+                    <hr>
+                  <% else %>
+                    <% @internship_comments.each do |comment| %>
+                      <div class="media mb-3">
+                        <div class="media-body">
+                          <h5 class="media-heading"><%= comment.questioner.first_name %><%= comment.questioner.last_name %></h5>
+                          <h6 class="media-heading"><%= comment.created_at %></h6>
+        
+                    <!-- EDIT BUTTON -->
+                          <%if current_user == comment.questioner %>
+                            <%= button_to 'X', [@internship, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm mr-lg-3 my-4 edit-button" %>
+                            <button class="btn btn-outline-primary btn-sm my-4 edit-button">
+                            <i class="fa fa-edit"></i>
+                            <%= link_to 'Modifier', edit_internship_comment_path(@internship, comment) %> </button>
+                          <% end %>
+                          <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm edit-button my-4" %>
+                          <p class="bg-light p-4 rounded"><%= comment.content %></p>
+                          <ul>
+                            <%= render partial: 'comments/comment', collection: comment.comments %>
+                            <div class="row justify-content-end mr-1">
+                              <%= link_to "Répondre", new_internship_comment_comment_path(@internship, comment.id) %>
+                            </div>
+                          </ul>
+                          <hr>
+                        </div>
                       </div>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary text-uppercase"> Poster le commentaire </button>
+                    <% end %>
+                <!-- PAGINATION -->
+                    <% if @internship_comments.length > 3 %>
+                      <div class="pagination my-6">
+                        <a><%= will_paginate @internship_comments %></a>
                       </div>
-                    </form>
-                  </div>
-        <!-- Add Reviews -->
-                  <div class="form-group col-md-5 border rounded bg-secondary">
-                    <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-                    <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis </p>
-                    <%= render "reviews/form", review: @review %>
+                    <% end %>
+                  <% end %>
+                <!-- Add Comments -->
+                  <div>
+                    <%= render "comments/form", comment: @new_internship_comment %>
                   </div>
                 </div>
               </div>
+            </div>
+
+          <!-- Back button to return to internships index -->
+            <div class="my-6">
+              <%= link_to 'Retour', internships_path, class: "btn btn-outline-dark mt-3" %>
             </div>
           </div>
         </div>

@@ -1,37 +1,38 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-  end
+  before_action :get_commentable
+  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :current_user_must_own_comment, only: [:edit, :update, :destroy]
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = @commentable.comments.build
   end
 
   # GET /comments/1/edit
   def edit
-    current_user_must_own_comment
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @commentable.comments.build(comment_params)
+    @comment.questioner = current_user
+    if params[:comment_id] && params[:internship_id]
+      @comment.commentable_type = "Comment"
+    else
+      @comment.commentable_type = "Internship"
+    end
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        if params[:comment_id] && params[:internship_id]
+          format.html { redirect_to internship_path(@commented_internship), notice: 'Le commentaire a été posté.' }
+          format.json { render :show, status: :created, location: @comment }
+        else 
+          format.html { redirect_to internship_path(@commentable), notice: 'Le commentaire a été posté.' }
+          format.json { render :show, status: :created, location: @comment }    
+        end
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -44,8 +45,13 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        if params[:comment_id] && params[:internship_id]
+          format.html { redirect_to internship_path(@commented_id), notice: 'Le commentaire a été modifié.' }
+          format.json { render :show, status: :ok, location: @comment }
+        else
+          format.html { redirect_to internship_path(@commentable), notice: 'Le commentaire a été modifié.' }
+          format.json { render :show, status: :ok, location: @comment }
+        end
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -58,26 +64,41 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      if params[:comment_id] && params[:internship_id]
+        format.html { redirect_to internship_path(@commented_internship), notice: 'Le commentaire a été supprimé.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to internship_path(@commentable), notice: 'Le commentaire a été supprimé.' }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = @commentable.comments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:content, :questioner_id, :commentable_id)
     end
 
     # Editing permission only for owner
     def current_user_must_own_comment
-      if current_user.id != @comment.user.id
-        redirect_to comment_path(@comment.id)
+      if current_user.id != @comment.questioner.id
+        redirect_to internship_comments_path(@commentable)
       end
     end
+
+    def get_commentable
+      if params[:comment_id]
+        @commentable = Comment.find(params[:comment_id])
+        @commented_internship = Internship.find(params[:internship_id])
+      else
+        @commentable = Internship.find(params[:internship_id])
+      end
+    end
+
 end

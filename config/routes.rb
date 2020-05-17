@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
 
+  root "static_pages#home"
   resources :reviews
-  get 'static_pages/home'
   resources :favorites
-
-  resources :comments
-
   resources :internships do 
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :comments, except: [:index, :show] do
+      resources :comments, except: [:index, :show]
+    end
     resources :favorites, only: [:new, :create, :destroy]
   end
-  root to: "static_pages#home"
   devise_for :users
 
   # To fix the error that occured when user sign out
