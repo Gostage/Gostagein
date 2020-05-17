@@ -2,23 +2,23 @@
   <div class="container clearfix">
     <div id="menuzord" class="menuzord menuzord-responsive">
       <%= link_to "GoInStage", root_path, class: "menuzord-brand"%>
-      <% if current_user %>
-        <%= link_to user_path(current_user) do %>
-          <% if (current_user.comments == nil || current_user.comments == []) && (current_user.internships == nil || current_user.internships == []) %>
-            <span>0</span>
-          <% elsif (current_user.comments == nil || current_user.comments == []) && (current_user.internships != nil || current_user.internships != []) %>
-            <span><%= current_user.unread_internships_comments.length %></span>
-          <% elsif (current_user.comments != nil || current_user.comments != []) && (current_user.internships == nil || current_user.internships == []) %>
-            <span><%= current_user.unread_comments_answers.length %></span>
-          <% else %>
-            <span><%= current_user.unread_comments_answers.length + current_user.unread_internships_comments.length %></span>
-          <% end %>
-          <i class="fas fa-bell"></i>
-        <% end %>
-      <% end %>
       <ul class="menuzord-menu menuzord-right">
         <% if user_signed_in? %>
           <li class="nav-item dropdown active">
+            <% if current_user %>
+            <%= link_to user_path(current_user) do %>
+              <% if (current_user.comments == nil || current_user.comments == []) && (current_user.internships == nil || current_user.internships == []) %>
+                <span>0</span>
+              <% elsif (current_user.comments == nil || current_user.comments == []) && (current_user.internships != nil || current_user.internships != []) %>
+                <span><%= current_user.unread_internships_comments.length %></span>
+              <% elsif (current_user.comments != nil || current_user.comments != []) && (current_user.internships == nil || current_user.internships == []) %>
+                <span><%= current_user.unread_comments_answers.length %></span>
+              <% else %>
+                <span><%= current_user.unread_comments_answers.length + current_user.unread_internships_comments.length %></span>
+              <% end %>
+              <i class="fas fa-bell"></i>
+            <% end %>
+            <% end %>
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte</a>
             <div class="dropdown-menu">
               <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
