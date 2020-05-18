@@ -88,7 +88,11 @@ class CommentsController < ApplicationController
     # Editing permission only for owner
     def current_user_must_own_comment
       if current_user.id != @comment.questioner.id
-        redirect_to internship_comments_path(@commentable)
+        if params[:comment_id] && params[:internship_id]
+          redirect_to internship_path(@commented_internship)
+        else
+          redirect_to internship_path(@commentable)
+        end 
       end
     end
 
