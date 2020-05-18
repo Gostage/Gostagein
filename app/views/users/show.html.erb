@@ -162,17 +162,17 @@
           <hr>
           <p>Vous n'avez pas encore écrit d'avis</p>
         <% else %>
-        <% @reviews.each do |review| %>
           <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
             <thead class="text-dark">
               <tr>
                 <th class="text-capitalize">Titre</th>
-                <th class="text-capitalize">Expérience liée à cet avis</th>
+                <th class="text-capitalize">Expérience</th>
                 <th class="text-capitalize">Note</th>
                 <th class="text-capitalize">Message</th>
                 <th class="text-capitalize"></th>
               </tr>
             </thead>
+            <% @reviews.each do |review| %>
             <tbody class="bg-secondary">
               <tr>
                 <td class="text-capitalize td-title">
