@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @internships = @user.internships
+    @reviews = @user.reviews
+
   end
 
   private
