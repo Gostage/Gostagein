@@ -190,15 +190,18 @@
                     <% end %>
                   </ul>
                 </td>
-                <td class="td-details"><%= review.description[0..30] %>...
+                <td class="td-details">
+                  <%= review.description[0..30] %>...     
                 </td>
                 <td class="td-buttons-2">
                   <div class="d-flex flex-column flex-lg-row">
-                    <button class="btn btn-outline-primary btn-sm mb-2">
+                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                    <button class="btn btn-outline-primary btn-sm ">
                       <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
                     </button>
-                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-                    <%= button_to 'Delete', internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                    <%= button_to internship_review_path(review.review_internship_id, review), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class:"btn-like px-2" do %>
+                    <img src="https://img.icons8.com/flat_round/34/000000/delete-sign.png" title="Supprimer l'avis"/>
+                <% end %>
                   </div>
                 </td>
               </tr>
