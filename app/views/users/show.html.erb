@@ -198,6 +198,7 @@
                       <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
                     </button>
                     <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                    <%= button_to 'Delete', internship_review_path(review), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
                   </div>
                 </td>
               </tr>
