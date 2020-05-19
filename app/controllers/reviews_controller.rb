@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    Review.find_by(review_user_id: current_user.id, review_internship_id: @internship.id ).destroy
+    @review.destroy
 
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, notice: 'Review was successfully destroyed.' }
