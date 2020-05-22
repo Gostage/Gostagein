@@ -199,9 +199,9 @@
                     <button class="btn btn-outline-primary btn-sm ">
                       <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
                     </button>
-                    <%= button_to internship_review_path(review.review_internship_id, review), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class:"btn-like px-2" do %>
-                    <img src="https://img.icons8.com/flat_round/34/000000/delete-sign.png" title="Supprimer l'avis"/>
-                <% end %>
+                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
+                    <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                    <% end %>
                   </div>
                 </td>
               </tr>
