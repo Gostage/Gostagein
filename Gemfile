@@ -75,3 +75,5 @@ gem 'jquery-rails'
 # For pagination
 gem 'will_paginate'
 
+# To connect Mailchimp with rails
+gem 'gibbon', '~> 2.2', '>= 2.2.3'
