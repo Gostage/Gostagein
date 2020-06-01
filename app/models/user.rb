@@ -49,4 +49,10 @@ class User < ApplicationRecord
     return unread_answers
   end
 
+  def add_to_mailchimp_list
+    gibbon = Gibbon::Request.new
+    
+
+  end
+
 end
