@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  require 'dotenv'
+  Dotenv.load
+
+  before_save :add_to_mailchimp_list
+
   validates :email,
     presence: true,
     uniqueness: true,
@@ -50,9 +55,9 @@ class User < ApplicationRecord
   end
 
   def add_to_mailchimp_list
-    gibbon = Gibbon::Request.new
-    
-
+    list_id = ENV["MAILCHIMP_LIST_ID"]
+    gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
+    subscribe = gibbon.lists(list_id).members.create(body: { email_address: self.email, status: "subscribed", merge_fields: {FNAME: self.first_name, LNAME: self.last_name},double_optin: true })
   end
 
 end
