@@ -149,17 +149,27 @@
               </div>
             </div>
 
-          <!-- Add Reviews -->
-            <div class="my-3" id="add-review">
-              <div class="form-group border rounded bg-secondary">
-                <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-                <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
-                <%= render "reviews/form", review: @review %>
+            <!-- Add Reviews -->
+            <div class="accordion" id="accordionExample">
+              <div class="card pt-5 pb-5 bg-secondary" id="add-review">
+                <div class="card-header bg-secondary" id="headingTwo">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left text-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fas fa-bullhorn fa-lg text-primary mr-6"> Donner son avis</i>
+                  </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body bg-secondary">
+                    <hr>
+                     <p class="mb-5 text-primary text-center text-uppercase font-weight-bold">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
+                    <%= render "reviews/form", review: @review %>
+                  </div>
+                </div>
+              </div>
               </div>
             </div>
 
           <!-- Comments -->
-
             <div class="my-6">
               <h3 class="font-weight-normal mb-6">Commentaires (<%= @internship.comments.count %>)</h3>
               <div class="media mb-3">
