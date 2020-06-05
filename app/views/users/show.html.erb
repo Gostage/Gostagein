@@ -65,12 +65,12 @@
       	  <h5 class="card-header text-dark">Stages commentés</h5>
       	<% end %>
         <div class="card-body">
-          <% if current_user.id == @user.id && (@user.comments == [] || @user.comments == nil) %>
+          <% if current_user.id == @user.id && (@comments == [] || @comments == nil) %>
             <p>Vous n'avez pas encore écrit de commentaire.</p>
-          <% elsif current_user.id != @user.id && (@user.comments == [] || @user.comments == nil) %>
+          <% elsif current_user.id != @user.id && (@comments == [] || @comments == nil) %>
           	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
-          <% elsif @user.comments.length > 3 %>
-  	        <% @user.comments[0..2].each do |comment| %>
+          <% elsif @comments.length > 3 %>
+  	        <% @comments[0..2].each do |comment| %>
   	          <div class="row">
   	            <div class="col-6">
                   <% if comment.has_unread_answers %>
@@ -82,12 +82,12 @@
   	              <span><%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %></span>
   	            </div>
   	          </div>
-                <% unless comment == @user.comments.last %>
+                <% unless comment == @comments.last %>
                   <hr>
                 <% end %>
   	        <% end %>          
           <% else %>
-            <% @user.comments.each do |comment| %>
+            <% @comments.each do |comment| %>
               <div class="row">
               	<div class="col-6">
                   <% if comment.has_unread_answers %>
