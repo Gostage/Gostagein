@@ -29,7 +29,7 @@ puts "30 utilisateurs ont été crées"
 		description: Faker::GreekPhilosophers.quote, 
 		title: Faker::Job.title, 
 		feeling: Faker::GreekPhilosophers.quote,
-		notation: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
+		notation: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
 		cursus: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"].sample,
 		region: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"].sample)
 end
@@ -60,7 +60,7 @@ puts "200 commentaires ont été crées"
 100.times do |review|
 	Review.create(title: Faker::Lorem.sentence,
 		description: Faker::Lorem.paragraph,
-		notation: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
+		notation: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].sample,
 		review_user_id: User.all.sample.id,
 		review_internship_id: Internship.all.sample.id)
 end
