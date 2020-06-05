@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 2020_05_20_154940) do
     t.float "duration"
     t.string "region"
     t.integer "remuneration"
-    t.float "latitude"
-    t.float "longitude"
     t.integer "notation"
     t.string "feeling"
     t.index ["user_id"], name: "index_internships_on_user_id"
