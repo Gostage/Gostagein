@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @internships = @user.internships
     @comments = @user.comments.to_a.uniq
+    @reviews = @user.reviews
   end
 
   private

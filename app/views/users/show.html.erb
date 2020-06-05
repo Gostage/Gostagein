@@ -151,75 +151,66 @@
       <% end %>
   	</div>
   </div>
+
   <!-- ====================================
-——— MY REVIEWS
+——— REVIEWS
 ===================================== -->
   <section class="pb-8 pt-5 height100vh">
     <div class="container">
-      <!-- A BRANCHER AU BACK -->
-
-      <!-- Breadcrumb -->
-        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
-
-      <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
-        <thead>
-          <tr>
-            <th class="text-capitalize">Titre</th>
-            <th>Date</th>
-            <th class="text-capitalize">Note</th>
-            <th class="text-capitalize">Message</th>
-            <th class="text-capitalize">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-capitalize td-title">
-              <a class="text-hover-primary text-muted" href="listing-restuarant.html">The Missiisipi Hotel</a>
-            </td>
-            <td>
-              <span class="d-block">01 Aug 19</span>
-              <span class="d-block">11.00 PM</span>
-            </td>
-            <td class="td-no-white-space">
-              <ul class="list-inline list-inline-rating">
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
-                </li>
-              </ul>
-            </td>
-            <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
-              eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
-              <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
-                voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
-            </td>
-            <td class="td-buttons-2">
-              <div class="d-flex flex-column flex-lg-row">
-                <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="#">
-                  <i class="fa fa-edit"></i>
-                  edit
-                </a>
-                <button class="btn btn-outline-danger btn-sm">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                  delete
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+      <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+        <% if @user.reviews == nil || @user.reviews == [] %>
+          <hr>
+          <p>Vous n'avez pas encore écrit d'avis</p>
+        <% else %>
+          <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+            <thead class="text-dark">
+              <tr>
+                <th class="text-capitalize">Titre</th>
+                <th class="text-capitalize">Expérience</th>
+                <th class="text-capitalize">Note</th>
+                <th class="text-capitalize">Message</th>
+                <th class="text-capitalize"></th>
+              </tr>
+            </thead>
+            <% @reviews.each do |review| %>
+            <tbody class="bg-secondary">
+              <tr>
+                <td class="text-capitalize td-title">
+                  <span class="text-muted font-weight-bold"><%= review.title %></span>
+                </td>
+                <td>
+                  <span class="font-weight-bold"><%= review.review_internship.title %></span>
+                </td>
+                <td class="td-no-white-space">
+                  <ul class="list-inline list-inline-rating">
+                    <% review.notation.to_i.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                  </ul>
+                </td>
+                <td class="td-details">
+                  <%= review.description[0..30] %>...     
+                </td>
+                <td class="td-buttons-2">
+                  <div class="d-flex flex-column flex-lg-row">
+                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                    <button class="btn btn-outline-primary btn-sm ">
+                      <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
+                    </button>
+                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
+                    <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
       </table>
     </div>
   </section>
-  <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
-</div>
+
+      <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
+
