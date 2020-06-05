@@ -32,6 +32,9 @@ class InternshipsController < ApplicationController
         end
       end
     end
+
+    # To add empty star in average notation
+    @stars_empty = 5 - @internship.average_notation.to_i
   end
 
   # GET /internships/new
