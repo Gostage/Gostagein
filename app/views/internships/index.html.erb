@@ -7,19 +7,39 @@
   <div class="container my-3">
     <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-warning" %>
   </div>
-
-  <h1>Expériences de stage :</h1>
-  <div class="text-dark">
-    <% if @internships == [] %>
-      <p>Aucun résultat</p>
-    <% else %>
-      <div class="container">
+  
+  <div class="container">
+    <h1 class="py-4">Stages trouvés :</h1>
+    <div class="text-dark">
+      <% if @internships == [] %>
+        <p>Aucun résultat</p>
+      <% else %>
+        <div class="row pick-preference-form">
+          <div class="col-lg-2 col-md-12 text-center">
+            <p id="preference-title">Trier par :</p>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :created_at, "Date de création") %>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :title, "Titre") %>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :city, "Ville") %>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :average_notation, "Note moyenne") %>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :cursus, "Cursus du stage") %>
+          </div>
+        </div>
         <div class="row">
           <% @internships.each do |internship| %>
             <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card m-3">
                 <div class="card-header">
-                  <%= internship.title %>
+                  <%= internship.title %><span></span><%= internship.average_notation %>
                 </div>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
@@ -32,8 +52,8 @@
             </div>
           <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </section>
 
