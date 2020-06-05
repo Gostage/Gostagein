@@ -41,6 +41,13 @@ class Internship < ApplicationRecord
   validates :region,
     presence: true,
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
+  validates :notation,
+    presence: true,
+    inclusion: { in: 1..5},
+    format: { with: /\A\d+\.*\d{0,1}\z/ }
+  validates :feeling,
+    presence: true,
+    length: { in: 30..1000 }
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
