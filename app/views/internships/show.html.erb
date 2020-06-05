@@ -16,15 +16,15 @@
             </p>
             <!-- AVERAGE NOTATION INTERNSHIP -->
             <div class="d-flex align-items-center">
-              <ul class="list-inline list-inline-rating border bg-secondary mr-2">
-                <% @internship.average_notation.round.times do %>
+              <ul class="list-inline list-inline-rating mr-2">
+                <% @internship.average_notation.to_i.times do %>
                 <li class="list-inline-item">
-                  <i class="fa fa-star fa-2x text-primary" aria-hidden="true"></i>
+                  <i class="fa fa-star fa-2x" aria-hidden="true"></i>
                 </li>
                 <% end %>
                 <% @stars_empty.to_i.times do %>
                 <li class="list-inline-item">
-                  <i class="fa fa-star-o fa-2x text-primary" aria-hidden="true"></i>
+                  <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
                 </li>
                 <% end %>
               </ul>
@@ -172,7 +172,7 @@
                     <% @internship_comments.each do |comment| %>
                       <div class="media mb-3">
                         <div class="media-body">
-                          <h5 class="media-heading"><%= comment.questioner.first_name %><%= comment.questioner.last_name %></h5>
+                          <h5 class="media-heading"><%= comment.questioner.first_name %> <%= comment.questioner.last_name %></h5>
                           <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
         
                     <!-- EDIT BUTTON -->
