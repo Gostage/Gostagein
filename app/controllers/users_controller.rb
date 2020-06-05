@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @internships = @user.internships
+    @comments = @user.comments.to_a.uniq
   end
 
   private
