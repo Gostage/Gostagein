@@ -33,6 +33,27 @@ hr {
 	margin-right: 5px;
 }
 
+input {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+textarea {
+	width: 80%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: transparent;
+}
 
 /* PAGINATION */
 
