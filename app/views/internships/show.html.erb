@@ -34,7 +34,7 @@
                 </li>
               </ul>
               <!-- FAVORITE BUTTON -->
-              <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
+              <span class="d-inline-block mr-2">(<%=@internship.reviews.count + 1 %> Avis)</span>
               <% unless @favorite_exists == nil || @favorite_exists == [] %>
                 <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
                   <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
