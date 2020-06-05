@@ -30,7 +30,8 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card m-3">
                 <div class="card-header">
-                  <%= internship.title %><span></span><%= internship.average_notation %>
+                  <%= internship.title %><span></span>
+                  <span class="font-weight-bold"><%= internship.average_notation.round %></span>
                 </div>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
