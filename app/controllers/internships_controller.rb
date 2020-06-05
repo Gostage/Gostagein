@@ -6,7 +6,7 @@ class InternshipsController < ApplicationController
   # GET /internships.json
   def index
     @q = Internship.ransack(params[:q])
-    @internships = @q.result.order(created_at: :desc)
+    @internships = @q.result
   end
 
   # GET /internships/1
@@ -51,7 +51,7 @@ class InternshipsController < ApplicationController
     @internship.user = current_user
     respond_to do |format|
       if @internship.save
-        format.html { redirect_to @internship, notice: 'Expérience crée avec succès' }
+        format.html { redirect_to @internship, notice: 'Expérience créée avec succès' }
         format.json { render :show, status: :created, location: @internship }
       else
         format.html { render :new }
@@ -93,7 +93,7 @@ class InternshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def internship_params
-      params.require(:internship).permit(:adress, :zipcode, :city, :specialty, :organization, :population, :cursus, :title, :duration, :description, :region, :remuneration, :user_id)
+      params.require(:internship).permit(:adress, :zipcode, :city, :specialty, :organization, :population, :cursus, :title, :duration, :description, :region, :remuneration, :user_id, :notation, :feeling, :overall_notation)
     end
 
     # Editing permission only for owner
