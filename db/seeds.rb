@@ -46,13 +46,13 @@ puts "100 favoris ont été crées"
 
 100.times do |comment|
 	Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, 
-    questioner_id: User.all.sample.id,
+    	questioner_id: User.all.sample.id,
 		commentable_id: Internship.all.sample.id, 
-    commentable_type: "Internship")
+    	commentable_type: "Internship")
 	Comment.create(content: Faker::Quote.most_interesting_man_in_the_world, 
-    questioner_id: User.all.sample.id,
-		commentable_id: Comment.all.sample.id, 
-    commentable_type: "Comment")
+    	questioner_id: User.all.sample.id,
+		commentable_id: Comment.all.where(commentable_type: "Internship").sample.id, 
+    	commentable_type: "Comment")
 end
 
 puts "200 commentaires ont été crées"
