@@ -1,4 +1,7 @@
 class Internship < ApplicationRecord
+  scope :sort_by_average_notation_asc, lambda { sort_by(&:average_notation) }
+  scope :sort_by_average_notation_desc, lambda { sort_by(&:average_notation).reverse }
+
   validates :adress,
     presence: true,
     length: { in: 3..50}
@@ -56,6 +59,19 @@ class Internship < ApplicationRecord
       else
         return false
       end
+    end
+  end
+
+  def average_notation
+    if self.reviews == nil || self.reviews == []
+      return self.notation
+    else
+      all_notations = []
+      self.reviews.each do |review|
+        all_notations << review.notation
+      end
+      all_notations << self.notation
+      return ((all_notations.sum)  / (all_notations.length)).round(1)
     end
   end
 end
