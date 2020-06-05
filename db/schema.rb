@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_164002) do
+ActiveRecord::Schema.define(version: 2020_05_20_154940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,10 @@ ActiveRecord::Schema.define(version: 2020_05_14_164002) do
     t.float "duration"
     t.string "region"
     t.integer "remuneration"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "notation"
+    t.string "feeling"
     t.index ["user_id"], name: "index_internships_on_user_id"
   end
 
