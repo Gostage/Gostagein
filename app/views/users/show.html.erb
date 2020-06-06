@@ -157,7 +157,11 @@
 ===================================== -->
   <section class="pb-8 pt-5 height100vh">
     <div class="container">
+      <% if current_user.id == @user.id %>
       <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+      <% else %>
+      <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
+      <% end %>
         <% if @user.reviews == nil || @user.reviews == [] %>
           <hr>
           <p>Vous n'avez pas encore écrit d'avis</p>
