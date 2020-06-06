@@ -158,9 +158,9 @@
   <section class="pb-8 pt-5 height100vh">
     <div class="container">
       <% if current_user.id == @user.id %>
-      <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
       <% else %>
-      <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
       <% end %>
         <% if @user.reviews == nil || @user.reviews == [] %>
           <hr>
@@ -199,12 +199,16 @@
                 </td>
                 <td class="td-buttons-2">
                   <div class="d-flex flex-column flex-lg-row">
+                    <% if current_user.id == @user.id %>
                     <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
                     <button class="btn btn-outline-primary btn-sm ">
                       <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
                     </button>
                     <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
                     <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                    <% end %>
+                    <% else %>
+                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
                     <% end %>
                   </div>
                 </td>
@@ -216,5 +220,5 @@
     </div>
   </section>
 
-      <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
+  <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
 
