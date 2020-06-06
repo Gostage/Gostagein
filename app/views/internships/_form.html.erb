@@ -91,27 +91,37 @@
               <%= form.number_field :remuneration, :min => 0, class:"form-control bg-transparent border-form" %>
               <span>* <i>Veuillez saisir un nombre entier et mettre 0 si l'expérience n'était pas rémunérée</i></span>
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :impressions, class:"font-weight-bold" %>
-              <%= form.text_area :feeling, class:"form-control bg-transparent border-form"%>
-            </div>
-            <div class="form-group col-sm-6 col-xs-12">
-              <%= form.label :note_attribuée, class:"font-weight-bold" %><span> (chiffre entier de 0 à 5)</span>
-              <%= form.number_field :notation, :min => 0, :max => 5, class:"form-control bg-transparent border-form"  %>
-            </div>            
+          </div>         
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="col-sm-6 col-xs-12">
-        <div class="mb-4">
-          <button type="submit" class="btn btn-lg btn-primary btn-block">Envoyer</button>
+    <div class="container container-form">
+      <div class="card bg-secondary">
+        <div class="card-body text-dark">
+          <div class="card-header text-uppercase text-center text-dark style-card"> Avis</div>
+          <hr>
+            <div class="row">
+              <div class="form-group col-sm-6 col-xs-12">
+                <%= form.label :impressions, class:"font-weight-bold" %>
+                <%= form.text_area :feeling, class:"form-control bg-transparent border-form"%>
+              </div>
+              <div class="form-group col-sm-6 col-xs-12">
+                <%= form.label :note_attribuée, class:"font-weight-bold" %><span> (chiffre entier de 0 à 5)</span>
+                <%= form.number_field :notation, :min => 0, :max => 5, class:"form-control bg-transparent border-form"  %>
+              </div>            
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</section>
+
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-xs-12">
+          <div class="mb-4 mr-4 ml-4">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Envoyer</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </section>
