@@ -124,7 +124,7 @@
                           <%if current_user.id == review.review_user_id %>
                             <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
                             <i class="fa fa-edit"></i>
-                            <%= link_to 'Editer', edit_internship_review_path(@internship.id,review.id) %> </button>
+                            <%= link_to 'Editer', edit_review_path(review) %> </button>
                           <% end %>
                           <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
                 <!-- STARS NOTATION REVIEW -->
