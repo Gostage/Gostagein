@@ -5,17 +5,17 @@
 
   <%= form_tag internship_reviews_path(@internship), method:"post" do %>
     <div class="form-group">
-      <p class="font-weight-bold text-uppercase">Titre de l'avis</p>
+      <p class="font-weight-bold text-dark text-uppercase">Titre de l'avis</p>
       <p class="form control"><%= text_field_tag :title %></p>
     </div>
 
     <div class="form-group" >
-      <p class="font-weight-bold text-uppercase">Note</p>
+      <p class="font-weight-bold text-dark text-uppercase">Note</p>
       <input id="notation" max="5.0" min="1.0" name="notation" type="number"/>
     </div>
 
     <div class="form-group">
-      <p class="font-weight-bold text-uppercase">Description</p>
+      <p class="font-weight-bold text-dark text-uppercase">Description</p>
       <textarea name="description" id="description" rows="12" placeholder="Ecris ici tes impressions et ressentis sur cette expérience de stage..."></textarea>
     </div>
     
