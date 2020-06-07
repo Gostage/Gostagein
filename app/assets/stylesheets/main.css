@@ -4,6 +4,25 @@ nav {
 	margin-bottom: 20px;
 }
 
+/* HOME */
+
+.banner-title {
+	font-size: 45px;
+	padding-bottom: 50px;
+}
+
+.banner-padding {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.lead-p {
+	font-size: 25px;
+}
+
+.color-get-started {
+	color: rgba(255, 255, 255, .7);
+}
 
 /* SHOW INTERNSHIP */
 
