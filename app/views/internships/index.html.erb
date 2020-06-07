@@ -43,6 +43,11 @@
                       <i class="fa fa-star fa-lg" aria-hidden="true"></i>
                     </li>
                     <% end %>
+                    <% (5 - internship.average_notation).times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
                   </ul>
                   <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
                 </div>

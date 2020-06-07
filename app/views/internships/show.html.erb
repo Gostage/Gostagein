@@ -20,12 +20,12 @@
             <!-- AVERAGE NOTATION INTERNSHIP -->
             <div class="d-flex align-items-center">
               <ul class="list-inline list-inline-rating mr-2">
-                <% @internship.average_notation.to_i.times do %>
+                <% @internship.average_notation.times do %>
                 <li class="list-inline-item">
                   <i class="fa fa-star fa-2x" aria-hidden="true"></i>
                 </li>
                 <% end %>
-                <% @stars_empty.to_i.times do %>
+                <% @stars_empty.times do %>
                 <li class="list-inline-item">
                   <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
                 </li>
@@ -95,7 +95,7 @@
                 <div class="media-body">
                   <div class="media mb-3">
                     <div class="media-body">
-                      <h5 class="media-heading"><%= @internship.user.first_name %> <%= @internship.user.last_name %></h5>
+                      <h5 class="media-heading"><%= @internship.user.first_name %> <%= @internship.user.last_name %> <small class="bg-secondary ml-2 pr-2 pl-2"><i>propriétaire du post</i></small></h5>
                 <!-- EDIT BUTTON -->
                       <% if current_user.id == @internship.user.id %>
                         <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
@@ -107,6 +107,11 @@
                         <% @internship.notation.to_i.times do %>
                           <li class="list-inline-item">
                             <i class="fa fa-star" aria-hidden="true"></i>
+                          </li>
+                        <% end %>
+                        <% (5 - @internship.notation).to_i.times do %>
+                          <li class="list-inline-item">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
                           </li>
                         <% end %>
                       </ul>
@@ -132,6 +137,11 @@
                             <% review.notation.to_i.times do %>
                             <li class="list-inline-item">
                               <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <% end %>
+                            <% (5 - review.notation).to_i.times do %>
+                            <li class="list-inline-item">
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
                             </li>
                             <% end %>
                           </ul>
