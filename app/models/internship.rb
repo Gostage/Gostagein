@@ -78,7 +78,7 @@ class Internship < ApplicationRecord
         all_notations << review.notation
       end
       all_notations << self.notation
-      return ((all_notations.sum)  / (all_notations.length)).round(1)
+      return ((all_notations.sum)  / (all_notations.length)).round
     end
   end
 end
