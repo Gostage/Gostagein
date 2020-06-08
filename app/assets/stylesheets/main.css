@@ -120,3 +120,12 @@ thead {
 select {
 	-webkit-appearance: none;
 }
+
+.section-title-modified {
+	text-transform: none;
+}
+
+.input-group-text-search-form {
+	width: 100px;
+	justify-content: center;
+}
