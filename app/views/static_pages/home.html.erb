@@ -1,103 +1,88 @@
 <% if user_signed_in? %>
-<section>
-  <div class="container-form-search">
-    <%= render "internships/search_form" %>
-  </div>
-</section>
+  <section>
+    <div class="container-form-search">
+      <%= render "internships/search_form" %>
+    </div>
+  </section>
 <% else %>
-
-
-<div class="main-wrapper">
-<!-- ====================================
-——— BANNER SECTION (TRAVEL)
-===================================== -->
-<section class="banner-padding bg-primary">
-  <div class="container">
-    <div class="row text-center align-items-center justify-content-center">
-      <div class="col-12">
-        <!-- Banner Info -->
-        <div class="banner-info">
-          <img src="https://img.icons8.com/clouds/100/000000/contacts.png"/>
-          <h2 class="text-uppercase text-white mb-4 banner-title">
-            Un carnet d'adresses pour les stagiaires
-          </h2>
-          <p class="lead text-dark lead-p">
-            Trouver un stage est parfois un véritable défi ! Les opportunités ne sont pas les mêmes en fonction du niveau du cursus <small>(licence vs master)</small>
-          </p>
-          <p class="lead text-secondary font-weight-bold lead-p pb-5">
-            Et si on savait déjà où chercher avec un endroit qui rassemblent toutes les expériences de stages ? Et si on avait accès aux avis des anciens stagiaires ?
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================
-——— HOW IT WORK
-===================================== -->
-<section class="pt-8 pb-6 pt-md-10 sec-pb-70">
-  <div class="container">
-    <div class="section-title">
-      <h2>Comment ça fonctionne ?</h2>
-      <p>Rechercher, créer &amp; consulter</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-sm-4 col-xs-12">
-        <div class="card bg-light">
-          <div class="mt-8 mb-3">
-            <img src="https://img.icons8.com/clouds/200/000000/search.png" class="mx-auto d-block" alt="rechercher un stage"/>
-          </div>
-          <div class="card-body text-center">
-            <h3 class="d-inline-block text-dark h4"> Faire une recherche de stage</h3>
-            <p>Lancer une recherche selon vos critères (spécialité, cursus, ville, région, note moyenne)</p>
+  <div class="main-wrapper">
+  <!-- ====================================
+  ——— BANNER SECTION (TRAVEL)
+  ===================================== -->
+    <section class="banner-padding bg-primary">
+      <div class="container">
+        <div class="row text-center align-items-center justify-content-center">
+          <div class="col-12">
+            <!-- Banner Info -->
+            <div class="banner-info">
+              <img src="https://img.icons8.com/clouds/100/000000/contacts.png"/>
+              <h2 class="text-uppercase text-white mb-4 banner-title">
+                Trouver un stage en psychologie est parfois un véritable défi !
+              </h2>
+              <p class="lead text-dark lead-p">
+                Et si on savait déjà où chercher grâce à un carnet d'adresses d'anciens stagiaires ?
+              </p>
+              <p class="lead text-secondary font-weight-bold lead-p pb-5">
+                GoInStage vous propose ce carnet !
+              </p>
+              <div class="row align-items-center justify-content-center">
+                <%= link_to "OMG je m'inscris tout de suite !", new_user_registration_path, class: "btn btn-secondary mr-3" %>
+                <%= link_to "Je me connecte", new_user_registration_path, class: "btn btn-primary ml-3" %>
+              </div> 
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="col-lg-4 col-sm-4 col-xs-12">
-        <div class="card bg-light">
-          <div class="mt-8 mb-3">
-            <img src="https://img.icons8.com/clouds/200/000000/organization.png" class="mx-auto d-block" alt="expérience de stage"/>
+  <!-- ====================================
+  ——— HOW IT WORK
+  ===================================== -->
+    <section class="pt-8 pb-6 pt-md-10 sec-pb-70">
+      <div class="container">
+        <div class="section-title section-title-modified">
+          <h2>Comment ça fonctionne ?</h2>
+          <p>Rechercher, créer &amp; consulter</p>
+        </div>
+        <div class="row">
+
+          <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="card bg-light">
+              <div class="mt-8 mb-3">
+                <img src="https://img.icons8.com/clouds/200/000000/search.png" class="mx-auto d-block" alt="rechercher un stage"/>
+              </div>
+              <div class="card-body text-center">
+                <h3 class="d-inline-block text-dark h4">Faire une recherche de stage</h3>
+                <p>Lancer une recherche affinée par différents critères (spécialité, population, cursus, ville ou encore région)</p>
+              </div>
+            </div>
           </div>
-          <div class="card-body text-center ">
-            <h3 class="d-inline-block text-dark h4">Créer une expérience de stage</h3>
-            <p>Créer vos expériences de stage, ainsi que leurs avis notés pour partager vos ressentis</p>
+
+          <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="card bg-light">
+              <div class="mt-8 mb-3">
+                <img src="https://img.icons8.com/clouds/200/000000/organization.png" class="mx-auto d-block" alt="expérience de stage"/>
+              </div>
+              <div class="card-body text-center ">
+                <h3 class="d-inline-block text-dark h4">Créer une expérience de stage</h3>
+                <p>Ajouter les expériences de stage auxquelles vous avez participé, cela aidera les étudiants à la recherche d'un stage. L'expérience existe déjà ? Pas de problème, il suffit de lui ajouter un avis avec votre note personnelle pour partager votre ressenti !</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="card bg-light">
+              <div class="mt-8 mb-3">
+                <img src="https://img.icons8.com/clouds/200/000000/resume.png" class="mx-auto d-block" alt="go-in-stage profil"/>
+              </div>
+              <div class="card-body text-center">
+                <h3 class="d-inline-block text-dark h4">Accéder à votre dashboard</h3>
+                <p>Retrouver sur votre profil : vos expériences, vos avis, vos commentaires et vos expériences gardées en favoris</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-4 col-xs-12">
-        <div class="card bg-light">
-          <div class="mt-8 mb-3">
-            <img src="https://img.icons8.com/clouds/200/000000/resume.png" class="mx-auto d-block" alt="go-in-stage profil"/>
-          </div>
-          <div class="card-body text-center">
-            <h3 class="d-inline-block text-dark h4">Accéder à votre dashboard</h3>
-            <p>Retrouver sur votre profil : vos expériences, vos avis, vos commentaires et vos favoris</p>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
-
-<!-- ====================================
-——— GET STARTED
-===================================== -->
-<section class="bg-primary py-7">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-sm-9 col-xl-10 col-xs-12">
-        <h2 class="font-weight-normal color-get-started mb-5 mb-md-0">
-          <span class="text-white">Go in stage</span> est un <span class="text-white">carnet d'adresses de stages</span> <br> pour faciliter la recherche de stage des étudiants en psychologie
-        </h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-</div> <!-- element wrapper ends -->
+    </section>
+  </div> <!-- element wrapper ends -->
 <% end %>
-
  
