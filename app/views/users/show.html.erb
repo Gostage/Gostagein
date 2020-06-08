@@ -14,7 +14,7 @@
           <p>Nom : <%= @user.last_name %></p>
           <p>Email : <%= @user.email %></p>
           <% if current_user.id == @user.id %>
-            <%= link_to 'Modifer les informations', edit_user_registration_path(@user), class: "btn btn-primary mt-3" %>
+            <%= link_to 'Modifier les informations', edit_user_registration_path(@user), class: "btn btn-primary mt-3" %>
           <% end %>
         </div>
       </div>
@@ -70,7 +70,7 @@
           <% elsif current_user.id != @user.id && (@comments == [] || @comments == nil) %>
           	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
           <% elsif @comments.length > 3 %>
-  	        <% @comments[0..2].each do |comment| %>
+  	        <% @comments.each do |comment| %>
   	          <div class="row">
   	            <div class="col-6">
                   <% if comment.has_unread_answers %>
