@@ -15,6 +15,11 @@
 	          <i class="fa fa-star" aria-hidden="true"></i>
 	        </li>
           <% end %>
+          <% (5 - @review.notation).to_i.times do %>
+          <li class="list-inline-item">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </li>
+          <% end %>
 	      </ul>
 	      <p class="bg-secondary p-4 rounded text-dark"> <%= @review.description %></p>
 	    </div>

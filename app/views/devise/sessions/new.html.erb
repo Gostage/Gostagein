@@ -19,8 +19,14 @@
 
       <% if devise_mapping.rememberable? %>
         <div class="field mb-3">
-          <%= f.check_box :remember_me, class: "mr-2" %>
-          <%= f.label :se_souvenir_de_moi %>
+          <div class="row">
+            <div class="col-1">
+              <%= f.check_box :remember_me %>
+            </div>
+            <div class="col text-align-left">
+              <%= f.label :se_souvenir_de_moi %>
+            </div>
+          </div>
         </div>
       <% end %>
 

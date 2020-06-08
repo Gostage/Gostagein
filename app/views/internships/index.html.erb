@@ -30,13 +30,25 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card m-3">
                 <div class="card-header">
-                  <%= internship.title %><span></span><%= internship.average_notation %>
+                  <%= internship.title %><span></span>
                 </div>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
                   <p class="text-muted">Spécialité : <%= internship.specialty %></p>
                   <p class="text-muted">Niveau : <%= internship.cursus %></p>
                   <p class="text-muted">Population : <%= internship.population %></p>
+                  <ul class="list-inline list-inline-rating mr-2 mb-4">
+                    <% internship.average_notation.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                    <% (5 - internship.average_notation).times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                  </ul>
                   <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
                 </div>
               </div>

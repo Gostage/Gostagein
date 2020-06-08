@@ -1,21 +1,27 @@
 /* NAVBAR */
 
 header {
-	margin-bottom: 35px;
+	margin-bottom: 100px!important;
 }
 
+/* HOME */
 
-/* FOOTER */
-
-footer {
-	margin-top: 30px;
+.banner-title {
+	font-size: 45px;
+	padding-bottom: 50px;
 }
 
+.banner-padding {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 
-/* SECTION*/
+.lead-p {
+	font-size: 25px;
+}
 
-section {
-	padding-top: 35px;
+.color-get-started {
+	color: rgba(255, 255, 255, .7);
 }
 
 /* SHOW INTERNSHIP */
@@ -33,6 +39,25 @@ hr {
 	margin-right: 5px;
 }
 
+input {
+  width: 80%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+textarea {
+	width: 80%;
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: transparent;
+}
 
 /* PAGINATION */
 
@@ -88,4 +113,22 @@ thead {
 
 .review-user {
 	color: black;
+
+/* FORMS */
+
+.border-form {
+	border: 1px solid #ccc;
+}
+
+select {
+	-webkit-appearance: none;
+}
+
+.section-title-modified {
+	text-transform: none;
+}
+
+.input-group-text-search-form {
+	width: 100px;
+	justify-content: center;
 }

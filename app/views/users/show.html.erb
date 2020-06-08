@@ -157,25 +157,29 @@
 ===================================== -->
   <section class="pb-8 pt-5 height100vh">
     <div class="container">
-      <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
-        <% if @user.reviews == nil || @user.reviews == [] %>
-          <hr>
-          <p>Vous n'avez pas encore écrit d'avis</p>
-        <% else %>
-          <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
-            <thead class="text-dark">
-              <tr>
-                <th class="text-capitalize">Titre</th>
-                <th class="text-capitalize">Expérience</th>
-                <th class="text-capitalize">Note</th>
-                <th class="text-capitalize">Message</th>
-                <th class="text-capitalize"></th>
-              </tr>
-            </thead>
-            <% @reviews.each do |review| %>
+      <% if current_user.id == @user.id %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+      <% else %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
+      <% end %>
+      <% if @user.reviews == nil || @user.reviews == [] %>
+        <hr>
+        <p>Vous n'avez pas encore écrit d'avis</p>
+      <% else %>
+        <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+          <thead class="text-dark">
+            <tr>
+              <th class="text-capitalize py-2">Titre</th>
+              <th class="text-capitalize py-2">Expérience</th>
+              <th class="text-capitalize py-2">Note</th>
+              <th class="text-capitalize py-2">Message</th>
+              <th class="text-capitalize py-2"></th>
+            </tr>
+          </thead>
+          <% @reviews.each do |review| %>
             <tbody class="bg-secondary">
               <tr>
-                <td class="text-capitalize td-title">
+                <td class="text-capitalize td-title py-3">
                   <span class="text-muted font-weight-bold"><%= review.title %></span>
                 </td>
                 <td>
@@ -188,6 +192,11 @@
                       <i class="fa fa-star" aria-hidden="true"></i>
                     </li>
                     <% end %>
+                    <% (5 - review.notation).to_i.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
                   </ul>
                 </td>
                 <td class="td-details">
@@ -195,22 +204,26 @@
                 </td>
                 <td class="td-buttons-2">
                   <div class="d-flex flex-column flex-lg-row">
-                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-                    <button class="btn btn-outline-primary btn-sm ">
-                      <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
-                    </button>
-                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
-                    <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                    <% if current_user.id == @user.id %>
+                      <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                      <button class="btn btn-outline-primary btn-sm ">
+                        <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
+                      </button>
+                      <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
+                        <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
                     <% end %>
                   </div>
                 </td>
               </tr>
-              <% end %>
-              <% end %>
             </tbody>
-      </table>
+          <% end %>
+        </table>
+      <% end %>    
     </div>
   </section>
+</div>
 
-      <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
-
+<%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
