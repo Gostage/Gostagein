@@ -7,7 +7,7 @@
           <div class="mb-2 mb-lg-0">
             <h1 class="single-listing-title d-inline-block"> <%= @internship.title %></h1>
             <% if current_user.id == @internship.user.id %>
-            <button class="btn btn-outline-primary ml-5 mb-5"><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
+              <button class="btn btn-outline-primary ml-5 mb-5"><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
             <% end %>
             <p>
               <!-- ADRESS DETAILS -->
@@ -21,14 +21,14 @@
             <div class="d-flex align-items-center">
               <ul class="list-inline list-inline-rating mr-2">
                 <% @internship.average_notation.times do %>
-                <li class="list-inline-item">
-                  <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                </li>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                  </li>
                 <% end %>
                 <% @stars_empty.times do %>
-                <li class="list-inline-item">
-                  <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
-                </li>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                  </li>
                 <% end %>
               </ul>
               <!-- FAVORITE BUTTON -->
@@ -135,14 +135,14 @@
                 <!-- STARS NOTATION REVIEW -->
                           <ul class="list-inline list-inline-rating">
                             <% review.notation.to_i.times do %>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
+                              <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </li>
                             <% end %>
                             <% (5 - review.notation).to_i.times do %>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </li>
+                              <li class="list-inline-item">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                              </li>
                             <% end %>
                           </ul>
                           <h6><%= review.title %> </h6>
@@ -163,24 +163,26 @@
             </div>
 
             <!-- Add Reviews -->
-            <div class="accordion" id="accordionExample">
-              <div class="card pt-5 pb-5 bg-secondary" id="add-review">
-                <div class="card-header bg-secondary" id="headingTwo">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left text-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <i class="fas fa-bullhorn fa-lg text-primary mr-6"> Donner son avis</i>
-                  </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body bg-secondary">
-                    <hr>
-                     <p class="mb-5 text-primary text-center text-uppercase font-weight-bold">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
-                    <%= render "reviews/form", review: @review %>
+            <% if current_user != @internship.user %>
+              <div class="accordion" id="accordionExample">
+                <div class="card pt-5 pb-5 bg-secondary" id="add-review">
+                  <div class="card-header bg-secondary" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left text-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-bullhorn fa-lg text-primary mr-6"> Donner son avis</i>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body bg-secondary">
+                      <hr>
+                       <p class="mb-5 text-primary text-center text-uppercase font-weight-bold">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
+                      <%= render "reviews/form", review: @review %>
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
-            </div>
+            <% end %>
+          </div>
 
           <!-- Comments -->
             <div class="my-6">
