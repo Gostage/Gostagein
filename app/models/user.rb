@@ -49,4 +49,36 @@ class User < ApplicationRecord
     return unread_answers
   end
 
+  def unread_comments
+    total_unread_comments = unread_internships_comments + unread_comments_answers
+    return total_unread_comments
+  end
+
+  def internships_with_unread_comments
+    total_internships_with_unread_comments = []
+    self.unread_comments.each do |unread_comment|
+      if unread_comment.commentable_type == "Internship"
+        total_internships_with_unread_comments << unread_comment.commentable_id
+      else
+        total_internships_with_unread_comments << Comment.find(unread_comment.commentable_id).commentable_id
+      end
+    end
+    return total_internships_with_unread_comments
+  end
+
+  def notifications_number
+    self.internships_with_unread_comments.uniq.length
+  end
+
+  def uniq_comments
+    internships = []
+    self.comments.each do |comment|
+      if comment.commentable_type == "Internship"
+        internships << Internship.find(comment.commentable_id).title
+      else
+        internships << Internship.find(Comment.find(comment.commentable_id).commentable_id).title
+      end
+    end
+    return internships.uniq
+  end
 end
