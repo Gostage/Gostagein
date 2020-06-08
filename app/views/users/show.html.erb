@@ -155,7 +155,7 @@
   <!-- ====================================
 ——— REVIEWS
 ===================================== -->
-  <section class="pb-8 pt-5 height100vh">
+  <section class="pb-8 pt-5 height100vh table-review">
     <div class="container">
       <% if current_user.id == @user.id %>
         <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
@@ -224,6 +224,55 @@
       </table>
     </div>
   </section>
+
+  <section class="d-lg-none">
+    <div class="card">
+      <h5 class="card-he d-lg-noneader text-dark">Mes avis</h5>
+      <div class="card-body bg-secondary">
+        <% if @user.reviews == nil || @user.reviews == [] %>
+          <p>Vous n'avez pas encore écrit d'avis</p>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <div class="row">
+              <div class="col-4">
+                <span><%= review.title %></span>
+              </div>
+              <div class="col-4">
+                <ul class="list-inline list-inline-rating mr-4">
+                  <% review.notation.to_i.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </li>
+                  <% end %>
+                  <% (5 - review.notation).to_i.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="col-4 d-flex justify-content-center">
+                <% if current_user.id == @user.id %>
+                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm mr-2 mb-2" %>
+                    <button class="btn btn-outline-primary btn-sm mr-2 mb-2">
+                      <%= link_to 'Editer', edit_review_path(review) %>
+                    </button>
+                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like pr-5 mb-2" do %> 
+                    <i class="fas fa-times-circle fa-lg text-danger" title="Supprimer l'avis"></i>
+                  <% end %>
+                  <% else %>
+                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm" %>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </section>
+    
 
   <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
 
