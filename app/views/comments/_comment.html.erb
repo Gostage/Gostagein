@@ -1,7 +1,7 @@
 <div class="container ml-5">
   <div class="media mb-3">
     <div class="media-body">
-      <h5 class="media-heading"><%= comment.questioner.first_name %> <%= comment.questioner.last_name %></h5>
+      <h5 class="media-heading"><%= link_to comment.questioner.first_name + " " + comment.questioner.last_name, user_path(comment.questioner), class: "review-user" %></h5>
       <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
   <!-- EDIT BUTTON -->
       <% if current_user == comment.questioner %>
@@ -10,7 +10,6 @@
         <i class="fa fa-edit"></i>
         <%= link_to 'Modifier', edit_internship_comment_comment_path(@internship, comment.commentable_id, comment) %> </button>
       <% end %>
-      <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm my-4 edit-button" %>
       <p class="bg-light-blue p-4 rounded"> <%= comment.content %></p>
     </div>
   </div>  
