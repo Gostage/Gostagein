@@ -30,7 +30,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fas fa-lock-open"></i></span>
         </div>
-        <%= f.text_field :password, autofocus: true, placeholder:raw("Mot de passe"), autocomplete: "Mot de passe", class: "form-control" %>
+        <%= f.password_field :password, autofocus: true, placeholder:raw("Mot de passe"), autocomplete: "Mot de passe", class: "form-control" %>
       </div>
       <% if @minimum_password_length %>
         <em class="text-white">(<%= @minimum_password_length %> caractères minimum)</em>
