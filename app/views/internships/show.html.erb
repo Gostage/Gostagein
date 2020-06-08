@@ -34,7 +34,7 @@
                 </li>
               </ul>
               <!-- FAVORITE BUTTON -->
-              <span class="d-inline-block mr-2">(<%=@internship.reviews.count + 1 %> Avis)</span>
+              <span class="d-inline-block mr-2">(<%= @internship.reviews.count + 1 %> Avis)</span>
               <% unless @favorite_exists == nil || @favorite_exists == [] %>
                 <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
                   <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
@@ -122,7 +122,7 @@
                     <% @reviews_of_internship.each do |review| %>
                       <div class="media mb-3">
                         <div class="media-body">
-                          <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
+                          <h5 class="media-heading"><%= link_to review.review_user.first_name + " " + review.review_user.last_name, user_path(review.review_user), class: "review-user" %></h5>
                     <!-- EDIT BUTTON -->
                           <%if current_user.id == review.review_user_id %>
                             <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
@@ -177,7 +177,7 @@
                     <% @internship_comments.each do |comment| %>
                       <div class="media mb-3">
                         <div class="media-body">
-                          <h5 class="media-heading"><%= comment.questioner.first_name %><%= comment.questioner.last_name %></h5>
+                          <h5 class="media-heading"><%= link_to comment.questioner.first_name + " " + comment.questioner.last_name, user_path(comment.questioner), class: "review-user" %></h5>
                           <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
         
                     <!-- EDIT BUTTON -->
@@ -187,7 +187,6 @@
                             <i class="fa fa-edit"></i>
                             <%= link_to 'Modifier', edit_internship_comment_path(@internship, comment) %> </button>
                           <% end %>
-                          <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm edit-button my-4" %>
                           <p class="bg-light-blue p-4 rounded"><%= comment.content %></p>
                           <ul>
                             <%= render partial: 'comments/comment', collection: comment.comments %>
