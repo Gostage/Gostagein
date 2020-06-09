@@ -153,59 +153,60 @@
     	</div>
     </div>
 
-    <!-- ====================================
-  ——— REVIEWS
-  ===================================== -->
-    <div class="pb-8 pt-5 height100vh table-review">
-      <div class="container">
-        <% if current_user.id == @user.id %>
-          <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
-        <% else %>
-          <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
-        <% end %>
-          <% if @user.reviews == nil || @user.reviews == [] %>
-            <hr>
-            <p>Vous n'avez pas encore écrit d'avis</p>
-          <% else %>
-            <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
-              <thead class="text-dark">
-                <tr>
-                  <th class="text-capitalize">Titre</th>
-                  <th class="text-capitalize">Expérience</th>
-                  <th class="text-capitalize">Note</th>
-                  <th class="text-capitalize">Message</th>
-                  <th class="text-capitalize"></th>
-                </tr>
-              </thead>
-              <% @reviews.each do |review| %>
-              <tbody class="bg-secondary">
-                <tr>
-                  <td class="text-capitalize td-title">
-                    <span class="text-muted font-weight-bold"><%= review.title %></span>
-                  </td>
-                  <td>
-                    <span class="font-weight-bold"><%= review.review_internship.title %></span>
-                  </td>
-                  <td class="td-no-white-space">
-                    <ul class="list-inline list-inline-rating">
-                      <% review.notation.to_i.times do %>
-                      <li class="list-inline-item">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                      </li>
-                      <% end %>
-                      <% (5 - review.notation).to_i.times do %>
-                      <li class="list-inline-item">
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                      </li>
-                      <% end %>
-                    </ul>
-                  </td>
-                  <td class="td-details">
-                    <%= review.description[0..30] %>...     
-                  </td>
-                  <td class="td-buttons-2">
-                    <div class="d-flex flex-column flex-lg-row">
-                      <% if current_user.id == @user.id %>
+
+  <!-- ====================================
+——— REVIEWS
+===================================== -->
+  <div class="pb-8 pt-5 table-review height100vh">
+    <div class="container">
+      <% if current_user.id == @user.id %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+      <% else %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
+      <% end %>
+      <% if @user.reviews == nil || @user.reviews == [] %>
+        <hr>
+        <p>Vous n'avez pas encore écrit d'avis</p>
+      <% else %>
+        <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+          <thead class="text-dark">
+            <tr>
+              <th class="text-capitalize py-2">Titre</th>
+              <th class="text-capitalize py-2">Expérience</th>
+              <th class="text-capitalize py-2">Note</th>
+              <th class="text-capitalize py-2">Message</th>
+              <th class="text-capitalize py-2"></th>
+            </tr>
+          </thead>
+          <% @reviews.each do |review| %>
+            <tbody class="bg-secondary">
+              <tr>
+                <td class="text-capitalize td-title py-3">
+                  <span class="text-muted font-weight-bold"><%= review.title %></span>
+                </td>
+                <td>
+                  <span class="font-weight-bold"><%= review.review_internship.title %></span>
+                </td>
+                <td class="td-no-white-space">
+                  <ul class="list-inline list-inline-rating">
+                    <% review.notation.to_i.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                    <% (5 - review.notation).to_i.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                  </ul>
+                </td>
+                <td class="td-details">
+                  <%= review.description[0..30] %>...     
+                </td>
+                <td class="td-buttons-2">
+                  <div class="d-flex flex-column flex-lg-row">
+                    <% if current_user.id == @user.id %>
                       <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
                       <button class="btn btn-outline-primary btn-sm ">
                         <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
@@ -219,18 +220,20 @@
                     </div>
                   </td>
                 </tr>
-                <% end %>
-                <% end %>
-              </tbody>
+              <% end %>
+            <% end %>
+          </tbody>
         </table>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
 <!-- CARD RESPONSIVE REVIEW MOBILE VERSION -->
   <section class="container d-lg-none">
     <div class="card">
-      <h5 class="card-he d-lg-noneader text-dark ml-3 pt-3">Mes avis</h5>
+      <h5 class="card-header d-lg-noneader text-dark bg-light">Mes avis</h5>
       <div class="card-body bg-secondary">
         <% if @user.reviews == nil || @user.reviews == [] %>
           <p>Vous n'avez pas encore écrit d'avis</p>
@@ -277,5 +280,4 @@
   </section>
     
 
-  <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
-
+<%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>

@@ -1,7 +1,7 @@
 /* NAVBAR */
 
-nav {
-	margin-bottom: 20px;
+header {
+	margin-bottom: 100px!important;
 }
 
 /* HOME */
@@ -122,21 +122,21 @@ select {
 }
 
 
+.section-title-modified {
+	text-transform: none;
+}
+
+.input-group-text-search-form {
+	width: 100px;
+	justify-content: center;
+}
+
+
 /* MEDIA QUERIES */
 @media (max-width: 991px) {
 	.table-review {
 		display: none;
 	}
 
-}
-
-/* MEDIA QUERIES */
-@media (max-width: 991px) {
-	.table-review {
-		display: none;
-	}
-
 
 }
-
-
