@@ -46,10 +46,9 @@
                     <% if internship.has_unread_comments && current_user == @user %>
                       <i class="fas fa-bell mr-3 text-danger"></i>
                     <% end %>
-                    <span><%= internship.title %></span>
+                    <span><%= link_to internship.title, internship_path(internship.id) %></span>
                 	</div>
     	            <div class="col-6 text-right">
-    	              <span><%= link_to "Voir", internship_path(internship.id), class: "btn btn-secondary" %></span>
     	              <% if current_user.id == @user.id %>
     	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
     	              <% end %>
@@ -79,40 +78,26 @@
               <p>Vous n'avez pas encore écrit de commentaire.</p>
             <% elsif current_user.id != @user.id && (@comments == [] || @comments == nil) %>
             	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
-            <% elsif @comments.length > 3 %>
-    	        <% @comments[0..2].each do |comment| %>
+            <% else %>
+    	        <% @comments.each do |comment| %>
     	          <div class="row">
     	            <div class="col-6">
                     <% if comment.has_unread_answers %>
                       <i class="fas fa-bell mr-3 text-danger"></i>
                     <% end %>
-                    <span><%= comment.parent_internship.title %></span>
+                    <span><%= link_to comment.parent_internship.title, internship_path(comment.parent_internship) %></span>
     	            </div>
-    	            <div class="col-6 text-right">
-    	              <span><%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %></span>
+    	            <div class="col-6">
+    	              <span><%= comment.content[0..50] %></span>
+                    <% if comment.content.length > 50 %>
+                      <span>...</span>
+                    <% end %>
     	            </div>
     	          </div>
                   <% unless comment == @comments.last %>
                     <hr>
                   <% end %>
     	        <% end %>          
-            <% else %>
-              <% @comments.each do |comment| %>
-                <div class="row">
-                	<div class="col-6">
-                    <% if comment.has_unread_answers %>
-                      <i class="fas fa-bell mr-3 text-danger"></i>
-                    <% end %>
-                	  <%= comment.parent_internship.title %>
-                	</div>
-                	<div class="col-6 text-right">
-                	  <%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %>
-                	</div>
-                </div>
-                <% unless comment == @user.comments.last %>
-                  <hr>
-                <% end %>
-              <% end %>
             <% end %>
             <!-- PAGINATION COMMENTS-->
             <div class="pagination mt-3 pr-5">
@@ -135,10 +120,9 @@
     	          <% @user.favorites[0..2].each do |favorite| %>
     	            <div class="row">
     	              <div class="col-6">
-    	              	<span><%= favorite.favorite_internship.title %></span>
+    	              	<span><%= link_to favorite.favorite_internship.title, internship_path(favorite.favorite_internship.id) %></span>
     	              </div>
     	              <div class="col-6 text-right">
-    	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
     	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
     	              </div>
     	            </div>
