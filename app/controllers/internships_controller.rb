@@ -1,6 +1,7 @@
 class InternshipsController < ApplicationController
   before_action :set_internship, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :current_user_must_own_internship, only: [:edit, :update, :destroy]
 
   # GET /internships
   # GET /internships.json
@@ -84,7 +85,7 @@ class InternshipsController < ApplicationController
     @internship.destroy
 
     respond_to do |format|
-      format.html { redirect_to internships_url, notice: 'Expérience supprimée avec succès.' }
+      format.html { redirect_to user_path(current_user.id), notice: 'Expérience supprimée avec succès.' }
       format.json { head :no_content }
     end
   end

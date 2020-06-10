@@ -36,7 +36,6 @@
           <div class="card-body">
             <% if current_user.id == @user.id && (@user.internships == [] || @user.internships == nil) %>
               <p>Vous n'avez pas encore renseigné de stage. Pensez à le faire pour aider la communauté !</p>
-              <%= link_to "Créer une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
             <% elsif current_user.id != @user.id && (@user.internships == [] || @user.internships == nil) %>
             	<p>Cet utilisateur n'a pas renseigné d'expérience de stage.</p>
             <% else %>
@@ -52,6 +51,9 @@
     	              <% if current_user.id == @user.id %>
     	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
     	              <% end %>
+                    <%= button_to internship_path(internship.id),  method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm" do %>
+                    <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
+                    <% end %>
     	            </div>   
                 </div>
     	          <hr>
