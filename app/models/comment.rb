@@ -27,6 +27,8 @@ class Comment < ApplicationRecord
       else
         return false
       end
+    else
+      return false
     end
   end
 end
