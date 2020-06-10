@@ -201,11 +201,9 @@
         
                     <!-- EDIT BUTTON -->
                           <%if current_user == comment.questioner %>
-
                             <%= button_to [@internship, comment], method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm mt-2 edit-button" do %> 
                               <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer le commentaire"></i>
                             <% end %>
-
                             <button class="btn btn-outline-primary btn-sm my-4 edit-button">
                             <i class="fa fa-edit"></i>
                             <%= link_to 'Modifier', edit_internship_comment_path(@internship, comment) %> </button>
