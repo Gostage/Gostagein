@@ -7,13 +7,13 @@
           <div class="mb-2 mb-lg-0">
             <h1 class="single-listing-title d-inline-block"> <%= @internship.title %></h1>
             <% if current_user.id == @internship.user.id %>
-            <div class="row edit-button">
+              <div class="row edit-button">
                 <button class="btn btn-outline-primary"><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
-                <% end %>
                 <%= button_to [@internship],  action: :destroy, id: @internship.id, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm ml-3" do %> 
-                <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
+                  <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
                 <% end %>
-          </div>
+              <% end %>
+            </div>
             <p>
               <!-- ADRESS DETAILS -->
               <span><%= @internship.city %>, <%= @internship.region %></span><br>
