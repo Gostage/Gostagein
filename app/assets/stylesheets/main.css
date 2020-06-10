@@ -124,6 +124,7 @@ select {
 	-webkit-appearance: none;
 }
 
+
 .section-title-modified {
 	text-transform: none;
 }
@@ -131,4 +132,11 @@ select {
 .input-group-text-search-form {
 	width: 100px;
 	justify-content: center;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 991px) {
+	.table-review {
+		display: none;
+	}
 }

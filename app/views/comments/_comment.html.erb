@@ -5,7 +5,11 @@
       <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
   <!-- EDIT BUTTON -->
       <% if current_user == comment.questioner %>
-        <%= button_to 'X', [@internship, comment.parent_comment, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm mr-lg-3 my-4 edit-button" %>
+
+        <%= button_to [@internship, comment.parent_comment, comment], method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm mt-2 edit-button" do %> <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer le commentaire"></i>
+        <% end %>
+
+
         <button class="btn btn-outline-primary btn-sm my-4 edit-button">
         <i class="fa fa-edit"></i>
         <%= link_to 'Modifier', edit_internship_comment_comment_path(@internship, comment.commentable_id, comment) %> </button>

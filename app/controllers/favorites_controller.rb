@@ -55,7 +55,11 @@ class FavoritesController < ApplicationController
   # DELETE /favorites/1
   # DELETE /favorites/1.json
   def destroy
-    Favorite.find_by(favorite_user_id: current_user.id, favorite_internship_id: params[:id]).destroy
+    if params[:internship_id]
+      Favorite.find_by(favorite_user_id: current_user.id, favorite_internship_id: params[:id]).destroy
+    else
+      Favorite.find(params[:id]).destroy
+    end
 
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, notice: 'Favorite was successfully destroyed.' }

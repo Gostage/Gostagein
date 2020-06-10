@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @internships = @user.internships
-    @comments = @user.comments
+    @comments = @user.comments.to_a.uniq.paginate(page: params[:page], per_page: 4)
     @reviews = @user.reviews
   end
 
