@@ -29,10 +29,10 @@ class FavoritesController < ApplicationController
 
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_back fallback_location: root_path, notice: 'Favorite was successfully created.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Le stage a été ajouté à vos favoris.' }
         format.json { render :show, status: :created, location: @favorite }
       else
-        format.html { redirect_back fallback_location: root_path, notice: "Le favoris n'a pas pu être créé : #{@favorite.errors.messages}" }
+        format.html { redirect_back fallback_location: root_path, notice: "Le favori n'a pas pu être créé : #{@favorite.errors.messages}" }
         format.json { render json: @favorite.errors, status: :unprocessable_entity }
       end
     end
@@ -62,7 +62,7 @@ class FavoritesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path, notice: 'Favorite was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Le stage a été retiré de vos favoris.' }
       format.json { head :no_content }
     end
   end
