@@ -196,11 +196,7 @@
                     <% @internship_comments.each do |comment| %>
                       <div class="media mb-3">
                         <div class="media-body">
-<<<<<<< HEAD
                           <h5 class="media-heading"><%= link_to comment.questioner.first_name + " " + comment.questioner.last_name, user_path(comment.questioner), class: "review-user" %></h5>
-=======
-                          <h5 class="media-heading"><%= comment.questioner.first_name %> <%= comment.questioner.last_name %></h5>
->>>>>>> development
                           <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
         
                     <!-- EDIT BUTTON -->
