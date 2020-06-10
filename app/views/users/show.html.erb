@@ -2,6 +2,9 @@
 
 <section class="mb-2">
   <div class="container container-show">
+      <!-- ====================================
+——— INFO USER
+===================================== -->
     <div class="row mb-3">
     	<div class="col-lg-6 mb-3">
         <div class="card">
@@ -20,6 +23,9 @@
           </div>
         </div>
     	</div>
+        <!-- ====================================
+——— INTERNSHIPS USER
+===================================== -->
     	<div class="col-lg-6">
         <div class="card">
         	<% if current_user.id == @user.id %>
@@ -57,6 +63,9 @@
         </div>	
     	</div>
     </div>
+      <!-- ====================================
+——— COMMENTS USER
+===================================== -->
     <div class="row">
     	<div class="col-lg-6 mb-3">
         <div class="card">
@@ -105,9 +114,16 @@
                 <% end %>
               <% end %>
             <% end %>
+            <!-- PAGINATION COMMENTS-->
+            <div class="pagination mt-3 border bg-secondary pr-5">
+              <a><%= will_paginate @comments %></a>
+            </div>
           </div>
         </div>
     	</div>
+        <!-- ====================================
+——— FAVORITES USER
+===================================== -->
     	<div class="col-lg-6">
     	  <% if current_user.id == @user.id %>
           <div class="card">
