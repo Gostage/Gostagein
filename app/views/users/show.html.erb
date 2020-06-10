@@ -53,6 +53,9 @@
     	              <% if current_user.id == @user.id %>
     	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
     	              <% end %>
+                    <%= button_to internships_path,  method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm" do %>
+                    <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
+                    <% end %>
     	            </div>   
                 </div>
     	          <hr>

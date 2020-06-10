@@ -84,7 +84,7 @@ class InternshipsController < ApplicationController
     @internship.destroy
 
     respond_to do |format|
-      format.html { redirect_to internships_url, notice: 'Expérience supprimée avec succès.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Expérience supprimée avec succès.' }
       format.json { head :no_content }
     end
   end
