@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @q = Internship.ransack(params[:q])
-    @internships = @q.result
+    @internships = Internship.all.order(created_at: :desc)
 
     @users = User.all
 
