@@ -52,10 +52,10 @@ class Internship < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :questioners, foreign_key: "questioner_id", class_name: "User", through: :comments
 
-  has_many :reviews, foreign_key: "review_internship_id"
+  has_many :reviews, foreign_key: "review_internship_id", dependent: :destroy
   has_many :review_users, foreign_key: 'review_user_id', class_name:"User", through: :reviews
 
-  has_many :favorites, foreign_key: "favorite_internship_id"
+  has_many :favorites, foreign_key: "favorite_internship_id", dependent: :destroy
   has_many :favorite_users, foreign_key: "favorite_user_id", class_name: "User", through: :favorites
 
   def has_unread_comments
