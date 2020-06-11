@@ -51,10 +51,12 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
-          <!-- BUTTON CREATE REVIEW -->
-          <a href="#add-review" class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
-        </div>
+        <% if current_user != @internship.user %>
+          <div class="col-lg-4 mt-5">
+            <!-- BUTTON CREATE REVIEW -->
+            <a href="#add-review" class="btn btn-outline-primary "><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
+          </div>
+        <% end %>
       </div>
     </div>
   </section>
