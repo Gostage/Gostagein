@@ -8,7 +8,7 @@
             <h1 class="single-listing-title d-inline-block"> <%= @internship.title %></h1>
             <% if current_user.id == @internship.user.id %>
               <div class="row edit-button">
-                <button class="btn btn-outline-primary"><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
+                <button class="btn btn-outline-primary ml-3 "><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
                 <%= button_to [@internship],  action: :destroy, id: @internship.id, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm ml-3" do %> 
                   <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
                 <% end %>
@@ -105,7 +105,7 @@
                       <h5 class="media-heading"><%= @internship.user.first_name %> <%= @internship.user.last_name %> <small class="bg-secondary ml-2 pr-2 pl-2"><i>propriétaire du post</i></small></h5>
                 <!-- EDIT BUTTON -->
                       <% if current_user.id == @internship.user.id %>
-                        <button class="btn btn-outline-primary btn-sm ml-3 mr-lg-3 mb-2 edit-button">
+                        <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
                         <i class="fa fa-edit"></i>
                         <%= link_to 'Editer', edit_internship_path(@internship) %> </button>
                       <% end %>
