@@ -37,7 +37,7 @@ class Internship < ApplicationRecord
     length: { in: 10..150}
   validates :cursus,
     presence: true,
-    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"]}
+    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2", "Doctorat", "Diplôme Universitaire"]}
   validates :region,
     presence: true,
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
@@ -47,6 +47,9 @@ class Internship < ApplicationRecord
   validates :feeling,
     presence: true,
     length: { in: 30..1000 }
+  validates :hourly_duration,
+    numericality: { greater_than: 0 },
+    allow_nil: true
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
