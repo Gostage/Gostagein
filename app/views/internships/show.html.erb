@@ -92,6 +92,15 @@
                 <li class="d-inline-block mr-4 mb-2">
                   <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>)
                 </li>
+                <% if @internship.hourly_duration == nil %>
+                <li class="d-inline-block mr-4 mb-2">
+                  <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>)
+                </li>
+                <% else %>
+                <li class="d-inline-block mr-4 mb-2">
+                  <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>) & (<%= @internship.hourly_duration %> <small> heures</small>)
+                </li>
+                <% end %>
               </ul>
               <hr>
             </div>
