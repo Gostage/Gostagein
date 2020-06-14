@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 2020_06_13_213630) do
     t.float "duration"
     t.string "region"
     t.integer "remuneration"
-    t.float "latitude"
-    t.float "longitude"
     t.integer "notation"
     t.string "feeling"
     t.integer "hourly_duration"
