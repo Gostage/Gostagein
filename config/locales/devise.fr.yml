@@ -59,16 +59,17 @@ fr:
               blank: "doit être rempli."
               too_short: "est trop court (minimum 10 caractères)."
               too_long: "est trop long (maximum 150 caractères)."
-            address:
+            adress:
               blank: "doit être renseignée."
-              too_short: "est trop court (min 3 caractères)."
-              too_long: "est trop long (max 50 caractères)."
+              too_short: "est trop courte (min 3 caractères)."
+              too_long: "est trop longue (max 50 caractères)."
             zipcode:
               blank: "doit être renseigné."
+              invalid: "n'est pas valide."
             city:
               blank: "doit être renseignée."
               too_long: "est trop longue (maximum 50 caractères)."
-              too_short: "esttrop courte (minimum 1 caractère)."
+              too_short: "est trop courte (minimum 1 caractère)."
             specialty:
               blank: "doit être renseignée."
               inclusion: "doit faire partie de la liste."
@@ -83,9 +84,12 @@ fr:
               blank: "doit être renseignée."
               too_short: "ne peut être inférieure à 0."
               numericality: "doit être un nombre entier."
+              invalid: "n'est pas valide."
+              not_a_number: "n'est pasun chiffre."
             duration:
               blank: "doit être renseignée."
               inclusion: "doit être comprise entre 1 et 6 mois."
+              invalid: "n'est pas valide."
             cursus: 
               blank: "doit être renseigné."
               inclusion: "doit faire partie de la liste."
