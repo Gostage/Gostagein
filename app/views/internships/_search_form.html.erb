@@ -49,6 +49,14 @@
                 <%= f.select :cursus_cont, options_for_select(["", "Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2", "Doctorat", "Diplôme Universitaire"]), {}, { :class => "form-control"} %>
               </div> 
             </div>
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Structure</span>
+                </div>
+                <%= f.search_field :organization_cont, class: "form-control" %>
+              </div>  
+            </div>
           </div>
           <div class="row justify-content-left mb-3 mt-3">
             <div class="col-lg-6">
