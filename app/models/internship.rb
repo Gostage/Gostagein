@@ -3,11 +3,9 @@ class Internship < ApplicationRecord
   scope :sort_by_average_notation_desc, lambda { sort_by(&:average_notation).reverse }
 
   validates :adress,
-    presence: true,
-    length: { in: 3..50}
+    length: { allow_blank: true, in: 3..50}
   validates :zipcode,
-    presence: true,
-    format: { with: /\A\d{5}-\d{4}|\A\d{5}\z/ }
+    format: { allow_blank: true, with: /\A\d{5}-\d{4}|\A\d{5}\z/ }
   validates :city,
     presence: true,
     length: { in: 1..50 }
