@@ -76,3 +76,5 @@ gem 'jquery-rails'
 # For pagination
 gem 'will_paginate'
 
+gem 'dotenv-rails'
+
