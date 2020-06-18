@@ -1,7 +1,6 @@
 <section>
 	<div class="container text-center col-lg-5 col-sm-8">
 		<h2>Mot de passe oublié</h2>
-		<h3 class="text-danger"> ATTTENTION, pour l'instant l'appli n'envoit pas de mail pour changer le mot de passe, je fais ça la semaine pro, j'étais pressée de vous le montrer, mais pas de souci ! Contactez moi sur la page des psychodingues ou par mail et je changerais votre mot de passe manuellement. Vous en faites pas c'est temporaire ! </h3>
 
 		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 		  <%= render "devise/shared/error_messages", resource: resource %>
