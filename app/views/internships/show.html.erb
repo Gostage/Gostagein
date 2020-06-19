@@ -17,7 +17,14 @@
             <p>
               <!-- ADRESS DETAILS -->
               <span><%= @internship.city %>, <%= @internship.region %></span><br>
-              <span><%= @internship.adress %>, <%= @internship.zipcode %></span>
+              <% if @internship.adress == "" && @internship.zipcode != "" %>
+                <span><%= @internship.zipcode %></span>
+              <% elsif @internship.zipcode == "" && @internship.adress != "" %>
+                <span><%= @internship.adress %></span>
+              <% elsif @internship.zipcode == "" && @internship.adress == "" %>
+              <% else %>
+                <span><%= @internship.adress %>, <%= @internship.zipcode %></span>
+              <% end %>
             </p>
             <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
               le <%= @internship.created_at.strftime("%d / %m / %Y") %>
