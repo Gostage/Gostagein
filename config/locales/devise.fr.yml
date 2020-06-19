@@ -2,8 +2,13 @@
 
 fr:
   activerecord:
+    models:
+      user: "utilisateur/trice"
+      internship: "expérience de stage"
+      comment: "commentaire"
+      review: "avis"
     attributes:
-      user:
+      user: 
         password: "Le mot de passe"
         password_confirmation: "La confirmation du mot de passe"
         email: "L'email"
@@ -49,10 +54,12 @@ fr:
             password:
               blank: "est obligatoire."
               too_short: "est trop court, minimum 6 caractères."
+              invalid: "n'est pas valide (6 caractères minimum)."
             password_confirmation:
               confirmation: "ne correspond pas au mot de passe."
             current_password:
               blank: "doit être renseigné."
+              invalid: "n'est pas valide (6 caractères minimum)."
         internship:
           attributes:
             title:

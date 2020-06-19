@@ -25,6 +25,8 @@ class User < ApplicationRecord
   has_many :favorites, foreign_key: "favorite_user_id"
   has_many :favorite_internships, foreign_key: "favorite_internship_id", class_name: "Internship", through: :favorites
 
+  after_create :welcome_send
+
   def unread_internships_comments
     unread_comments = []
     unless self.internships == nil || self.internships == []
@@ -80,5 +82,9 @@ class User < ApplicationRecord
       end
     end
     return internships.uniq
+  end
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
   end
 end
