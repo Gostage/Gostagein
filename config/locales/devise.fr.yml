@@ -21,7 +21,7 @@ fr:
         adress: "L'adresse"
         zipcode: "Le code postal"
         description: "La description"
-        specialty: "La spécialité"
+        specialty: "Le secteur"
         organization: "L'établissement"
         population: "La population"
         remuneration: "La rémunération"
@@ -78,7 +78,7 @@ fr:
               too_long: "est trop longue (maximum 50 caractères)."
               too_short: "est trop courte (minimum 1 caractère)."
             specialty:
-              blank: "doit être renseignée."
+              blank: "doit être renseigné."
               inclusion: "doit faire partie de la liste."
             organization:
               blank: "doit être renseigné."
