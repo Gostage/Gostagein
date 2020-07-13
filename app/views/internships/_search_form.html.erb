@@ -1,58 +1,71 @@
-<div class="container">
-  <div class="card search-internship-form">
+<!-- Search Box -->
+<div class="container mt-5">
+  <div class="card search-internship-form bg-light">
     <div class="card-body">
       <h4 class="card-title text-muted">Lancez une recherche !</h4>
       <h6 class="card-subtitle mb-2 text-muted">Sélectionnez vos critères :</h6>
       <div class="card-text">
         <%= search_form_for @q do |f| %>
-          <div class="row justify-content-left">
-            <div class="col-lg-6 mx-3">
-              <div class="row">
-                <div class="input-group mb-3 mt-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-search-form">Spécialité</span>
-                  </div>
-                  <%= f.select :specialty_cont, options_for_select(["", "Hospitalier", "Maison médicale","Social", "Médico-social", "Petite enfance", "Associatif", "Scolaire", "Médico-pédagogique", "Libéral", "Recherche", "Entreprise","Privé", "Justice","Police Nationale", "Armée", "Carcéral", "Insertion professionnelle", "Recrutement", "Gestion de carrières", "Ressouces Humaines", "Marketing", "Santé au travail", "Autres"]), {}, { :class => "form-control"} %>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="input-group mb-3 mt-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-search-form">Population</span>
-                  </div>
-                  <%= f.select :population_cont, options_for_select(["", "Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut Potentionel", "Personnes Cérébro-lésées", "Autres"]), {}, { :class => "form-control"} %>
-                </div> 
-              </div>
-              <div class="row">
-                <div class="input-group mb-3 mt-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-search-form">Région</span>
-                  </div>
-                  <%= f.select :region_cont, options_for_select(["", "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]), {}, { :class => "form-control"} %>
-                </div> 
-              </div>
-              <div class="row">
-                <div class="input-group mb-3 mt-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-search-form">Ville</span>
-                  </div>
-                  <%= f.search_field :city_cont, class: "form-control" %>
-                </div> 
-              </div>
-              <div class="row">
-                <div class="input-group mb-3 mt-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text input-group-text-search-form">Niveau</span>
-                  </div>
-                  <%= f.select :cursus_cont, options_for_select(["", "Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"]), {}, { :class => "form-control"} %>
-                </div>  
-              </div>
-              <div class="row">
-                <div class="actions">
-                  <%= f.submit "Chercher", class: "btn btn-info px-5 mt-4" %>
+          <div class="row justify-content-center mb-3 mt-3">
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Secteur</span>
                 </div>
-              </div>
-            </div>   
+                <%= f.select :specialty_cont, options_for_select(["", "Hospitalier", "Maison médicale","Social", "Médico-social", "Petite enfance", "Associatif", "Scolaire", "Médico-pédagogique", "Libéral", "Recherche", "Entreprise","Privé", "Justice","Police Nationale", "Armée", "Carcéral", "Insertion professionnelle", "Recrutement", "Gestion de carrières", "Ressouces Humaines", "Marketing", "Santé au travail", "Autres"]), {}, { :class => "form-control"} %>
+              </div>  
+            </div>
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Population</span>
+                </div>
+                <%= f.select :population_cont, options_for_select(["", "Personnes âgées", "Enfants", "Adolescents", "Adultes", "Autistes", "Haut Potentionel", "Personnes Cérébro-lésées", "Autres"]), {}, { :class => "form-control"} %>
+              </div> 
+            </div>
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Région</span>
+                </div>
+                <%= f.select :region_cont, options_for_select(["", "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]), {}, { :class => "form-control"} %>
+              </div> 
+            </div>
+          </div>
+          <div class="row justify-content-left mb-3 mt-3">
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Ville</span>
+                </div>
+                <%= f.search_field :city_cont, class: "form-control" %>
+              </div>  
+            </div>
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Niveau</span>
+                </div>
+                <%= f.select :cursus_cont, options_for_select(["", "Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2", "Doctorat", "Diplôme Universitaire"]), {}, { :class => "form-control"} %>
+              </div> 
+            </div>
+            <div class="col-lg-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-text-search-form bg-secondary">Etablissement</span>
+                </div>
+                <%= f.search_field :organization_cont, class: "form-control" %>
+              </div>  
+            </div>
+          </div>
+          <div class="row justify-content-left mb-3 mt-3">
+            <div class="col-lg-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <%= f.submit "Chercher", class: "btn btn-block btn-info" %>
+                </div>
+              </div> 
+            </div>
           </div>
         <% end %>
       </div>

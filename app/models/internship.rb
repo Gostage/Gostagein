@@ -1,10 +1,11 @@
 class Internship < ApplicationRecord
+  scope :sort_by_average_notation_asc, lambda { sort_by(&:average_notation) }
+  scope :sort_by_average_notation_desc, lambda { sort_by(&:average_notation).reverse }
+
   validates :adress,
-    presence: true,
-    length: { in: 3..50}
+    length: { allow_blank: true, in: 3..50}
   validates :zipcode,
-    presence: true,
-    format: { with: /\A\d{5}-\d{4}|\A\d{5}\z/ }
+    format: { allow_blank: true, with: /\A\d{5}-\d{4}|\A\d{5}\z/ }
   validates :city,
     presence: true,
     length: { in: 1..50 }
@@ -34,19 +35,28 @@ class Internship < ApplicationRecord
     length: { in: 10..150}
   validates :cursus,
     presence: true,
-    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2"]}
+    inclusion: { in: ["Licence 1", "Licence 2", "Licence 3", "Master 1", "Master 2", "Doctorat", "Diplôme Universitaire"]}
   validates :region,
     presence: true,
     inclusion: { in: ["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]}
+  validates :notation,
+    presence: true,
+    inclusion: { in: 1..5}
+  validates :feeling,
+    presence: true,
+    length: { in: 30..1000 }
+  validates :hourly_duration,
+    numericality: { greater_than: 0 },
+    allow_nil: true
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :questioners, foreign_key: "questioner_id", class_name: "User", through: :comments
 
-  has_many :reviews, foreign_key: "review_internship_id"
+  has_many :reviews, foreign_key: "review_internship_id", dependent: :destroy
   has_many :review_users, foreign_key: 'review_user_id', class_name:"User", through: :reviews
 
-  has_many :favorites, foreign_key: "favorite_internship_id"
+  has_many :favorites, foreign_key: "favorite_internship_id", dependent: :destroy
   has_many :favorite_users, foreign_key: "favorite_user_id", class_name: "User", through: :favorites
 
   def has_unread_comments
@@ -56,6 +66,19 @@ class Internship < ApplicationRecord
       else
         return false
       end
+    end
+  end
+
+  def average_notation
+    if self.reviews == nil || self.reviews == []
+      return self.notation
+    else
+      all_notations = []
+      self.reviews.each do |review|
+        all_notations << review.notation
+      end
+      all_notations << self.notation
+      return ((all_notations.sum)  / (all_notations.length)).round
     end
   end
 end

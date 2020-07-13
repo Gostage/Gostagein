@@ -5,36 +5,46 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="mb-2 mb-lg-0">
-            <h1 class="single-listing-title"><%= @internship.title %></h1>
+            <h1 class="single-listing-title d-inline-block"> <%= @internship.title %></h1>
+            <% if current_user.id == @internship.user.id %>
+              <div class="row edit-button">
+                <button class="btn btn-outline-primary ml-3 "><i class="fa fa-edit"></i><%= link_to 'Editer', edit_internship_path(@internship) %></button>
+                <%= button_to [@internship],  action: :destroy, id: @internship.id, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm ml-3" do %> 
+                  <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
+                <% end %>
+              <% end %>
+            </div>
             <p>
               <!-- ADRESS DETAILS -->
               <span><%= @internship.city %>, <%= @internship.region %></span><br>
-              <span><%= @internship.adress %>, <%= @internship.zipcode %></span>
+              <% if @internship.adress == "" && @internship.zipcode != "" %>
+                <span><%= @internship.zipcode %></span>
+              <% elsif @internship.zipcode == "" && @internship.adress != "" %>
+                <span><%= @internship.adress %></span>
+              <% elsif @internship.zipcode == "" && @internship.adress == "" %>
+              <% else %>
+                <span><%= @internship.adress %>, <%= @internship.zipcode %></span>
+              <% end %>
             </p>
             <p>Crée par <%= @internship.user.first_name %> <%= @internship.user.last_name %>,<br>
               le <%= @internship.created_at.strftime("%d / %m / %Y") %>
             </p>
-            <!-- CALCULER LA NOTE MOYENNE D'UN INTERNSHIP -->
+            <!-- AVERAGE NOTATION INTERNSHIP -->
             <div class="d-flex align-items-center">
               <ul class="list-inline list-inline-rating mr-2">
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </li>
+                <% @internship.average_notation.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                  </li>
+                <% end %>
+                <% @stars_empty.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                  </li>
+                <% end %>
               </ul>
               <!-- FAVORITE BUTTON -->
-              <span class="d-inline-block mr-2">(<%=@internship.reviews.count %> Avis)</span>
+              <span class="d-inline-block mr-2">(<%= @internship.reviews.count + 1 %> Avis)</span>
               <% unless @favorite_exists == nil || @favorite_exists == [] %>
                 <%= button_to internship_favorite_path(@internship), method: :delete, class:"btn-like px-2" do %>
                   <i class="fa fa-heart text-primary" aria-hidden="true" title="Retirer des favoris"></i>
@@ -48,10 +58,12 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 d-lg-flex justify-content-end align-items-end">
-          <!-- BUTTON CREATE REVIEW -->
-          <a href="#add-review" class="btn btn-outline-primary"><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
-        </div>
+        <% if current_user != @internship.user %>
+          <div class="col-lg-4 mt-5">
+            <!-- BUTTON CREATE REVIEW -->
+            <a href="#add-review" class="btn btn-outline-primary "><i class="fas fa-bullhorn mr-3"></i>Ecrire un avis</a>
+          </div>
+        <% end %>
       </div>
     </div>
   </section>
@@ -84,25 +96,55 @@
                 <li class="d-inline-block mr-4 mb-2">
                   <i class="fas fa-euro-sign mr-2" aria-hidden="true"></i>Rémunération (<%= @internship.remuneration %> <small>/ mois</small>)
                 </li>
+                <% if @internship.hourly_duration == nil %>
                 <li class="d-inline-block mr-4 mb-2">
                   <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>)
                 </li>
+                <% else %>
+                <li class="d-inline-block mr-4 mb-2">
+                  <i class="far fa-clock mr-2" aria-hidden="true"></i>Durée (<%= @internship.duration %> <small> mois</small>) & (<%= @internship.hourly_duration %> <small> heures</small>)
+                </li>
+                <% end %>
               </ul>
               <hr>
             </div>
           <!-- REVIEWS -->
             <div class="mt-6">
-              <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count%>)</h3>
+              <h3 class="font-weight-normal mb-6">Avis (<%= @internship.reviews.count + 1 %>)</h3>
               <div class="media">
                 <div class="media-body">
+                  <div class="media mb-3">
+                    <div class="media-body">
+                      <h5 class="media-heading"><%= @internship.user.first_name %> <%= @internship.user.last_name %> <small class="bg-secondary ml-2 pr-2 pl-2"><i>propriétaire du post</i></small></h5>
+                <!-- EDIT BUTTON -->
+                      <% if current_user.id == @internship.user.id %>
+                        <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
+                        <i class="fa fa-edit"></i>
+                        <%= link_to 'Editer', edit_internship_path(@internship) %> </button>
+                      <% end %>
+            <!-- STARS NOTATION REVIEW -->
+                      <ul class="list-inline list-inline-rating">
+                        <% @internship.notation.to_i.times do %>
+                          <li class="list-inline-item">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </li>
+                        <% end %>
+                        <% (5 - @internship.notation).to_i.times do %>
+                          <li class="list-inline-item">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                          </li>
+                        <% end %>
+                      </ul>
+                      <p class="bg-light p-4 rounded"> <%= @internship.feeling %></p>
+                      <hr>
+                    </div>
+                  </div>
                   <% if @internship.reviews == [] || @internship.reviews == nil %>
-                    <p>Il n'y a pas encore d'avis pour cette expérience </p>
-                    <hr>
                   <% else %>
                     <% @reviews_of_internship.each do |review| %>
                       <div class="media mb-3">
                         <div class="media-body">
-                          <h5 class="media-heading"><%= review.review_user.first_name %> <%= review.review_user.last_name %></h5>
+                          <h5 class="media-heading"><%= link_to review.review_user.first_name + " " + review.review_user.last_name, user_path(review.review_user), class: "review-user" %></h5>
                     <!-- EDIT BUTTON -->
                           <%if current_user.id == review.review_user_id %>
                             <button class="btn btn-outline-primary btn-sm mr-lg-3 mb-2 edit-button">
@@ -113,13 +155,18 @@
                 <!-- STARS NOTATION REVIEW -->
                           <ul class="list-inline list-inline-rating">
                             <% review.notation.to_i.times do %>
-                            <li class="list-inline-item">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                            </li>
+                              <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                              </li>
+                            <% end %>
+                            <% (5 - review.notation).to_i.times do %>
+                              <li class="list-inline-item">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                              </li>
                             <% end %>
                           </ul>
                           <h6><%= review.title %> </h6>
-                          <p class="bg-light p-4 rounded"> <%= review.description[0..200] %></p>
+                          <p class="bg-light p-4 rounded"> <%= review.description %></p>
                           <hr>
                         </div>
                       </div>
@@ -135,17 +182,29 @@
               </div>
             </div>
 
-          <!-- Add Reviews -->
-            <div class="my-3" id="add-review">
-              <div class="form-group border rounded bg-secondary">
-                <h3 class="font-weight-normal mb-5"><i class="fas fa-bullhorn mr-6"></i>Donner son avis</h3>
-                <p class="mb-5 text-primary">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
-                <%= render "reviews/form", review: @review %>
+            <!-- Add Reviews -->
+            <% if current_user != @internship.user %>
+              <div class="accordion" id="accordionExample">
+                <div class="card pt-5 pb-5 bg-secondary" id="add-review">
+                  <div class="card-header bg-secondary" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left text-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-bullhorn fa-lg text-primary mr-6"> Donner son avis</i>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body bg-secondary">
+                      <hr>
+                       <p class="mb-5 text-primary text-center text-uppercase font-weight-bold">Tu as eu la même expérience ? Toi aussi partage ton avis !</p>
+                      <%= render "reviews/form", review: @review %>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            <% end %>
+          </div>
 
           <!-- Comments -->
-
             <div class="my-6">
               <h3 class="font-weight-normal mb-6">Commentaires (<%= @internship.comments.count %>)</h3>
               <div class="media mb-3">
@@ -157,17 +216,18 @@
                     <% @internship_comments.each do |comment| %>
                       <div class="media mb-3">
                         <div class="media-body">
-                          <h5 class="media-heading"><%= comment.questioner.first_name %><%= comment.questioner.last_name %></h5>
+                          <h5 class="media-heading"><%= link_to comment.questioner.first_name + " " + comment.questioner.last_name, user_path(comment.questioner), class: "review-user" %></h5>
                           <span class="media-heading"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
         
                     <!-- EDIT BUTTON -->
                           <%if current_user == comment.questioner %>
-                            <%= button_to 'X', [@internship, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm mr-lg-3 my-4 edit-button" %>
+                            <%= button_to [@internship, comment], method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm mt-2 edit-button" do %> 
+                              <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer le commentaire"></i>
+                            <% end %>
                             <button class="btn btn-outline-primary btn-sm my-4 edit-button">
                             <i class="fa fa-edit"></i>
                             <%= link_to 'Modifier', edit_internship_comment_path(@internship, comment) %> </button>
                           <% end %>
-                          <%= link_to 'Voir le profil', user_path(comment.questioner), class: "btn btn-outline-primary btn-sm edit-button my-4" %>
                           <p class="bg-light-blue p-4 rounded"><%= comment.content %></p>
                           <ul>
                             <%= render partial: 'comments/comment', collection: comment.comments %>
@@ -180,11 +240,9 @@
                       </div>
                     <% end %>
                 <!-- PAGINATION -->
-                    <% if @internship_comments.length > 3 %>
-                      <div class="pagination my-6">
-                        <a><%= will_paginate @internship_comments %></a>
-                      </div>
-                    <% end %>
+                    <div class="pagination my-6">
+                      <a><%= will_paginate @internship_comments %></a>
+                    </div>
                   <% end %>
                 <!-- Add Comments -->
                   <div>

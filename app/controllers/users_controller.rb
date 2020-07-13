@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @internships = @user.internships
+    @comments = @user.comments.sort_by{ |comment| comment.has_unread_answers ? 0 : 1 }.paginate(page: params[:page], per_page: 4)
     @reviews = @user.reviews
-
   end
 
   private

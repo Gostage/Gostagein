@@ -7,15 +7,7 @@
           <li class="nav-item dropdown active">
             <% if current_user %>
               <%= link_to user_path(current_user) do %>
-                <% if (current_user.comments == nil || current_user.comments == []) && (current_user.internships == nil || current_user.internships == []) %>
-                  <span>0</span>
-                <% elsif (current_user.comments == nil || current_user.comments == []) && (current_user.internships != nil || current_user.internships != []) %>
-                  <span><%= current_user.unread_internships_comments.length %></span>
-                <% elsif (current_user.comments != nil || current_user.comments != []) && (current_user.internships == nil || current_user.internships == []) %>
-                  <span><%= current_user.unread_comments_answers.length %></span>
-                <% else %>
-                  <span><%= current_user.unread_comments_answers.length + current_user.unread_internships_comments.length %></span>
-                <% end %>
+                <span><%= current_user.notifications_number %></span>
                 <i class="fas fa-bell"></i>
               <% end %>
             <% end %>

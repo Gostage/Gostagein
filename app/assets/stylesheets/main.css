@@ -1,21 +1,27 @@
 /* NAVBAR */
 
 header {
-	margin-bottom: 35px;
+	margin-bottom: 100px!important;
 }
 
+/* HOME */
 
-/* FOOTER */
-
-footer {
-	margin-top: 30px;
+.banner-title {
+	font-size: 45px;
+	padding-bottom: 50px;
 }
 
+.banner-padding {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 
-/* SECTION*/
+.lead-p {
+	font-size: 25px;
+}
 
-section {
-	padding-top: 35px;
+.color-get-started {
+	color: rgba(255, 255, 255, .7);
 }
 
 /* SHOW INTERNSHIP */
@@ -33,6 +39,25 @@ hr {
 	margin-right: 5px;
 }
 
+input {
+  width: 80%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+textarea {
+	width: 80%;
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: transparent;
+}
 
 /* PAGINATION */
 
@@ -71,3 +96,48 @@ thead {
 	background-color: #e1f6f6;
 }
 
+/* INTERNSHIP INDEX PREFERENCE DISPLAYING */
+
+.pick-preference-form {
+	display: flex;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	justify-content: space-around;
+	align-items: center;
+	padding: 15px 15px;
+}
+
+#preference-title {
+	margin-bottom: 0;
+}
+
+.review-user {
+	color: black;
+}
+
+/* FORMS */
+
+.border-form {
+	border: 1px solid #ccc;
+}
+
+select {
+	-webkit-appearance: none;
+}
+
+
+.section-title-modified {
+	text-transform: none;
+}
+
+.input-group-text-search-form {
+	width: 130px;
+	justify-content: center;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 991px) {
+	.table-review {
+		display: none;
+	}
+}

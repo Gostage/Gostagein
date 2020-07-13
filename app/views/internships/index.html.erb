@@ -3,37 +3,67 @@
   <div class="container-form-search">
     <%= render "search_form" %>
   </div>
-
-  <div class="container my-3">
-    <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-warning" %>
-  </div>
-
-  <h1>Expériences de stage :</h1>
-  <div class="text-dark">
-    <% if @internships == [] %>
-      <p>Aucun résultat</p>
-    <% else %>
-      <div class="container">
+  
+  <div class="container">
+    <h1 class="py-4">Stages trouvés :</h1>
+    <div class="text-dark">
+      <% if @internships == [] %>
+        <h3 class="text-primary mb-6">Désolé, il n'y a aucun résultat</h3>
+      <% else %>
+        <div class="row pick-preference-form">
+          <div class="col-lg-2 col-md-12 text-center">
+            <p id="preference-title">Trier par :</p>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :created_at, "Date de création") %>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 text-center">
+            <%= sort_link(@q, :average_notation, "Note moyenne") %>
+          </div>
+        </div>
         <div class="row">
           <% @internships.each do |internship| %>
             <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card m-3">
                 <div class="card-header">
-                  <%= internship.title %>
+                  <%= internship.title %><span></span>
                 </div>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2 text-muted"><%= internship.city %></h6>
                   <p class="text-muted">Spécialité : <%= internship.specialty %></p>
                   <p class="text-muted">Niveau : <%= internship.cursus %></p>
                   <p class="text-muted">Population : <%= internship.population %></p>
+                  <ul class="list-inline list-inline-rating mr-2 mb-4">
+                    <% internship.average_notation.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                    <% (5 - internship.average_notation).times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
+                  </ul>
                   <%= link_to "Voir le stage", internship_path(internship.id), class: "btn btn-secondary" %>
                 </div>
               </div>
             </div>
           <% end %>
         </div>
-      </div>
-    <% end %>
+        <div class="container text-center bg-secondary mb-3">
+          <div class="row border">
+            <div class="col-lg-12 mt-3">
+              <h2 class="mb-5">Vous avez été ou êtes étudiants en psychologie ?</h2><hr>
+              <h3 class="text-primary mb-6">Partagez votre expérience de stage en l'ajoutant à la base de données </h3>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <%= link_to 'Créer une expérience de stage', new_internship_path, class: "btn btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>
 

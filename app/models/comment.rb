@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   validates :content,
     presence: true,
-    length: { maximum: 300 }
+    length: { maximum: 750 }
   belongs_to :questioner, class_name: "User"
   belongs_to :commentable, polymorphic: true
   has_many :comments, as: :commentable, dependent: :destroy
@@ -27,6 +27,8 @@ class Comment < ApplicationRecord
       else
         return false
       end
+    else
+      return false
     end
   end
 end

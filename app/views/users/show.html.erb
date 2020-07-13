@@ -1,181 +1,175 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container container-show">
-  <div class="row mb-3">
-  	<div class="col-lg-6 mb-3">
-      <div class="card">
-      	<% if current_user.id == @user.id %>
-          <h5 class="card-header text-dark">Mes informations</h5>
-      	<% else %>
-      	  <h5 class="card-header text-dark">Informations</h5>
-      	<% end %>
-        <div class="card-body">
-          <p>Prénom : <%= @user.first_name %></p>
-          <p>Nom : <%= @user.last_name %></p>
-          <p>Email : <%= @user.email %></p>
-          <% if current_user.id == @user.id %>
-            <%= link_to 'Modifer les informations', edit_user_registration_path(@user), class: "btn btn-primary mt-3" %>
-          <% end %>
-        </div>
-      </div>
-  	</div>
-  	<div class="col-lg-6">
-      <div class="card">
-      	<% if current_user.id == @user.id %>
-          <h5 class="card-header text-dark">Mes expériences de stage</h5>
-      	<% else %>
-      	  <h5 class="card-header text-dark">Expériences de stage</h5>
-      	<% end %>
-        <div class="card-body">
-          <% if current_user.id == @user.id && (@user.internships == [] || @user.internships == nil) %>
-            <p>Vous n'avez pas encore renseigné de stage. Pensez à le faire pour aider la communauté !</p>
-            <%= link_to "Créer une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
-          <% elsif current_user.id != @user.id && (@user.internships == [] || @user.internships == nil) %>
-          	<p>Cet utilisateur n'a pas renseigné d'expérience de stage.</p>
-          <% else %>
-            <% @internships.each do |internship| %>
-              <div class="row">
-              	<div class="col-6">
-                  <% if internship.has_unread_comments && current_user == @user %>
-                    <i class="fas fa-bell mr-3 text-danger"></i>
-                  <% end %>
-                  <span><%= internship.title %></span>
-              	</div>
-  	            <div class="col-6 text-right">
-  	              <span><%= link_to "Voir", internship_path(internship.id), class: "btn btn-secondary" %></span>
-  	              <% if current_user.id == @user.id %>
-  	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
-  	              <% end %>
-  	            </div>   
-              </div>
-  	          <hr>
-            <% end %>
-          <% end %>
-          <%= link_to "Ajouter une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
-        </div>
-      </div>	
-  	</div>
-  </div>
-  <div class="row">
-  	<div class="col-lg-6 mb-3">
-      <div class="card">
-      	<% if current_user.id == @user.id %>
-          <h5 class="card-header text-dark">Mes stages commentés</h5>
-      	<% else %>
-      	  <h5 class="card-header text-dark">Stages commentés</h5>
-      	<% end %>
-        <div class="card-body">
-          <% if current_user.id == @user.id && (@user.comments == [] || @user.comments == nil) %>
-            <p>Vous n'avez pas encore écrit de commentaire.</p>
-          <% elsif current_user.id != @user.id && (@user.comments == [] || @user.comments == nil) %>
-          	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
-          <% elsif @user.comments.length > 3 %>
-  	        <% @user.comments[0..2].each do |comment| %>
-  	          <div class="row">
-  	            <div class="col-6">
-                  <% if comment.has_unread_answers %>
-                    <i class="fas fa-bell mr-3 text-danger"></i>
-                  <% end %>
-                  <span><%= comment.parent_internship.title %></span>
-  	            </div>
-  	            <div class="col-6 text-right">
-  	              <span><%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %></span>
-  	            </div>
-  	          </div>
-                <% unless comment == @user.comments.last %>
-                  <hr>
-                <% end %>
-  	        <% end %>          
-          <% else %>
-            <% @user.comments.each do |comment| %>
-              <div class="row">
-              	<div class="col-6">
-                  <% if comment.has_unread_answers %>
-                    <i class="fas fa-bell mr-3 text-danger"></i>
-                  <% end %>
-              	  <%= comment.parent_internship.title %>
-              	</div>
-              	<div class="col-6 text-right">
-              	  <%= link_to "Voir", internship_path(comment.parent_internship), class: "btn btn-secondary" %>
-              	</div>
-              </div>
-              <% unless comment == @user.comments.last %>
-                <hr>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-  	</div>
-  	<div class="col-lg-6">
-  	  <% if current_user.id == @user.id %>
+<section class="mb-2">
+  <div class="container container-show">
+      <!-- ====================================
+——— INFO USER
+===================================== -->
+    <div class="row mb-3">
+    	<div class="col-lg-6 mb-3">
         <div class="card">
-          <h5 class="card-header text-dark">Mes stages favoris</h5>
+        	<% if current_user.id == @user.id %>
+            <h5 class="card-header text-dark">Mes informations</h5>
+        	<% else %>
+        	  <h5 class="card-header text-dark">Informations</h5>
+        	<% end %>
           <div class="card-body">
-            <% if @user.favorites == [] || @user.favorites == nil %>
-              <p>Vous n'avez pas encore de stage en favori.</p>
-            <% elsif @user.favorites.length > 3 %>
-  	          <% @user.favorites[0..2].each do |favorite| %>
-  	            <div class="row">
-  	              <div class="col-6">
-  	              	<span><%= favorite.favorite_internship.title %></span>
-  	              </div>
-  	              <div class="col-6 text-right">
-  	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
-  	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
-  	              </div>
-  	            </div>
-                <% unless favorite == @user.favorites.last %>
-                  <hr>
-                <% end %>
-  	          <% end %>
-	            <%= link_to "Voir tous les favoris", favorites_path, class: "btn btn-secondary" %>
-            <% else %>
-  	          <% @user.favorites.each do |favorite| %>
-  	            <div class="row">
-  	              <div class="col-6">
-  	              	<span><%= favorite.favorite_internship.title %></span>
-  	              </div>
-  	              <div class="col-6 text-right">
-  	              	<span><%= link_to "Voir", internship_path(favorite.favorite_internship.id), class: "btn btn-secondary" %></span>
-  	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
-  	              </div>
-  	            </div>
-                <% unless favorite == @user.favorites.last %>
-              	  <hr>
-                <% end %>
-  	          <% end %>
+            <p>Prénom : <%= @user.first_name %></p>
+            <p>Nom : <%= @user.last_name %></p>
+            <% if current_user.id == @user.id %>
+              <p>Email : <%= @user.email %></p>
+              <%= link_to 'Modifer les informations', edit_user_registration_path(@user), class: "btn btn-primary mt-3" %>
             <% end %>
           </div>
         </div>
-      <% end %>
-  	</div>
-  </div>
+    	</div>
+        <!-- ====================================
+——— INTERNSHIPS USER
+===================================== -->
+    	<div class="col-lg-6">
+        <div class="card">
+        	<% if current_user.id == @user.id %>
+            <h5 class="card-header text-dark">Mes expériences de stage</h5>
+        	<% else %>
+        	  <h5 class="card-header text-dark">Expériences de stage</h5>
+        	<% end %>
+          <div class="card-body">
+            <% if current_user.id == @user.id && (@user.internships == [] || @user.internships == nil) %>
+              <p>Vous n'avez pas encore renseigné de stage. Pensez à le faire pour aider la communauté !</p>
+            <% elsif current_user.id != @user.id && (@user.internships == [] || @user.internships == nil) %>
+            	<p>Cet utilisateur n'a pas renseigné d'expérience de stage.</p>
+            <% else %>
+              <% @internships.each do |internship| %>
+                <div class="row">
+                	<div class="col-6">
+                    <% if internship.has_unread_comments && current_user == @user %>
+                      <i class="fas fa-bell mr-3 text-danger"></i>
+                    <% end %>
+                    <span><%= link_to internship.title, internship_path(internship.id) %></span>
+                	</div>
+    	            <div class="col-6 text-right">
+    	              <% if current_user.id == @user.id %>
+                      <div class="row justify-content-end">
+      	                <%= link_to "Modifier", edit_internship_path(internship.id), class: "btn btn-primary" %>
+                        <%= button_to internship_path(internship.id),  method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn btn-sm" do %>
+                          <i class="fas fa-times-circle fa-3x text-danger" title="Supprimer l'expérience"></i>
+                        <% end %>
+                      </div>
+                    <% end %>
+    	            </div>   
+                </div>
+    	          <hr>
+              <% end %>
+            <% end %>
+            <%= link_to "Ajouter une expérience de stage", new_internship_path, class: "btn btn-success mt-2" %>
+          </div>
+        </div>	
+    	</div>
+    </div>
+      <!-- ====================================
+——— COMMENTS USER
+===================================== -->
+    <div class="row">
+    	<div class="col-lg-6 mb-3">
+        <div class="card">
+        	<% if current_user.id == @user.id %>
+            <h5 class="card-header text-dark">Mes stages commentés</h5>
+        	<% else %>
+        	  <h5 class="card-header text-dark">Stages commentés</h5>
+        	<% end %>
+          <div class="card-body">
+            <% if current_user.id == @user.id && (@comments == [] || @comments == nil) %>
+              <p>Vous n'avez pas encore écrit de commentaire.</p>
+            <% elsif current_user.id != @user.id && (@comments == [] || @comments == nil) %>
+            	<p>Cet utilisateur n'a pas encore fait de commentaires.</p>
+            <% else %>
+    	        <% @comments.each do |comment| %>
+    	          <div class="row">
+    	            <div class="col-6">
+                    <% if comment.has_unread_answers %>
+                      <i class="fas fa-bell mr-3 text-danger"></i>
+                    <% end %>
+                    <span><%= link_to comment.parent_internship.title, internship_path(comment.parent_internship) %></span>
+    	            </div>
+    	            <div class="col-6">
+    	              <span><%= comment.content[0..50] %></span>
+                    <% if comment.content.length > 50 %>
+                      <span>...</span>
+                    <% end %>
+    	            </div>
+    	          </div>
+                  <% unless comment == @comments.last %>
+                    <hr>
+                  <% end %>
+    	        <% end %>          
+            <% end %>
+            <!-- PAGINATION COMMENTS-->
+            <div class="pagination mt-3 pr-5">
+              <a><%= will_paginate @comments %></a>
+            </div>
+          </div>
+        </div>
+    	</div>
+        <!-- ====================================
+——— FAVORITES USER
+===================================== -->
+    	<div class="col-lg-6">
+    	  <% if current_user.id == @user.id %>
+          <div class="card">
+            <h5 class="card-header text-dark">Mes stages favoris</h5>
+            <div class="card-body">
+              <% if @user.favorites == [] || @user.favorites == nil %>
+                <p>Vous n'avez pas encore de stage en favori.</p>
+              <% else %>
+    	          <% @user.favorites.each do |favorite| %>
+    	            <div class="row">
+    	              <div class="col-6">
+    	              	<span><%= link_to favorite.favorite_internship.title, internship_path(favorite.favorite_internship.id) %></span>
+    	              </div>
+    	              <div class="col-6 text-right">
+    	              	<%= link_to "Retirer", favorite_path(favorite.id), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "btn btn-danger" %>
+    	              </div>
+    	            </div>
+                  <% unless favorite == @user.favorites.last %>
+                	  <hr>
+                  <% end %>
+    	          <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    	</div>
+    </div>
+
 
   <!-- ====================================
 ——— REVIEWS
 ===================================== -->
-  <section class="pb-8 pt-5 height100vh">
+  <div class="pb-8 pt-5 table-review height100vh">
     <div class="container">
-      <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
-        <% if @user.reviews == nil || @user.reviews == [] %>
-          <hr>
-          <p>Vous n'avez pas encore écrit d'avis</p>
-        <% else %>
-          <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
-            <thead class="text-dark">
-              <tr>
-                <th class="text-capitalize">Titre</th>
-                <th class="text-capitalize">Expérience</th>
-                <th class="text-capitalize">Note</th>
-                <th class="text-capitalize">Message</th>
-                <th class="text-capitalize"></th>
-              </tr>
-            </thead>
-            <% @reviews.each do |review| %>
+      <% if current_user.id == @user.id %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Mes avis</h2><br>
+      <% else %>
+        <h2 class="font-weight-normal mb-4 mb-md-0">Avis</h2><br>
+      <% end %>
+      <% if @user.reviews == nil || @user.reviews == [] %>
+        <hr>
+        <p>Vous n'avez pas encore écrit d'avis</p>
+      <% else %>
+        <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+          <thead class="text-dark">
+            <tr>
+              <th class="text-capitalize py-2">Titre</th>
+              <th class="text-capitalize py-2">Expérience</th>
+              <th class="text-capitalize py-2">Note</th>
+              <th class="text-capitalize py-2">Message</th>
+              <th class="text-capitalize py-2"></th>
+            </tr>
+          </thead>
+          <% @reviews.each do |review| %>
             <tbody class="bg-secondary">
               <tr>
-                <td class="text-capitalize td-title">
+                <td class="text-capitalize td-title py-3">
                   <span class="text-muted font-weight-bold"><%= review.title %></span>
                 </td>
                 <td>
@@ -188,6 +182,11 @@
                       <i class="fa fa-star" aria-hidden="true"></i>
                     </li>
                     <% end %>
+                    <% (5 - review.notation).to_i.times do %>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </li>
+                    <% end %>
                   </ul>
                 </td>
                 <td class="td-details">
@@ -195,22 +194,79 @@
                 </td>
                 <td class="td-buttons-2">
                   <div class="d-flex flex-column flex-lg-row">
-                    <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
-                    <button class="btn btn-outline-primary btn-sm ">
-                      <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
+                    <% if current_user.id == @user.id %>
+                      <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                      <button class="btn btn-outline-primary btn-sm ">
+                        <i class="fa fa-edit"></i><%= link_to 'Editer', edit_review_path(review) %>
+                      </button>
+                      <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
+                      <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
+                      <% end %>
+                      <% else %>
+                      <%= link_to 'Voir', review, class: "btn btn-outline-primary btn-sm edit-button" %>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CARD RESPONSIVE REVIEW MOBILE VERSION -->
+  <section class="container d-lg-none">
+    <div class="card">
+      <h5 class="card-header d-lg-noneader text-dark bg-light">Mes avis</h5>
+      <div class="card-body bg-secondary">
+        <% if @user.reviews == nil || @user.reviews == [] %>
+          <p>Vous n'avez pas encore écrit d'avis</p>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <div class="row">
+              <div class="col-4">
+                <span><%= review.title %></span>
+              </div>
+              <div class="col-5 text-center">
+                <ul class="list-inline list-inline-rating mr-4">
+                  <% review.notation.to_i.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </li>
+                  <% end %>
+                  <% (5 - review.notation).to_i.times do %>
+                  <li class="list-inline-item">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="col-3 ">
+                <% if current_user.id == @user.id %>
+                    <%= link_to 'Voir', review, class: "btn btn-primary btn-sm mr-2 mb-2" %>
+                    <button class="btn btn-outline-primary btn-sm mr-2 mb-2">
+                      <%= link_to 'Editer', edit_review_path(review) %>
                     </button>
-                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like px-2" do %> 
+                    <%= button_to internship_review_path(review.review_internship_id, review), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class:"btn-like pr-5 mb-2" do %> 
                     <i class="fas fa-times-circle fa-2x text-danger" title="Supprimer l'avis"></i>
-                    <% end %>
-                  </div>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
-            </tbody>
-      </table>
+                  <% end %>
+                  <% else %>
+                    <%= link_to 'Voir', review, class: "btn btn-primary btn-sm" %>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+
+        <% end %>
+      </div>
     </div>
   </section>
 
-      <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
-
+ <div class="ml-6 mb-6">
+    <%= link_to 'Retour', root_path, class: "btn btn-outline-secondary mt-3" %>
+  </div>

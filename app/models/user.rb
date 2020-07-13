@@ -30,6 +30,8 @@ class User < ApplicationRecord
   has_many :favorites, foreign_key: "favorite_user_id"
   has_many :favorite_internships, foreign_key: "favorite_internship_id", class_name: "Internship", through: :favorites
 
+  after_create :welcome_send
+
   def unread_internships_comments
     unread_comments = []
     unless self.internships == nil || self.internships == []
@@ -58,6 +60,43 @@ class User < ApplicationRecord
     list_id = ENV["MAILCHIMP_LIST_ID"]
     gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
     subscribe = gibbon.lists(list_id).members.create(body: { email_address: self.email, status: "subscribed", merge_fields: {FNAME: self.first_name, LNAME: self.last_name},double_optin: true })
+  end
+
+  def unread_comments
+    total_unread_comments = unread_internships_comments + unread_comments_answers
+    return total_unread_comments
+  end
+
+  def internships_with_unread_comments
+    total_internships_with_unread_comments = []
+    self.unread_comments.each do |unread_comment|
+      if unread_comment.commentable_type == "Internship"
+        total_internships_with_unread_comments << unread_comment.commentable_id
+      else
+        total_internships_with_unread_comments << Comment.find(unread_comment.commentable_id).commentable_id
+      end
+    end
+    return total_internships_with_unread_comments
+  end
+
+  def notifications_number
+    self.internships_with_unread_comments.uniq.length
+  end
+
+  def uniq_comments
+    internships = []
+    self.comments.each do |comment|
+      if comment.commentable_type == "Internship"
+        internships << Internship.find(comment.commentable_id).title
+      else
+        internships << Internship.find(Comment.find(comment.commentable_id).commentable_id).title
+      end
+    end
+    return internships.uniq
+  end
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
   end
 
 end

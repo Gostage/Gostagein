@@ -1,12 +1,13 @@
 class InternshipsController < ApplicationController
   before_action :set_internship, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :current_user_must_own_internship, only: [:edit, :update, :destroy]
 
   # GET /internships
   # GET /internships.json
   def index
     @q = Internship.ransack(params[:q])
-    @internships = @q.result.order(created_at: :desc)
+    @internships = @q.result
   end
 
   # GET /internships/1
@@ -32,6 +33,10 @@ class InternshipsController < ApplicationController
         end
       end
     end
+
+    # To add empty stars in average notation
+    @stars_empty = 5 - @internship.average_notation
+
   end
 
   # GET /internships/new
@@ -51,7 +56,7 @@ class InternshipsController < ApplicationController
     @internship.user = current_user
     respond_to do |format|
       if @internship.save
-        format.html { redirect_to @internship, notice: 'Expérience crée avec succès' }
+        format.html { redirect_to @internship, notice: 'Expérience créée avec succès' }
         format.json { render :show, status: :created, location: @internship }
       else
         format.html { render :new }
@@ -80,7 +85,7 @@ class InternshipsController < ApplicationController
     @internship.destroy
 
     respond_to do |format|
-      format.html { redirect_to internships_url, notice: 'Expérience supprimée avec succès.' }
+      format.html { redirect_to user_path(current_user.id), notice: 'Expérience supprimée avec succès.' }
       format.json { head :no_content }
     end
   end
@@ -93,7 +98,7 @@ class InternshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def internship_params
-      params.require(:internship).permit(:adress, :zipcode, :city, :specialty, :organization, :population, :cursus, :title, :duration, :description, :region, :remuneration, :user_id)
+      params.require(:internship).permit(:adress, :zipcode, :city, :specialty, :organization, :population, :cursus, :title, :duration, :description, :region, :remuneration, :user_id, :notation, :feeling, :overall_notation, :hourly_duration)
     end
 
     # Editing permission only for owner
