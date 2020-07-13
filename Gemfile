@@ -49,6 +49,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+  # For gibbon dependencies
+  gem 'rake', '>= 0'
+  gem 'rspec', '= 3.2.0'
+  #gem 'webmock', '~>  1.21.0'
 end
 
 group :test do
@@ -80,7 +84,11 @@ gem 'will_paginate'
 
 
 # To connect Mailchimp with rails
-gem 'gibbon', '~> 2.2', '>= 2.2.3'
+gem 'gibbon', '~> 3.3.4'
+
+# For gibbon dependencies
+gem 'faraday', '~> 1.0.1'
+gem 'multi_json', '>= 1.11.0'
 
 gem 'dotenv-rails'
 
