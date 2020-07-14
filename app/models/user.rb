@@ -59,8 +59,7 @@ class User < ApplicationRecord
   def add_to_mailchimp_list
     list_id = ENV["MAILCHIMP_LIST_ID"]
     gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
-    md5_email = Digest::MD5.hexdigest(self.email)
-    subscribe = gibbon.lists(list_id).members(md5_email).upsert(body: { email_address: self.email, status: "subscribed", merge_fields: {FNAME: self.first_name, LNAME: self.last_name},double_optin: true })
+    subscribe = gibbon.lists(list_id).members(Digest::MD5.hexdigest(self.email)).upsert(body: { email_address: self.email, status: "subscribed", merge_fields: {FNAME: self.first_name, LNAME: self.last_name}})
   end
 
   def unread_comments
